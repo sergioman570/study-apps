@@ -1,0 +1,23 @@
+name: Decode icons
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Turn .b64 text files into PNG icons
+        run: |
+          shopt -s nullglob
+          files=(*/*.png.b64)
+          [ ${#files[@]} -eq 0 ] && exit 0
+          for f in "${files[@]}"; do base64 -d "$f" > "${f%.b64}"; git rm -q "$f"; done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add */*.png
+          git commit -m "Decode app icons"
+          git push
