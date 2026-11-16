@@ -1,0 +1,1058 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Net Trainer CST8182</title><meta name="theme-color" content="#2a62d8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Net Trainer"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
+<style>:root{--bg:#f7f5ef;--card:#fff;--ink:#1d2433;--muted:#5b6475;--acc:#2a62d8;--acc2:#e8f0ff;--ok:#1f8a4c;--okbg:#e5f6ec;--bad:#c0392b;--badbg:#fdecea;--warn:#a86a00;--line:#d9dde5;--r:16px;--fs:19px}
+[data-theme=dark]{--bg:#14171d;--card:#1e232c;--ink:#eef1f6;--muted:#a9b2c3;--acc:#7aa7ff;--acc2:#24324d;--ok:#5fd28f;--okbg:#173626;--bad:#ff8a80;--badbg:#3d1f1d;--line:#333b48}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs)/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Verdana,Arial,sans-serif;letter-spacing:.01em;padding-bottom:84px}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top)) 14px 8px;display:flex;align-items:center;gap:10px}
+header h1{font-size:1.05em;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{background:var(--acc2);color:var(--acc);border-radius:999px;padding:3px 10px;font-weight:700;font-size:.8em;white-space:nowrap}
+main{max-width:760px;margin:0 auto;padding:14px}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:5}
+nav.tabs a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font-size:.68em;padding:4px 2px;border-radius:10px}
+nav.tabs a b{display:block;font-size:1.6em;line-height:1.1}
+nav.tabs a.on{color:var(--acc);background:var(--acc2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:0 0 14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.card h2{font-size:1.15em;margin:.1em 0 .5em}.card h3{font-size:1.02em;margin:.8em 0 .3em}
+.muted{color:var(--muted)}.small{font-size:.85em}.center{text-align:center}
+button,.btn{font:inherit;border:0;border-radius:14px;padding:14px 18px;min-height:52px;background:var(--acc);color:#fff;font-weight:700;cursor:pointer;display:inline-block;text-decoration:none;text-align:center}
+button.sec,.btn.sec{background:var(--acc2);color:var(--acc)}button.ghost{background:transparent;color:var(--acc);border:2px solid var(--line)}
+button:disabled{opacity:.45}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.stack>*{display:block;width:100%;margin:0 0 10px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);font-weight:500;margin:0 0 10px}
+.opt.sel{border-color:var(--acc);background:var(--acc2)}.opt.ok{border-color:var(--ok);background:var(--okbg)}.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.fb{border-radius:14px;padding:12px 14px;margin:12px 0}.fb.ok{background:var(--okbg);border-left:6px solid var(--ok)}.fb.bad{background:var(--badbg);border-left:6px solid var(--bad)}
+input[type=text],input[type=number],input[type=date],select,textarea{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+input.ok{border-color:var(--ok);background:var(--okbg)}input.bad{border-color:var(--bad);background:var(--badbg)}
+code,kbd,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
+code{background:var(--acc2);padding:1px 6px;border-radius:6px}
+pre{background:#10141b;color:#e8edf5;padding:12px;border-radius:12px;overflow:auto;font-size:.85em;line-height:1.45}
+.bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+.prog{display:flex;gap:4px;margin:0 0 12px}.prog i{flex:1;height:8px;border-radius:9px;background:var(--line)}.prog i.d{background:var(--ok)}.prog i.c{background:var(--acc)}
+.lesson{display:flex;gap:12px;align-items:center;padding:12px;border:2px solid var(--line);border-radius:14px;margin:0 0 10px;text-decoration:none;color:var(--ink);background:var(--card)}
+.lesson .ic{font-size:1.5em;width:1.6em;text-align:center}.lesson.done{border-color:var(--ok)}.lesson.lock{opacity:.5}
+.lesson .t{flex:1}.lesson .t small{display:block;color:var(--muted)}
+svg.dia{width:100%;height:auto;max-height:420px;display:block;margin:8px 0}
+.flash{min-height:210px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.15em;cursor:pointer;padding:22px}
+.key{display:inline-block;border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;padding:0 6px;font-family:ui-monospace,Menlo,monospace}
+.big{font-size:1.6em;font-weight:800}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.bits{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}.bits button{min-width:44px;min-height:56px;padding:4px;font-family:ui-monospace,monospace;font-size:1.2em}
+.bits .lbl{display:block;font-size:.55em;opacity:.8}
+.tag{display:inline-block;font-size:.72em;padding:2px 8px;border-radius:99px;background:var(--acc2);color:var(--acc);margin:0 4px 4px 0;font-weight:700}
+.warn{background:#fff6e0;border-left:6px solid var(--warn);padding:10px 12px;border-radius:12px}[data-theme=dark] .warn{background:#3a2f12}
+.speak{background:transparent;color:var(--acc);border:2px solid var(--line);min-height:40px;padding:6px 10px;font-size:.85em}
+details{margin:8px 0}summary{cursor:pointer;font-weight:700;color:var(--acc)}
+.step{padding:8px 12px;border-left:4px solid var(--acc);background:var(--acc2);border-radius:8px;margin:6px 0}
+.timer{font-variant-numeric:tabular-nums}
+.toast{position:fixed;left:50%;top:70px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;z-index:9;font-weight:700}
+</style></head><body><noscript>Turn on JavaScript to use this app.</noscript>
+<script>/* ---- shared/diagrams.js ---- */
+/* Inline SVG diagrams. Each returns an SVG string. Colors chosen to read in light and dark themes. */
+window.D = (function () {
+  const T = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${o.fs || 14}" text-anchor="${o.a || 'middle'}" fill="${o.c || 'currentColor'}" font-weight="${o.w || 400}" font-family="${o.mono ? 'ui-monospace,Menlo,monospace' : 'inherit'}">${s}</text>`;
+  const R = (x, y, w, h, f, o = {}) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx ?? 8}" fill="${f}" stroke="${o.s || 'none'}" stroke-width="${o.sw || 2}"/>`;
+  const svg = (w, h, inner, label) => `<svg class="dia" viewBox="0 0 ${w} ${h}" role="img" aria-label="${label || 'diagram'}">${inner}</svg>`;
+  const COL = ['#e57373', '#f0a35e', '#e6c84f', '#7cc576', '#4fb3bf', '#6f8fe0', '#a07ad6'];
+  const D = {};
+  D.osi = (hi) => { const L = ['7 Application', '6 Presentation', '5 Session', '4 Transport', '3 Network', '2 Data Link', '1 Physical']; const P = ['Data', 'Data', 'Data', 'Segment', 'Packet', 'Frame', 'Bits']; const E = ['HTTP DNS DHCP', '', '', 'TCP UDP ports', 'IP · router', 'MAC · switch', 'cables · hub'];
+    let s = ''; L.forEach((l, i) => { const y = 10 + i * 46; s += R(10, y, 250, 40, COL[6 - i], { s: hi === 7 - i ? '#111' : 'none', sw: 4 }) + T(135, y + 26, l, { c: '#111', w: 700, fs: 16 }) + T(330, y + 26, P[i], { w: 700 }) + T(470, y + 26, E[i], { fs: 13 }); });
+    s += R(560, 10, 130, 132, '#a07ad6') + T(625, 80, 'Application', { c: '#111', w: 700 }) + R(560, 148, 130, 40, '#7cc576') + T(625, 174, 'Transport', { c: '#111', w: 700 }) + R(560, 194, 130, 40, '#4fb3bf') + T(625, 220, 'Internet', { c: '#111', w: 700 }) + R(560, 240, 130, 86, '#6f8fe0') + T(625, 288, 'Network Access', { c: '#111', w: 700, fs: 13 });
+    s += T(135, 345, 'OSI (7 layers)', { w: 700 }) + T(330, 345, 'PDU name', { w: 700 }) + T(470, 345, 'Examples', { w: 700 }) + T(625, 345, 'TCP/IP (4)', { w: 700 });
+    return svg(700, 355, s, 'OSI model and TCP/IP model'); };
+  D.encap = () => { let s = ''; const rows = [['Data', [['DATA', '#a07ad6']]], ['Segment', [['TCP/UDP hdr (ports)', '#7cc576'], ['DATA', '#a07ad6']]], ['Packet', [['IP hdr (IPs)', '#4fb3bf'], ['TCP hdr', '#7cc576'], ['DATA', '#a07ad6']]], ['Frame', [['Eth hdr (MACs)', '#6f8fe0'], ['IP', '#4fb3bf'], ['TCP', '#7cc576'], ['DATA', '#a07ad6'], ['FCS', '#6f8fe0']]], ['Bits', [['0101101001110100101…', '#ccc']]]];
+    rows.forEach(([n, parts], i) => { const y = 10 + i * 52; s += T(60, y + 28, n, { w: 700 }); let x = 120; const W = { 'DATA': 110, 'FCS': 50 }; parts.forEach(([p, c]) => { const w = W[p] || (p.length > 12 ? 170 : 80); s += R(x, y, w, 40, c) + T(x + w / 2, y + 25, p, { c: '#111', fs: 12, w: 700 }); x += w + 4; }); });
+    s += T(350, 280, 'Going DOWN = add a header (encapsulate). Going UP = remove it.', { fs: 14, w: 700 });
+    return svg(700, 292, s, 'encapsulation'); };
+  D.place = (v, showSum) => { const P = [128, 64, 32, 16, 8, 4, 2, 1]; let s = ''; let sum = [];
+    P.forEach((p, i) => { const on = v !== undefined && (v & p); if (on) sum.push(p); const x = 10 + i * 84; s += R(x, 10, 76, 40, '#6f8fe0') + T(x + 38, 36, p, { c: '#fff', w: 700, fs: 18 }) + R(x, 56, 76, 50, on ? '#7cc576' : 'transparent', { s: '#888' }) + T(x + 38, 90, v === undefined ? '?' : on ? '1' : '0', { w: 800, fs: 26, mono: 1 }) + T(x + 38, 124, '2^' + (7 - i), { fs: 12 }); });
+    if (v !== undefined && showSum !== false) s += T(340, 156, sum.length ? sum.join(' + ') + ' = ' + v : 'all 0 = 0', { w: 700, fs: 18 });
+    return svg(680, 166, s, 'binary place values'); };
+  D.ipBits = (ip, p) => { const b = ip.split('.').map(x => (+x).toString(2).padStart(8, '0')).join(''); let s = ''; for (let i = 0; i < 32; i++) { const row = Math.floor(i / 16), col = i % 16; const x = 6 + col * 22 + Math.floor(col / 8) * 10; const y = 28 + row * 70; s += R(x, y, 20, 32, i < p ? '#6f8fe0' : '#f0a35e', { rx: 3 }) + T(x + 10, y + 22, b[i], { c: '#111', w: 700, mono: 1, fs: 15 }); }
+    ip.split('.').forEach((o, i) => { const row = Math.floor(i / 2), col = (i % 2) * 8; s += T(6 + col * 22 + (i % 2) * 10 + 87, 28 + row * 70 + 50, 'octet ' + (i + 1) + ': ' + o, { w: 700, fs: 13 }); });
+    s += T(6, 18, `■ network ${p} bits`, { a: 'start', w: 700, c: '#4a6fd0', fs: 13 }) + T(370, 18, `■ host ${32 - p} bits`, { a: 'end', w: 700, c: '#d9822b', fs: 13 });
+    return svg(376, 170, s, 'IP address bits'); };
+  D.blocks = (blk, val, octName) => { const n = Math.min(256 / blk, 16); const w = 680 / n; let s = ''; for (let i = 0; i < n; i++) { const start = i * blk; const has = val >= start && val < start + blk; s += R(10 + i * w, 20, w - 4, 50, has ? '#7cc576' : i % 2 ? '#cfd8ea' : '#e3e9f5', { rx: 4 }) + T(10 + i * w + (w - 4) / 2, 50, start, { c: '#111', fs: n > 8 ? 11 : 14, w: has ? 800 : 400 }); }
+    if (256 / blk > 16) s += T(690, 100, '… keeps going to 256', { a: 'end', fs: 12 });
+    s += T(10, 14, `Blocks of ${blk} in the ${octName || 'interesting'} octet`, { a: 'start', fs: 13, w: 700 });
+    if (val !== undefined) { const i = Math.floor(val / blk); if (i < n) s += T(10 + i * w + (w - 4) / 2, 92, '▲ ' + val + ' is here', { fs: 13, w: 700 }); }
+    return svg(700, 104, s, 'subnet blocks'); };
+  D.topo = (labels) => { labels = labels || {}; const dev = (x, y, kind, name, sub) => { let g = ''; if (kind === 'pc') g = R(x - 26, y - 20, 52, 34, '#6f8fe0') + R(x - 10, y + 14, 20, 8, '#6f8fe0', { rx: 2 }); if (kind === 'sw') g = R(x - 40, y - 16, 80, 32, '#4fb3bf') + T(x, y + 5, '⇄ ⇄', { c: '#111', w: 800 }); if (kind === 'r') g = `<circle cx="${x}" cy="${y}" r="24" fill="#f0a35e"/>` + T(x, y + 6, '✣', { c: '#111', fs: 20 }); return g + T(x, y + 44, name, { w: 700, fs: 13 }) + (sub ? T(x, y + 60, sub, { fs: 11, mono: 1 }) : ''); };
+    let s = `<line x1="70" y1="60" x2="200" y2="60" stroke="#888" stroke-width="3"/><line x1="200" y1="60" x2="350" y2="60" stroke="#888" stroke-width="3"/><line x1="350" y1="60" x2="500" y2="60" stroke="#888" stroke-width="3"/><line x1="500" y1="60" x2="630" y2="60" stroke="#888" stroke-width="3"/>`;
+    s += dev(70, 60, 'pc', 'PC-A', labels.a || '192.168.1.10') + dev(200, 60, 'sw', 'S1', labels.s1 || 'L2: MACs') + dev(350, 60, 'r', 'R1', labels.r || 'G0/0 .1 | G0/1 .1') + dev(500, 60, 'sw', 'S2', labels.s2 || '') + dev(630, 60, 'pc', 'PC-B', labels.b || '192.168.2.10');
+    s += T(135, 140, labels.n1 || 'LAN 1: 192.168.1.0/24', { fs: 12, w: 700 }) + T(565, 140, labels.n2 || 'LAN 2: 192.168.2.0/24', { fs: 12, w: 700 });
+    return svg(700, 150, s, 'network topology'); };
+  D.arp = () => { let s = R(10, 20, 120, 40, '#6f8fe0') + T(70, 45, 'PC-A', { c: '#fff', w: 700 }); ['PC-B', 'PC-C', 'PC-D'].forEach((n, i) => s += R(560, 10 + i * 50, 120, 40, i === 1 ? '#7cc576' : '#cfd8ea') + T(620, 35 + i * 50, n + (i === 1 ? ' (.5)' : ''), { c: '#111', w: 700 }));
+    s += `<path d="M130 40 L555 30 M130 40 L555 80 M130 40 L555 130" stroke="#e57373" stroke-width="2" stroke-dasharray="6 4" fill="none"/>` + T(340, 20, '① Request (broadcast FF-FF-FF-FF-FF-FF): "Who has .5?"', { fs: 13, w: 700, c: '#c0392b' });
+    s += `<path d="M555 90 C 400 190, 250 190, 130 55" stroke="#1f8a4c" stroke-width="3" fill="none"/>` + T(340, 185, '② Reply (unicast): ".5 is at my MAC 00-1A-…"', { fs: 13, w: 700, c: '#1f8a4c' });
+    return svg(700, 200, s, 'ARP'); };
+  D.handshake = () => { let s = R(10, 10, 120, 36, '#6f8fe0') + T(70, 34, 'Client', { c: '#fff', w: 700 }) + R(570, 10, 120, 36, '#f0a35e') + T(630, 34, 'Server', { c: '#111', w: 700 }) + '<line x1="70" y1="46" x2="70" y2="230" stroke="#888"/><line x1="630" y1="46" x2="630" y2="230" stroke="#888"/>';
+    [['① SYN', 70, 630, 80], ['② SYN-ACK', 630, 70, 135], ['③ ACK', 70, 630, 190]].forEach(([t, a, b, y]) => s += `<line x1="${a}" y1="${y}" x2="${b}" y2="${y + 20}" stroke="#2a62d8" stroke-width="3" marker-end="url(#ah)"/>` + T(350, y + 2, t, { w: 700 }));
+    return svg(700, 240, '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2a62d8"/></marker></defs>' + s, 'TCP three-way handshake'); };
+  D.tree = (hi) => { const kids = ['bin', 'boot', 'dev', 'etc', 'home', 'root', 'tmp', 'usr', 'var']; let s = R(320, 8, 60, 32, '#a07ad6') + T(350, 30, '/', { c: '#111', w: 800, fs: 20 }); kids.forEach((k, i) => { const x = 20 + i * 76; s += `<line x1="350" y1="40" x2="${x + 32}" y2="80" stroke="#888"/>` + R(x, 80, 66, 30, hi === k ? '#7cc576' : '#cfd8ea') + T(x + 33, 100, '/' + k, { c: '#111', fs: 13, w: 700, mono: 1 }); });
+    s += '<line x1="356" y1="110" x2="300" y2="150" stroke="#888"/><line x1="356" y1="110" x2="420" y2="150" stroke="#888"/>' + R(250, 150, 100, 30, '#e3e9f5') + T(300, 170, 'sam', { c: '#111', fs: 13, mono: 1 }) + R(370, 150, 100, 30, '#e3e9f5') + T(420, 170, 'user1', { c: '#111', fs: 13, mono: 1 });
+    s += '<line x1="300" y1="180" x2="300" y2="210" stroke="#888"/>' + R(230, 210, 140, 30, '#e3e9f5') + T(300, 230, 'Assignments', { c: '#111', fs: 13, mono: 1 }) + T(560, 172, '/home/sam = your HOME (~)', { fs: 13, w: 700 }) + T(560, 196, '/root = root\'s home (not /)', { fs: 13, w: 700 });
+    return svg(700, 250, s, 'Linux file tree'); };
+  D.perm = (str) => { str = str || '-rwxr-x---'; const grp = ['owner (u)', 'group (g)', 'others (o)']; let s = R(10, 30, 50, 50, '#ccc') + T(35, 62, str[0], { c: '#111', w: 800, fs: 22, mono: 1 }) + T(35, 100, 'type', { fs: 12 });
+    for (let g = 0; g < 3; g++) { let n = 0; for (let k = 0; k < 3; k++) { const ch = str[1 + g * 3 + k]; const w = [4, 2, 1][k]; if (ch !== '-') n += w; const x = 80 + g * 205 + k * 62; s += R(x, 30, 56, 50, ch === '-' ? 'transparent' : COL[3 + g], { s: '#888' }) + T(x + 28, 62, ch, { w: 800, fs: 22, mono: 1, c: ch === '-' ? 'currentColor' : '#111' }) + T(x + 28, 100, w, { fs: 13 }); }
+      s += T(80 + g * 205 + 90, 20, grp[g], { w: 700, fs: 13 }) + T(80 + g * 205 + 90, 128, '= ' + n, { w: 800, fs: 18 }); }
+    return svg(700, 140, s, 'permission bits'); };
+  D.fds = () => { let s = R(250, 50, 200, 70, '#6f8fe0') + T(350, 92, 'command', { c: '#fff', w: 800, fs: 18 }) + R(20, 60, 150, 50, '#cfd8ea') + T(95, 82, '0 stdin', { c: '#111', w: 700 }) + T(95, 100, 'keyboard  <', { c: '#111', fs: 12 }) + R(530, 20, 160, 50, '#7cc576') + T(610, 42, '1 stdout', { c: '#111', w: 700 }) + T(610, 60, 'screen  >  >>  |', { c: '#111', fs: 12 }) + R(530, 100, 160, 50, '#e57373') + T(610, 122, '2 stderr', { c: '#111', w: 700 }) + T(610, 140, 'screen  2>  2>&1', { c: '#111', fs: 12 });
+    s += '<line x1="170" y1="85" x2="248" y2="85" stroke="#888" stroke-width="3"/><line x1="450" y1="70" x2="528" y2="45" stroke="#888" stroke-width="3"/><line x1="450" y1="100" x2="528" y2="125" stroke="#888" stroke-width="3"/>';
+    return svg(700, 165, s, 'stdin stdout stderr'); };
+  D.inode = () => { let s = R(10, 10, 250, 140, '#e3e9f5') + T(135, 32, 'Directory = name → inode #', { c: '#111', w: 700, fs: 13 }) + T(30, 62, 'f1        →  1234', { a: 'start', c: '#111', mono: 1 }) + T(30, 92, 'hardlink  →  1234', { a: 'start', c: '#111', mono: 1 }) + T(30, 122, 'f2        →  5678', { a: 'start', c: '#111', mono: 1 });
+    s += R(400, 20, 280, 120, '#7cc576') + T(540, 44, 'Inode 1234', { c: '#111', w: 800 }) + T(540, 68, 'owner, perms, size, times,', { c: '#111', fs: 13 }) + T(540, 88, 'link count = 2, data blocks', { c: '#111', fs: 13 }) + T(540, 112, '(NO file name in here)', { c: '#111', fs: 13, w: 700 });
+    s += '<line x1="200" y1="58" x2="398" y2="70" stroke="#1f8a4c" stroke-width="3"/><line x1="200" y1="88" x2="398" y2="80" stroke="#1f8a4c" stroke-width="3"/>';
+    return svg(700, 160, s, 'inodes and hard links'); };
+  D.cron = () => { const f = [['minute', '0-59'], ['hour', '0-23'], ['day of month', '1-31'], ['month', '1-12'], ['day of week', '0-7 (0,7=Sun)']]; let s = ''; f.forEach(([n, r], i) => { const x = 10 + i * 120; s += R(x, 10, 110, 44, COL[i + 1]) + T(x + 55, 38, ['30', '2', '*', '*', '1'][i], { c: '#111', w: 800, fs: 20, mono: 1 }) + T(x + 55, 76, n, { fs: 13, w: 700 }) + T(x + 55, 94, r, { fs: 12 }); });
+    s += R(615, 10, 80, 44, '#ccc') + T(655, 38, 'cmd', { c: '#111', w: 800, mono: 1 }) + T(350, 124, '30 2 * * 1 /home/sam/backup.sh  →  every Monday at 2:30 AM', { w: 700, fs: 14 });
+    return svg(700, 134, s, 'crontab fields'); };
+  D.ipv6 = () => { let s = T(350, 30, '2001:0db8:0000:0000:0000:ff00:0042:8329', { mono: 1, w: 700, fs: 17 }) + T(350, 62, '① drop leading 0s in each group → 2001:db8:0:0:0:ff00:42:8329', { fs: 14 }) + T(350, 92, '② replace ONE run of all-0 groups with :: → 2001:db8::ff00:42:8329', { fs: 14 }) + T(350, 126, '128 bits = 8 groups × 16 bits (4 hex digits each)', { fs: 13, w: 700 });
+    return svg(700, 140, s, 'IPv6 compression'); };
+  return D;
+})();
+
+/* ---- net/subnet-core.js ---- */
+/* Subnet math core. Pure functions, no DOM. Works in browser (window.SN) and node (module.exports). */
+(function (root) {
+  const SN = {};
+  SN.POW = [128, 64, 32, 16, 8, 4, 2, 1];
+  SN.ipToInt = function (ip) {
+    const p = String(ip).trim().split('.');
+    if (p.length !== 4) return null;
+    let n = 0;
+    for (const s of p) {
+      if (!/^\d{1,3}$/.test(s)) return null;
+      const v = +s; if (v > 255) return null;
+      n = n * 256 + v;
+    }
+    return n >>> 0;
+  };
+  SN.intToIp = function (n) {
+    n = n >>> 0;
+    return [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join('.');
+  };
+  SN.prefixToMaskInt = function (p) { return p === 0 ? 0 : ((0xFFFFFFFF << (32 - p)) >>> 0); };
+  SN.prefixToMask = function (p) { return SN.intToIp(SN.prefixToMaskInt(p)); };
+  SN.maskToPrefix = function (mask) {
+    const m = SN.ipToInt(mask); if (m === null) return null;
+    // valid mask = ones then zeros
+    let p = 0; while (p < 32 && ((m >>> (31 - p)) & 1)) p++;
+    if (SN.prefixToMaskInt(p) !== m) return null;
+    return p;
+  };
+  SN.toBin8 = function (v) { return (v >>> 0).toString(2).padStart(8, '0'); };
+  SN.binToDec = function (b) { return /^[01]{1,8}$/.test(b) ? parseInt(b, 2) : null; };
+  SN.ipToBin = function (ip) { return ip.split('.').map(x => SN.toBin8(+x)).join('.'); };
+  // Which octet is "interesting" (the one where the mask is not 255 or 0). For /8,/16,/24,/32 we report the last full one.
+  SN.interestingOctet = function (p) { if (p === 32) return 3; return Math.floor(p / 8) < 4 ? Math.floor(p / 8) : 3; };
+  SN.blockSize = function (p) { // the "magic number" in the interesting octet
+    if (p === 32) return 1;
+    const bitsInOctet = p % 8; // host bits start inside this octet
+    return 256 >> bitsInOctet; // e.g. /26 -> 6%8=2 -> 64; /24 -> 0 -> 256
+  };
+  SN.info = function (ip, p) {
+    const a = SN.ipToInt(ip); const m = SN.prefixToMaskInt(p);
+    const net = (a & m) >>> 0; const bc = (net | (~m >>> 0)) >>> 0;
+    const total = Math.pow(2, 32 - p);
+    let usable = total - 2; if (p === 31) usable = 2; if (p === 32) usable = 1;
+    const first = p >= 31 ? net : net + 1; const last = p >= 31 ? bc : bc - 1;
+    return { ip, prefix: p, mask: SN.prefixToMask(p), wildcard: SN.intToIp(~m >>> 0),
+      network: SN.intToIp(net), broadcast: SN.intToIp(bc), first: SN.intToIp(first), last: SN.intToIp(last >>> 0),
+      total, usable, octet: SN.interestingOctet(p), block: SN.blockSize(p), hostBits: 32 - p };
+  };
+  SN.ipClass = function (ip) {
+    const f = +String(ip).split('.')[0];
+    if (f >= 1 && f <= 126) return 'A'; if (f === 127) return 'loopback';
+    if (f >= 128 && f <= 191) return 'B'; if (f >= 192 && f <= 223) return 'C';
+    if (f >= 224 && f <= 239) return 'D'; if (f >= 240) return 'E'; return 'none';
+  };
+  SN.defaultPrefix = function (cls) { return { A: 8, B: 16, C: 24 }[cls] || null; };
+  SN.isPrivate = function (ip) {
+    const n = SN.ipToInt(ip);
+    const inR = (base, p) => ((n & SN.prefixToMaskInt(p)) >>> 0) === SN.ipToInt(base);
+    return inR('10.0.0.0', 8) || inR('172.16.0.0', 12) || inR('192.168.0.0', 16);
+  };
+  SN.ipType = function (ip) {
+    const n = SN.ipToInt(ip);
+    const inR = (base, p) => ((n & SN.prefixToMaskInt(p)) >>> 0) === SN.ipToInt(base);
+    if (inR('127.0.0.0', 8)) return 'loopback';
+    if (inR('169.254.0.0', 16)) return 'link-local (APIPA)';
+    if (SN.isPrivate(ip)) return 'private';
+    if (inR('224.0.0.0', 4)) return 'multicast';
+    if (inR('240.0.0.0', 4)) return 'experimental';
+    return 'public';
+  };
+  SN.sameSubnet = function (a, b, p) { const m = SN.prefixToMaskInt(p); return ((SN.ipToInt(a) & m) >>> 0) === ((SN.ipToInt(b) & m) >>> 0); };
+  // smallest prefix (largest subnet) giving at least `hosts` usable addresses
+  SN.prefixForHosts = function (hosts) { for (let h = 2; h <= 30; h++) if (Math.pow(2, h) - 2 >= hosts) return 32 - h; return null; };
+  // borrowing bits from a starting prefix to get at least n subnets
+  SN.bitsForSubnets = function (n) { let b = 0; while (Math.pow(2, b) < n) b++; return b; };
+  // VLSM: requests [{name, hosts}] largest first, allocated from base/prefix. Returns list or null if it does not fit.
+  SN.vlsm = function (base, basePrefix, reqs) {
+    const sorted = reqs.map((r, i) => Object.assign({ i }, r)).sort((x, y) => y.hosts - x.hosts || x.i - y.i);
+    let cur = (SN.ipToInt(base) & SN.prefixToMaskInt(basePrefix)) >>> 0;
+    const end = (cur + Math.pow(2, 32 - basePrefix)) >>> 0;
+    const out = [];
+    for (const r of sorted) {
+      const p = SN.prefixForHosts(r.hosts); if (p === null) return null;
+      const size = Math.pow(2, 32 - p);
+      if (cur % size !== 0) cur = Math.ceil(cur / size) * size; // align (largest-first means already aligned)
+      if (cur + size > end) return null;
+      const inf = SN.info(SN.intToIp(cur), p);
+      out.push(Object.assign({ name: r.name, hosts: r.hosts }, inf));
+      cur += size;
+    }
+    return out;
+  };
+  // Explanations, step by step, for network/broadcast with the magic number method
+  SN.steps = function (ip, p) {
+    const i = SN.info(ip, p); const o = i.octet; const oct = ip.split('.').map(Number);
+    const maskO = i.mask.split('.').map(Number);
+    const names = ['1st', '2nd', '3rd', '4th'];
+    const s = [];
+    s.push(`/${p} means the first ${p} bits are network bits. Mask = ${i.mask}.`);
+    if (p % 8 === 0) {
+      s.push(`/${p} ends exactly on an octet border, so the network part is the first ${p / 8} octet(s). Copy them, put 0s after for the network, 255s for the broadcast.`);
+    } else {
+      s.push(`The "interesting" octet is the ${names[o]} one: the mask there is ${maskO[o]} (not 255, not 0).`);
+      s.push(`Magic number (block size) = 256 − ${maskO[o]} = ${i.block}. Subnets go up by ${i.block} in the ${names[o]} octet: 0, ${i.block}, ${2 * i.block}, ${3 * i.block}, ...`);
+      const nStart = Math.floor(oct[o] / i.block) * i.block;
+      s.push(`Your IP has ${oct[o]} in that octet. The biggest multiple of ${i.block} that is ≤ ${oct[o]} is ${nStart}. Next block starts at ${nStart + i.block}.`);
+      s.push(`Octets before it stay the same. Octets after it become 0 for the network and 255 for the broadcast.`);
+    }
+    s.push(`Network = ${i.network}`);
+    s.push(`Broadcast = ${i.broadcast} (one less than the next network)`);
+    if (p <= 30) s.push(`First usable = network + 1 = ${i.first}. Last usable = broadcast − 1 = ${i.last}.`);
+    s.push(`Host bits = 32 − ${p} = ${i.hostBits}. Usable hosts = 2^${i.hostBits} − 2 = ${i.usable}.`);
+    return s;
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = SN; else root.SN = SN;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* ---- net/gens.js ---- */
+/* Random question generators for Networking. Every answer is computed by subnet-core.js (tested). */
+window.NETGENS = (function () {
+  const r = n => Math.floor(Math.random() * n);
+  const pick = a => a[r(a.length)];
+  const ipStr = a => a.join('.');
+  const randHostIp = (cls) => { // realistic addresses, mostly private like the course uses
+    const k = cls || pick(['C', 'C', 'B', 'A', 'any']);
+    if (k === 'C') return ipStr([192, 168, r(256), 1 + r(254)]);
+    if (k === 'B') return ipStr([172, 16 + r(16), r(256), 1 + r(254)]);
+    if (k === 'A') return ipStr([10, r(256), r(256), 1 + r(254)]);
+    return ipStr([1 + r(223), r(256), r(256), 1 + r(254)]);
+  };
+  const P8 = [128, 64, 32, 16, 8, 4, 2, 1];
+  const G = {};
+  const opts4 = (right, wrongs) => { const set = [String(right)]; for (const w of wrongs) { if (set.length >= 4) break; if (!set.includes(String(w))) set.push(String(w)); } return { opts: set, a: 0 }; };
+  G.binToDec = () => { const v = r(256); const b = SN.toBin8(v); const on = P8.filter(p => v & p); return { kind: 'input', topic: 'binary', q: `Convert binary <code>${b}</code> to decimal.` + D.place(undefined), a: String(v), ph: 'a number 0-255', why: '', steps: ['Write the place values: 128 64 32 16 8 4 2 1.', `Line up the bits: ${b.split('').map((x, i) => x === '1' ? '<b>' + P8[i] + '</b>' : '<s>' + P8[i] + '</s>').join(' ')}.`, `Add the ones that have a 1 under them: ${on.join(' + ') || '0'} = <b>${v}</b>.`] }; };
+  G.decToBin = () => { const v = r(256); const st = []; let left = v; P8.forEach(p => { if (left >= p) { st.push(`${p} fits into ${left} → write 1, ${left} − ${p} = ${left - p}`); left -= p; } else st.push(`${p} does not fit into ${left} → write 0`); }); return { kind: 'input', topic: 'binary', q: `Convert <b>${v}</b> to 8-bit binary.`, a: SN.toBin8(v), ph: '8 digits, like 11000000', steps: ['Go left to right through 128 64 32 16 8 4 2 1.', ...st, `Answer: <code>${SN.toBin8(v)}</code>`], why: D.place(v) }; };
+  G.powers = () => { const n = 1 + r(12); return { kind: 'input', topic: 'binary', q: `What is 2<sup>${n}</sup>?`, a: String(Math.pow(2, n)), steps: ['Start at 2 and double: ' + Array.from({ length: n }, (_, i) => Math.pow(2, i + 1)).join(' → ')], why: 'Powers of 2 count addresses: 2<sup>host bits</sup> addresses per subnet.' }; };
+  G.hexToDec = () => { const v = r(256); const h = v.toString(16).toUpperCase().padStart(2, '0'); const d = h.split('').map(c => parseInt(c, 16)); return { kind: 'input', topic: 'hex', q: `Convert hex <code>${h}</code> to decimal.`, a: String(v), steps: ['Hex digits: A=10 B=11 C=12 D=13 E=14 F=15.', `First digit × 16 + second digit = ${d[0]} × 16 + ${d[1]} = <b>${v}</b>`] }; };
+  G.cidrToMask = () => { const p = 8 + r(23); return { kind: 'input', topic: 'masks', q: `Write the subnet mask for <b>/${p}</b> in dotted decimal.` + D.ipBits('255.255.255.255', p).replace(/>1</g, '>·<'), a: SN.prefixToMask(p), ph: '255.255.255.0', steps: [`/${p} = ${p} ones, then ${32 - p} zeros.`, `Full octets of 1s: ${Math.floor(p / 8)} → that many 255s.`, p % 8 ? `Leftover ${p % 8} ones in the next octet: ${P8.slice(0, p % 8).join(' + ')} = ${256 - (256 >> (p % 8))}.` : 'No leftover bits.', `Mask = <b>${SN.prefixToMask(p)}</b>`] }; };
+  G.maskToCidr = () => { const p = 8 + r(23); const m = SN.prefixToMask(p); return { kind: 'input', topic: 'masks', q: `What is <code>${m}</code> in slash (CIDR) notation?`, a: ['/' + p, String(p)], ph: '/24', steps: ['Each 255 = 8 ones.', ...m.split('.').map(o => `${o} = ${SN.toBin8(+o)} = ${SN.toBin8(+o).split('').filter(x => x === '1').length} ones`), `Add them up: <b>/${p}</b>`] }; };
+  G.magic = () => { const p = pick([9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30]); const m = SN.prefixToMask(p); const o = Math.floor(p / 8); const mo = +m.split('.')[o]; return { kind: 'input', topic: 'magic', q: `Mask <code>${m}</code> (/${p}). What is the block size (magic number)?`, a: String(256 - mo), steps: [`Find the interesting octet: the one that is not 255 and not 0 → <b>${mo}</b>.`, `Magic number = 256 − ${mo} = <b>${256 - mo}</b>.`], why: D.blocks(256 - mo) }; };
+  G.hostsIn = () => { const p = 16 + r(15); const h = 32 - p; return { kind: 'input', topic: 'hosts', q: `How many <b>usable host</b> addresses are in a /${p} network?`, a: String(Math.pow(2, h) - 2), steps: [`Host bits = 32 − ${p} = ${h}.`, `2<sup>${h}</sup> = ${Math.pow(2, h)} total addresses.`, `Minus 2 (network + broadcast) = <b>${Math.pow(2, h) - 2}</b>.`] }; };
+  G.prefixForHosts = () => { const n = pick([2, 5, 10, 12, 20, 25, 30, 45, 50, 60, 62, 70, 100, 120, 126, 200, 250, 300, 500, 1000]); const p = SN.prefixForHosts(n); const h = 32 - p; return { kind: 'input', topic: 'hosts', q: `A LAN needs <b>${n}</b> hosts. What is the smallest subnet (biggest /number) that fits?`, a: ['/' + p, String(p)], ph: '/26', steps: ['Find the smallest power of 2 where (2<sup>h</sup> − 2) ≥ hosts.', `2<sup>${h - 1}</sup> − 2 = ${Math.pow(2, h - 1) - 2} → too small.`, `2<sup>${h}</sup> − 2 = ${Math.pow(2, h) - 2} → fits.`, `${h} host bits → prefix = 32 − ${h} = <b>/${p}</b> (mask ${SN.prefixToMask(p)}).`] }; };
+  G.netAddr = () => { const p = pick([25, 26, 27, 28, 29, 30, 26, 27, 28, 20, 22, 23, 19]); const ip = randHostIp(); const i = SN.info(ip, p); return { kind: 'input', topic: 'netid', q: `What is the <b>network address</b> of <code>${ip}/${p}</code>?`, a: i.network, ph: 'x.x.x.x', steps: SN.steps(ip, p).slice(0, -2), why: D.blocks(i.block, +ip.split('.')[i.octet], ['1st', '2nd', '3rd', '4th'][i.octet]) }; };
+  G.bcast = () => { const p = pick([25, 26, 27, 28, 29, 30, 21, 22, 23]); const ip = randHostIp(); const i = SN.info(ip, p); return { kind: 'input', topic: 'netid', q: `What is the <b>broadcast address</b> of <code>${ip}/${p}</code>?`, a: i.broadcast, ph: 'x.x.x.x', steps: SN.steps(ip, p).slice(0, -2) }; };
+  G.full = (pp) => { const p = pp || pick([24, 25, 26, 27, 28, 29, 30, 26, 27, 28, 22, 23, 20]); const ip = randHostIp(); const i = SN.info(ip, p); return { kind: 'fields', topic: 'fullsubnet', q: `Host <code>${ip}/${p}</code>. Fill in all five.`, fields: [{ label: 'Network address', a: i.network }, { label: 'First usable host', a: i.first }, { label: 'Last usable host', a: i.last }, { label: 'Broadcast address', a: i.broadcast }, { label: 'Usable hosts (number)', a: String(i.usable), num: 1 }], steps: SN.steps(ip, p), why: D.ipBits(ip, p) }; };
+  G.fullLast = () => G.full(pick([25, 26, 27, 28, 29, 30]));
+  G.sameSubnet = () => { const p = pick([25, 26, 27, 28, 29]); const a = randHostIp('C'); const ia = SN.info(a, p); const o = a.split('.').map(Number); const near = Math.max(1, Math.min(254, o[3] + (r(2) ? 1 : -1) * (1 + r(ia.block)))); const b = ipStr([o[0], o[1], o[2], near]); const same = SN.sameSubnet(a, b, p); const ib = SN.info(b, p); return { kind: 'tf', topic: 'netid', q: `True or false: <code>${a}/${p}</code> and <code>${b}/${p}</code> are on the <b>same subnet</b> (no router needed).`, a: same, steps: [`Network of ${a}/${p} = ${ia.network}`, `Network of ${b}/${p} = ${ib.network}`, same ? 'Same network → same subnet → TRUE.' : 'Different networks → a router (default gateway) is needed → FALSE.'] }; };
+  G.gatewayOk = () => { const p = pick([24, 25, 26, 27, 28]); const host = randHostIp('C'); const i = SN.info(host, p); const good = r(2) === 1; const gw = good ? i.first : SN.intToIp(SN.ipToInt(i.broadcast) + 1 + r(5)); const ok = SN.sameSubnet(host, gw, p) && gw !== i.network && gw !== i.broadcast; return { kind: 'tf', topic: 'gateway', q: `PC: <code>${host}/${p}</code>, default gateway <code>${gw}</code>. Is this gateway <b>valid</b> (on the PC's own subnet)?`, a: ok, steps: [`PC network = ${i.network}, broadcast = ${i.broadcast}.`, `Valid host range: ${i.first} – ${i.last}.`, ok ? `${gw} is inside the range → valid.` : `${gw} is outside the range → the PC can't reach it → can talk locally but not to other networks.`] }; };
+  G.ipClass = () => { const ip = pick([randHostIp('any'), randHostIp('any'), ipStr([1 + r(126), r(256), r(256), r(256)]), ipStr([128 + r(64), r(256), r(256), r(256)]), ipStr([192 + r(32), r(256), r(256), r(256)])]); const c = SN.ipClass(ip); const ans = ['A', 'B', 'C', 'D', 'E', 'loopback']; return Object.assign({ kind: 'mcq', topic: 'classes', q: `Which class is <code>${ip}</code>? (Look only at the first octet.)`, steps: ['Class A: 1–126 (/8). 127 = loopback.', 'Class B: 128–191 (/16).', 'Class C: 192–223 (/24).', 'D: 224–239 multicast. E: 240+ experimental.', `${ip.split('.')[0]} → <b>${c}</b>`] }, { opts: ans, a: ans.indexOf(c), keepOrder: true }); };
+  G.ipType = () => { const ip = pick([ipStr([10, r(256), r(256), 1 + r(254)]), ipStr([172, 16 + r(16), r(256), 1 + r(254)]), ipStr([172, pick([15, 32, 33]), r(256), 1 + r(254)]), ipStr([192, 168, r(256), 1 + r(254)]), ipStr([169, 254, r(256), 1 + r(254)]), ipStr([127, 0, 0, 1]), ipStr([8, 8, pick([8, 4]), pick([8, 4])]), ipStr([24 + r(100), r(256), r(256), 1 + r(254)])]); const t = SN.ipType(ip); const all = ['private', 'public', 'loopback', 'link-local (APIPA)']; return { kind: 'mcq', topic: 'iptypes', q: `What kind of address is <code>${ip}</code>?`, opts: all, a: all.indexOf(t) < 0 ? 1 : all.indexOf(t), keepOrder: true, steps: ['Private: 10.x.x.x, 172.16–31.x.x, 192.168.x.x', '127.x.x.x = loopback (yourself).', '169.254.x.x = APIPA = DHCP failed.', 'Everything else here = public.', `→ <b>${t}</b>`] }; };
+  G.borrow = () => { const base = pick([24, 16]); const n = pick([2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 30]); const b = SN.bitsForSubnets(n); const np = base + b; return { kind: 'fields', topic: 'borrow', q: `You have a /${base} and need <b>${n} subnets</b>. Borrow the fewest bits.`, fields: [{ label: 'Bits to borrow', a: String(b), num: 1 }, { label: 'New prefix (like /26)', a: ['/' + np, String(np)] }, { label: 'Usable hosts per subnet', a: String(Math.pow(2, 32 - np) - 2), num: 1 }], steps: [`Need 2<sup>bits</sup> ≥ ${n}. 2<sup>${b}</sup> = ${Math.pow(2, b)} ✔${b ? `, 2<sup>${b - 1}</sup> = ${Math.pow(2, b - 1)} ✘` : ''}.`, `New prefix = ${base} + ${b} = /${np}.`, `Host bits left = 32 − ${np} = ${32 - np} → 2<sup>${32 - np}</sup> − 2 = ${Math.pow(2, 32 - np) - 2} hosts.`] }; };
+  G.nthSubnet = () => { const p = pick([26, 27, 28, 29]); const blk = SN.blockSize(p); const k = 1 + r(Math.min(6, 256 / blk - 1)); const base = ipStr([192, 168, r(256), 0]); const net = SN.intToIp(SN.ipToInt(base) + k * blk); return { kind: 'input', topic: 'magic', q: `<code>${base}/24</code> is split into /${p} subnets. What is the network address of subnet number <b>${k + 1}</b> (the first one is ${base})?`, a: net, steps: [`/${p} → block size ${blk}.`, `Subnets: ${Array.from({ length: Math.min(k + 2, 256 / blk) }, (_, i) => i * blk).join(', ')} …`, `Subnet #${k + 1} starts at ${k} × ${blk} = ${k * blk} → <b>${net}</b>`], why: D.blocks(blk, k * blk, '4th') }; };
+  G.vlsm = () => { const base = ipStr([192, 168, r(256), 0]); const n = 2 + r(3); const pool = [100, 60, 50, 28, 25, 14, 12, 10, 6, 2]; const reqs = []; const names = ['Sales', 'Admin', 'IT', 'Guest', 'R1-R2 link']; let tries = 0; while (reqs.length < n && tries++ < 50) { const h = pick(pool); reqs.push({ name: names[reqs.length], hosts: h }); } const plan = SN.vlsm(base, 24, reqs); if (!plan) return G.vlsm(); const pickRow = plan[r(plan.length)];
+    return { kind: 'fields', topic: 'vlsm', q: `VLSM from <code>${base}/24</code>. Needs: ${reqs.map(x => `<b>${x.name}</b> ${x.hosts} hosts`).join(', ')}. Allocate the biggest first, packed from the start. For <b>${pickRow.name}</b>:`, fields: [{ label: 'Network address', a: pickRow.network }, { label: 'Prefix (like /26)', a: ['/' + pickRow.prefix, String(pickRow.prefix)] }, { label: 'Broadcast address', a: pickRow.broadcast }],
+      steps: ['Sort the LANs biggest first.', ...plan.map(x => `${x.name} (${x.hosts} hosts) → /${x.prefix} (${x.usable} usable, block ${x.total}) → ${x.network} – ${x.broadcast}`), 'Each new LAN starts right after the previous broadcast.'] }; };
+  G.wildcard = () => { const p = 16 + r(15); const m = SN.prefixToMask(p); return { kind: 'input', topic: 'masks', q: `Mask <code>${m}</code>. What is the wildcard mask (used later in ACLs/OSPF)?`, a: SN.info('0.0.0.0', p).wildcard, steps: ['Wildcard = 255.255.255.255 − mask, octet by octet.', `= <b>${SN.info('0.0.0.0', p).wildcard}</b>`] }; };
+  // IPv6 compression with a checker that accepts any valid fully-compressed form
+  const expand6 = s => { s = s.trim().toLowerCase(); if (!/^[0-9a-f:]+$/.test(s)) return null; const parts = s.split('::'); if (parts.length > 2) return null; const L = parts[0] ? parts[0].split(':') : []; const R = parts.length === 2 && parts[1] ? parts[1].split(':') : []; if (parts.length === 1 && L.length !== 8) return null; const fill = 8 - L.length - R.length; if (parts.length === 2 && fill < 1) return null; const g = parts.length === 2 ? L.concat(Array(fill).fill('0'), R) : L; if (g.some(x => !/^[0-9a-f]{1,4}$/.test(x))) return null; return g.map(x => x.padStart(4, '0')).join(':'); };
+  const compress6 = full => { const g = full.split(':').map(x => x.replace(/^0+(?=.)/, '')); let bs = -1, bl = 0; for (let i = 0; i < 8;) { if (g[i] === '0') { let j = i; while (j < 8 && g[j] === '0') j++; if (j - i > bl) { bs = i; bl = j - i; } i = j; } else i++; } if (bl < 2) return g.join(':'); return (g.slice(0, bs).join(':') + '::' + g.slice(bs + bl).join(':')); };
+  G.ipv6 = () => { const g = []; for (let i = 0; i < 8; i++) g.push(['0000', '0000', r(2) ? '00' + r(256).toString(16).padStart(2, '0') : r(65536).toString(16).padStart(4, '0')][r(3)]); g[0] = pick(['2001', 'fe80', '2001', '2620']); if (g[0] === '2001') g[1] = '0db8'; if (!g.slice(2).some(x => x === '0000')) { g[3] = '0000'; g[4] = '0000'; } const full = g.join(':'); const best = compress6(full); return { kind: 'input', topic: 'ipv6', q: `Write this IPv6 address in its <b>shortest</b> form:<br><code style="word-break:break-all">${full}</code>`, a: best, check: v => { const e = expand6(v); if (e !== full) return false; return v.trim().toLowerCase().length <= best.length; }, steps: ['Rule 1: drop leading zeros in every group (0db8 → db8, 0000 → 0).', 'Rule 2: replace the longest run of 0 groups with :: (only once).', `→ <b>${best}</b>`], why: D.ipv6() }; };
+  G.ipv6expand = () => { const q = G.ipv6(); const full = q.q.match(/>([0-9a-f:]+)<\/code>/)[1]; return { kind: 'input', topic: 'ipv6', q: `Expand to the full 32-hex-digit form:<br><code>${q.a}</code>`, a: full, check: v => v.trim().toLowerCase() === full, steps: ['Count the groups you can see. 8 − that = how many 0000 groups the :: hides.', 'Pad every group to 4 digits.', `→ <code>${full}</code>`] }; };
+  G._compress6 = compress6; G._expand6 = expand6;
+  return G;
+})();
+
+/* ---- net/content1.js ---- */
+/* CST8182 content part 1: dates, plan, lessons. Topics follow the CST8182 Weekly Schedule (Modules 8-17 after the midterm). */
+(function () {
+  const g = (name, n) => ({ t: 'gen', g: name, n: n || 1 });
+  const L = (title, html) => ({ t: 'learn', title, html });
+  const mcq = (q, opts, a, why, topic) => ({ t: 'mcq', q, opts, a, why, topic });
+  const tf = (q, a, why, topic) => ({ t: 'tf', q, a, why, topic });
+  const inp = (q, a, why, topic) => ({ t: 'input', q, a, why, topic });
+  const C = window.COURSE = {
+    id: 'cst8182', title: 'Net Trainer · CST8182', short: 'Net Trainer', icon: '🌐',
+    about: 'A personal study tool (CST8182 Networking Fundamentals, Fall 2026) as a personal study tool. Nothing here is coursework or gets submitted. Topics come from the CST8182 Weekly Schedule (Modules 8–17 after the midterm), your midterm/SBA notes and NetAcad module names. Exam formats marked "estimate" are not confirmed by your profs.',
+    dates: [
+      { key: 'lab8', label: 'Lab 8 (IPv4/IPv6 addressing week)', date: '2026-11-19', when: 'Thu 10:30 AM, T113', src: 'Calendar + Weekly Schedule Week 11', confirmed: true },
+      { key: 'quiz4', label: 'Quiz 4 (NetAcad: Modules 11–13)', date: '2026-11-26', when: 'Week 12, Nov 23–27 (exact day not posted)', src: 'Weekly Schedule Week 12; notes', confirmed: false },
+      { key: 'quiz5', label: 'Quiz 5 (NetAcad: Modules 14–15)', date: '2026-12-07', when: 'Week 14, Dec 7–11 (exact day not posted)', src: 'Weekly Schedule Week 14; calendar reminder Dec 7', confirmed: false },
+      { key: 'sba2', label: 'SBA #2 (hands-on)', date: '2026-12-10', when: 'Week 14, Dec 7–11. Probably your Thu lab Dec 10 (estimate)', src: 'Weekly Schedule Week 14; notes', confirmed: false },
+      { key: 'final', label: 'Final exam (30%)', date: '2026-12-17', when: 'Thu Dec 17. One source says 5:30–10:00 PM, another says 9 AM–12 PM (conflict, confirm)', src: 'notes; calendar', confirmed: false },
+    ],
+    units: [], cards: [], bank: [], gens: window.NETGENS,
+    genTopics: { binToDec: 'binary', decToBin: 'binary', hexToDec: 'hex', cidrToMask: 'masks', maskToCidr: 'masks', magic: 'magic', hostsIn: 'hosts', prefixForHosts: 'hosts', netAddr: 'netid', bcast: 'netid', full: 'fullsubnet', sameSubnet: 'netid', gatewayOk: 'gateway', ipClass: 'classes', ipType: 'iptypes', borrow: 'borrow', vlsm: 'vlsm', ipv6: 'ipv6', nthSubnet: 'magic' },
+    topicNames: { binary: 'Binary', hex: 'Hex', masks: 'Masks & CIDR', magic: 'Magic number', hosts: 'Hosts per subnet', netid: 'Network / broadcast', fullsubnet: 'Full subnet problems', gateway: 'Default gateway', classes: 'IP classes', iptypes: 'Private / public / special', borrow: 'Borrowing bits', vlsm: 'VLSM', ipv6: 'IPv6', osi: 'OSI & TCP/IP', m8: 'M8 Network layer', m9: 'M9 ARP & ND', m10: 'M10 Router config', m11: 'M11 IPv4 addressing', m12: 'M12 IPv6', m13: 'M13 ICMP', m14: 'M14 Transport', m15: 'M15 Application', m16: 'M16 Security', m17: 'M17 Small network', ios: 'IOS commands' },
+    quickDrill: { href: '#prac/0', label: 'Subnetting: 5 quick problems' },
+  };
+  const U = (id, title, icon, tags, sub, lessons, topic) => C.units.push({ id, title, icon, tags, sub, lessons, topic });
+
+  U('u0', 'Start here', '🚀', [], 'How this app works. 3 minutes.', [
+    { id: 'start', title: 'How to use this (and why theory)', mins: 3, steps: [
+      L('You already do the hard part', `<p>You're good in the lab. You plug things in and type the commands and they work.</p><p>The written tests ask <b>why</b> it works. This app connects the two: each lesson starts from something you've already <b>done in the lab</b>, then gives the rule behind it.</p>`),
+      L('How a lesson works', `<ol><li>One idea per screen.</li><li>An example first, then the rule.</li><li>Practice right away.</li><li>If you miss one, it <b>comes back</b> until you get it. That's on purpose.</li></ol><p>Tap <b>🔊 Read aloud</b> on any screen to hear it.</p>`),
+      L('Your daily routine (15 min)', `<ol><li><b>Today</b> tab: do the one lesson it shows.</li><li>Do your due <b>flashcards</b>.</li><li>Do <b>5 subnet problems</b>.</li></ol><p>That's it. Small and every day beats big and once a week.</p>`),
+      mcq('If you get a practice question wrong, what happens?', ['It comes back later in the lesson until you get it right', 'You fail the lesson', 'Nothing, it skips'], 0, 'Missed questions come back. That repetition is how it sticks.', 'osi'),
+    ] }
+  ], 'osi');
+
+  U('u1', 'Numbers: binary & hex', '🔢', ['Foundation', 'Final', 'SBA2'], 'Subnetting is just binary. Learn this and subnetting gets easy.', [
+    { id: 'b1', title: 'What binary is (light switches)', mins: 3, steps: [
+      L('8 light switches', `<p>Picture 8 light switches in a row. Each one is <b>off (0)</b> or <b>on (1)</b>.</p><p>Each switch is worth a number. From left to right: <b>128 64 32 16 8 4 2 1</b>.</p>${D.place(0, false)}<p>Each number is double the one to its right. Start at 1 and keep doubling.</p>`),
+      L('Turn some on', `<p>Switches 128 and 64 are on. Everything else is off.</p>${D.place(192)}<p>Add the ones that are on: 128 + 64 = <b>192</b>. So <code>11000000</code> = 192.</p><p>🔧 You typed <code>192.168.1.10</code> in the lab. That 192 is really <code>11000000</code>.</p>`),
+      L('One octet = 8 bits', `<p>A group of 8 bits is called an <b>octet</b>.</p><p>All off = <code>00000000</code> = 0. All on = <code>11111111</code> = 255.</p><p>So an octet can be any number from <b>0 to 255</b>. That's why you never see 256 in an IP address.</p>`),
+      mcq('What is the biggest number one octet can hold?', ['255', '256', '128', '1024'], 0, '8 bits all on: 128+64+32+16+8+4+2+1 = 255.', 'binary'),
+      mcq('The place values from left to right are:', ['128 64 32 16 8 4 2 1', '1 2 4 8 16 32 64 128', '100 50 25 12 6 3 2 1', '8 7 6 5 4 3 2 1'], 0, 'Biggest on the left. Each is double the one to its right.', 'binary'),
+    ] },
+    { id: 'b2', title: 'Binary → decimal', mins: 4, steps: [
+      L('Example first', `<p><code>10101100</code></p>${D.place(172)}<p>Ones are under 128, 32, 8, 4. Add: 128 + 32 + 8 + 4 = <b>172</b>.</p>`),
+      L('The rule', `<ol><li>Write <b>128 64 32 16 8 4 2 1</b>.</li><li>Put the bits under them.</li><li>Add the numbers that have a 1.</li></ol><p>On the exam: write that row on scrap paper first. It's free help.</p>`),
+      g('binToDec', 4),
+    ] },
+    { id: 'b3', title: 'Decimal → binary', mins: 5, steps: [
+      L('Example first: 200', `<p>Go left to right. Ask: <b>does it fit?</b></p><ol><li>128 fits in 200 → <b>1</b>. 200 − 128 = 72 left.</li><li>64 fits in 72 → <b>1</b>. 8 left.</li><li>32 no → 0. 16 no → 0.</li><li>8 fits in 8 → <b>1</b>. 0 left.</li><li>4, 2, 1 → 0 0 0.</li></ol><p>200 = <code>11001000</code></p>${D.place(200)}`),
+      L('Numbers you will see a LOT', `<p>These show up in masks all the time. Learn them like a phone number:</p><table><tr><th>Bits on (from left)</th><th>Binary</th><th>Decimal</th></tr>${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `<tr><td>${n}</td><td class="mono">${'1'.repeat(n).padEnd(8, '0')}</td><td><b>${256 - (256 >> n)}</b></td></tr>`).join('')}</table><p>128, 192, 224, 240, 248, 252, 254, 255.</p>`),
+      g('decToBin', 3),
+      mcq('Which number is <code>11100000</code>?', ['224', '192', '240', '112'], 0, '128 + 64 + 32 = 224.', 'binary'),
+      mcq('Which number is <code>11111100</code>?', ['252', '248', '254', '240'], 0, '255 − 3 (the two 0 bits are worth 2 + 1) = 252.', 'binary'),
+    ] },
+    { id: 'b4', title: 'Powers of 2 (counting addresses)', mins: 3, steps: [
+      L('Why powers of 2?', `<p>With <b>1</b> bit you can make 2 patterns (0, 1). With <b>2</b> bits: 4 (00 01 10 11). With <b>3</b> bits: 8.</p><p>Every extra bit <b>doubles</b> it. So <b>n bits = 2<sup>n</sup> patterns</b>.</p><p>That's how you count addresses in a subnet: <b>2<sup>host bits</sup></b>.</p>`),
+      L('The list', `<table><tr>${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<th>2<sup>${n}</sup></th>`).join('')}</tr><tr>${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<td>${Math.pow(2, n)}</td>`).join('')}</tr></table><p>Tip: it's the place values backwards (2, 4, 8, … 128, 256) and then keep doubling: 512, 1024.</p>`),
+      g('powers', 4),
+    ] },
+    { id: 'b5', title: 'Hex (MAC and IPv6 use it)', mins: 4, steps: [
+      L('16 symbols', `<p>Hex counts 0–9 then letters: <b>A=10 B=11 C=12 D=13 E=14 F=15</b>.</p><p>One hex digit = exactly <b>4 bits</b>. Two hex digits = 1 byte (0–255).</p><p>🔧 MAC addresses you saw in the lab (like <code>00-1A-2B-3C-4D-5E</code>) are 12 hex digits = 48 bits.</p>`),
+      L('Two-digit hex', `<p><code>2F</code> = 2 × 16 + 15 = <b>47</b>.</p><p><code>FF</code> = 15 × 16 + 15 = <b>255</b>.</p><p><code>A0</code> = 10 × 16 + 0 = <b>160</b>.</p>`),
+      g('hexToDec', 3),
+      mcq('How many bits is one hex digit?', ['4', '8', '2', '16'], 0, '16 values = 2<sup>4</sup>, so 4 bits.', 'hex'),
+    ] },
+  ], 'binary');
+
+  U('u2', 'IPv4 addresses (Module 11)', '🏠', ['Quiz 4', 'Final', 'SBA2'], 'What the numbers in an IP address mean.', [
+    { id: 'a1', title: 'Network part and host part', mins: 4, lab: 'Lab: PC IP + mask', steps: [
+      L('Like a street address', `<p><code>192.168.1.10</code> with mask <code>255.255.255.0</code>.</p><p>The <b>network part</b> is the street: <code>192.168.1</code>. The <b>host part</b> is the house number: <code>.10</code>.</p><p>Everyone on the same street (same network) can talk directly. To reach another street you need the <b>router</b>.</p>`),
+      L('The mask draws the line', `${D.ipBits('192.168.1.10', 24)}<p>The mask's 1 bits (blue) = network part. 0 bits (orange) = host part.</p><p><code>255.255.255.0</code> = 24 ones = <b>/24</b>.</p>`),
+      tf('In 192.168.1.10/24 the host part is the last octet (10).', true, '/24 = first 3 octets are network. The last octet is the host.', 'm11'),
+      mcq('Two PCs are 192.168.5.20/24 and 192.168.5.99/24. Do they need a router to talk?', ['No, same network (192.168.5)', 'Yes, different hosts', 'Yes, always'], 0, 'Same first 3 octets with /24 = same network. 🔧 That\'s why in SBA 1 practice two PCs pinged with no gateway.', 'm11'),
+    ] },
+    { id: 'a2', title: 'Masks and slash (CIDR) notation', mins: 5, steps: [
+      L('Count the ones', `<p><code>255.255.255.0</code> = 8+8+8+0 ones = <b>/24</b>.</p><p><code>255.255.255.192</code> = 8+8+8+2 = <b>/26</b> (192 = <code>11000000</code>, 2 ones).</p><p>Slash notation just counts the 1 bits.</p>`),
+      L('Mask values to memorize', `<table><tr><th>Last mask octet</th><th>ones</th><th>prefix if first 3 are 255</th></tr>${[128, 192, 224, 240, 248, 252].map((v, i) => `<tr><td>${v}</td><td>${i + 1}</td><td>/${25 + i}</td></tr>`).join('')}</table>`),
+      g('maskToCidr', 3), g('cidrToMask', 3),
+    ] },
+    { id: 'a3', title: 'Network, broadcast, host range (/24 first)', mins: 4, steps: [
+      L('Example: 192.168.1.10/24', `<ul><li><b>Network address</b>: host bits all 0 → <code>192.168.1.0</code>. Names the network. Not for a PC.</li><li><b>Broadcast</b>: host bits all 1 → <code>192.168.1.255</code>. "Send to everyone."</li><li><b>Usable hosts</b>: everything between → <code>.1</code> to <code>.254</code>.</li></ul>`),
+      L('Counting hosts', `<p>/24 → 32 − 24 = <b>8 host bits</b> → 2<sup>8</sup> = 256 addresses.</p><p>Take away 2 (network + broadcast) → <b>254 usable</b>.</p><p>Rule: <b>usable = 2<sup>host bits</sup> − 2</b>.</p>`),
+      mcq('What is the broadcast address of 10.1.1.77/24?', ['10.1.1.255', '10.1.1.0', '10.255.255.255', '10.1.1.254'], 0, '/24: keep first 3 octets, host part all 1s = 255.', 'netid'),
+      g('hostsIn', 2),
+    ] },
+    { id: 'a4', title: 'Private, public, loopback, APIPA', mins: 4, lab: 'Lab: ipconfig / 169.254', steps: [
+      L('Private ranges (RFC 1918)', `<ul><li><code>10.0.0.0/8</code> (10.anything)</li><li><code>172.16.0.0/12</code> (172.<b>16 to 31</b>.x.x)</li><li><code>192.168.0.0/16</code></li></ul><p>Used inside homes and schools. Not routed on the Internet. <b>NAT</b> swaps them for a public address on the way out.</p><p>Trap: <code>172.32.x.x</code> is <b>not</b> private.</p>`),
+      L('Special ones', `<ul><li><code>127.0.0.1</code> = <b>loopback</b>, your own machine. Ping it to test your TCP/IP stack.</li><li><code>169.254.x.x</code> = <b>link-local / APIPA</b>. The PC gives itself this when <b>DHCP fails</b>. 🔧 You saw this in Lab 2.</li></ul>`),
+      g('ipType', 4),
+    ] },
+    { id: 'a5', title: 'Classes A, B, C (legacy)', mins: 3, steps: [
+      L('Look at the first octet', `<table><tr><th>Class</th><th>First octet</th><th>Default mask</th></tr><tr><td>A</td><td>1–126</td><td>/8</td></tr><tr><td>B</td><td>128–191</td><td>/16</td></tr><tr><td>C</td><td>192–223</td><td>/24</td></tr><tr><td>D</td><td>224–239</td><td>multicast</td></tr><tr><td>E</td><td>240–255</td><td>experimental</td></tr></table><p>127 = loopback. Classes are old ("classful"), replaced by CIDR, but exam questions still ask.</p>`),
+      g('ipClass', 4),
+    ] },
+    { id: 'a6', title: 'Unicast, broadcast, multicast', mins: 3, steps: [
+      L('Three ways to send', `<ul><li><b>Unicast</b>: one to one (normal ping).</li><li><b>Broadcast</b>: one to <b>all</b> on the network (ARP request, DHCP Discover).</li><li><b>Multicast</b>: one to a <b>group</b> (224.0.0.0–239.255.255.255, e.g. routing protocols).</li></ul><p>Routers do <b>not</b> forward broadcasts. That's what keeps a broadcast inside one network.</p>`),
+      mcq('Which address range is IPv4 multicast?', ['224.0.0.0 – 239.255.255.255', '169.254.0.0 – 169.254.255.255', '127.0.0.0 – 127.255.255.255', '240.0.0.0 – 255.255.255.255'], 0, 'Class D = multicast.', 'm11'),
+      tf('Routers forward broadcasts to other networks by default.', false, 'Routers stop broadcasts. Each router interface is the edge of a broadcast domain.', 'm11'),
+    ] },
+  ], 'm11');
+})();
+
+/* ---- net/content2.js ---- */
+/* CST8182 content part 2: subnetting and Modules 8-17 lessons. */
+(function () {
+  const C = window.COURSE;
+  const g = (name, n) => ({ t: 'gen', g: name, n: n || 1 });
+  const L = (title, html) => ({ t: 'learn', title, html });
+  const mcq = (q, opts, a, why, topic) => ({ t: 'mcq', q, opts, a, why, topic });
+  const multi = (q, opts, a, why, topic) => ({ t: 'multi', q, opts, a, why, topic });
+  const tf = (q, a, why, topic) => ({ t: 'tf', q, a, why, topic });
+  const inp = (q, a, why, topic) => ({ t: 'input', q, a, why, topic });
+  const U = (id, title, icon, tags, sub, lessons, topic) => C.units.push({ id, title, icon, tags, sub, lessons, topic });
+
+  U('u3', 'Subnetting step by step (Module 11)', '✂️', ['Quiz 4', 'Final', 'SBA2', 'Lab demo'], 'The magic number method. Same steps every time.', [
+    { id: 's1', title: 'Why subnet?', mins: 3, steps: [
+      L('One big network is noisy', `<p>Every broadcast (like ARP) goes to <b>every</b> device on the network. 500 PCs on one network = a lot of noise and no separation.</p><p><b>Subnetting</b> splits one network into smaller ones. Smaller broadcast domains, better security, easier to manage (e.g. one subnet per floor or department).</p>`),
+      L('How: borrow host bits', `<p>Start: <code>192.168.1.0/24</code>. Borrow 2 host bits for the network → <b>/26</b>.</p>${D.ipBits('192.168.1.0', 26)}<p>2 borrowed bits = 2<sup>2</sup> = <b>4 subnets</b>. 6 host bits left = 2<sup>6</sup> − 2 = <b>62 hosts</b> each.</p>`),
+      mcq('Borrowing more bits for subnets gives you…', ['More subnets, fewer hosts each', 'More subnets, more hosts each', 'Fewer subnets, more hosts each'], 0, 'Bits move from the host side to the network side. Fixed total of 32.', 'borrow'),
+    ] },
+    { id: 's2', title: 'The magic number', mins: 4, steps: [
+      L('Find the interesting octet', `<p>Mask <code>255.255.255.<b>192</b></code>. The <b>interesting octet</b> is the one that isn't 255 and isn't 0 → <b>192</b>.</p><p>Magic number = <b>256 − 192 = 64</b>.</p>`),
+      L('Subnets go up by the magic number', `${D.blocks(64)}<p>Networks start at <b>0, 64, 128, 192</b>. Each block is 64 addresses.</p><p>That's it. The whole method is: <b>find the block, find which block your IP is in</b>.</p>`),
+      g('magic', 4),
+    ] },
+    { id: 's3', title: 'Find the network address', mins: 5, steps: [
+      L('Example: 192.168.1.130/26', `<ol><li>/26 → mask 255.255.255.192 → magic = 64.</li><li>Blocks: 0, 64, <b>128</b>, 192.</li><li>130 is between 128 and 191 → its block starts at <b>128</b>.</li><li>Network = <code>192.168.1.128</code></li></ol>${D.blocks(64, 130, '4th')}`),
+      L('The rule', `<p>Network value in the interesting octet = <b>biggest multiple of the magic number that is ≤ your number</b>.</p><p>Octets before it: copy. Octets after it: 0.</p>`),
+      g('netAddr', 5),
+    ] },
+    { id: 's4', title: 'Broadcast, first, last', mins: 5, steps: [
+      L('Same example: 192.168.1.130/26', `<ul><li>Network: <b>.128</b></li><li>Next network: .192 → broadcast = one less = <b>.191</b></li><li>First host = network + 1 = <b>.129</b></li><li>Last host = broadcast − 1 = <b>.190</b></li><li>Hosts: 2<sup>6</sup> − 2 = <b>62</b></li></ul>`),
+      L('The rule', `<p><b>Broadcast = next network − 1.</b> Octets after the interesting one become 255.</p><p>First = network + 1. Last = broadcast − 1.</p>`),
+      g('bcast', 3), g('fullLast', 2),
+    ] },
+    { id: 's5', title: 'Full problems (4th octet)', mins: 6, lab: 'Week 10 lab demo style', steps: [
+      L('Same 5 answers every time', `<ol><li>Magic number from the mask.</li><li>Network = block start.</li><li>Broadcast = next block − 1.</li><li>First = network + 1, Last = broadcast − 1.</li><li>Hosts = 2<sup>host bits</sup> − 2.</li></ol><p>Stuck? Tap 💡 to see one step at a time.</p>`),
+      g('fullLast', 5),
+    ] },
+    { id: 's6', title: 'When the interesting octet is the 3rd', mins: 6, steps: [
+      L('Example: 172.16.45.10/20', `<ol><li>/20 = 255.255.<b>240</b>.0 → interesting octet is the <b>3rd</b>. Magic = 256 − 240 = <b>16</b>.</li><li>3rd-octet blocks: 0, 16, <b>32</b>, 48 …  45 is in the block starting at 32.</li><li>Network = 172.16.<b>32</b>.<b>0</b> (octet after = 0).</li><li>Broadcast = 172.16.<b>47</b>.<b>255</b> (next block 48 − 1 = 47, octet after = 255).</li><li>Hosts = 2<sup>12</sup> − 2 = 4094.</li></ol>`),
+      L('Rule stays the same', `<p>Only difference: the octet <b>after</b> the interesting one is 0 for the network and 255 for the broadcast.</p>`),
+      g('full', 4),
+    ] },
+    { id: 's7', title: 'How many bits to borrow? / hosts needed', mins: 6, steps: [
+      L('Need N subnets', `<p>Need 5 subnets from a /24. 2<sup>2</sup> = 4 (too few), 2<sup>3</sup> = 8 ✔. Borrow <b>3</b> bits → <b>/27</b>.</p>`),
+      L('Need N hosts', `<p>Need 50 hosts. 2<sup>5</sup> − 2 = 30 (too few), 2<sup>6</sup> − 2 = 62 ✔. 6 host bits → <b>/26</b>.</p><p>Remember the −2.</p>`),
+      g('borrow', 2), g('prefixForHosts', 3), g('nthSubnet', 2),
+    ] },
+    { id: 's8', title: 'Same subnet? Valid gateway?', mins: 4, lab: 'Lab 6: default gateway issues', steps: [
+      L('Why this matters', `<p>A PC sends to its own subnet directly. Anything else goes to the <b>default gateway</b>. The gateway must be <b>inside the PC's subnet</b>.</p><p>🔧 Lab 6 "Troubleshoot Default Gateway Issues": the PC could ping locally but not the other LAN because the gateway was wrong.</p>`),
+      g('sameSubnet', 3), g('gatewayOk', 3),
+    ] },
+    { id: 's9', title: 'VLSM (different sizes)', mins: 8, steps: [
+      L('Different LANs need different sizes', `<p>Sales needs 100 hosts, IT needs 25, the router-to-router link needs 2. Giving each a /25 wastes addresses.</p><p><b>VLSM</b> = give each LAN the smallest subnet that fits.</p>`),
+      L('Example from 192.168.10.0/24', `<ol><li>Sort biggest first: Sales 100, IT 25, link 2.</li><li>Sales 100 → /25 (126) → <b>.0 – .127</b></li><li>IT 25 → /27 (30) → starts right after: <b>.128 – .159</b></li><li>Link 2 → /30 (2) → <b>.160 – .163</b></li></ol><p>Always biggest first, then pack them one after another.</p>`),
+      g('vlsm', 3),
+    ] },
+  ], 'fullsubnet');
+
+  U('u4', 'Layers refresher (from midterm)', '🧱', ['Foundation', 'Final'], 'The final builds on these. Fast review.', [
+    { id: 'o1', title: 'OSI and TCP/IP models', mins: 4, steps: [
+      L('7 layers', `${D.osi()}<p>Top to bottom: <b>All People Seem To Need Data Processing</b>.</p>`),
+      L('Devices and addresses by layer', `<ul><li>Layer 1: cables, hub (bits)</li><li>Layer 2: <b>switch</b>, MAC address (frames)</li><li>Layer 3: <b>router</b>, IP address (packets)</li><li>Layer 4: TCP/UDP, <b>port</b> numbers (segments)</li></ul>`),
+      mcq('Which layer does routing / IP addressing?', ['Network (3)', 'Data link (2)', 'Transport (4)', 'Physical (1)'], 0, 'IP + routers = Layer 3.', 'osi'),
+      mcq('What is the PDU at the transport layer?', ['Segment', 'Packet', 'Frame', 'Bits'], 0, 'Data → Segment → Packet → Frame → Bits.', 'osi'),
+      mcq('Which TCP/IP layer matches OSI layers 5, 6 and 7?', ['Application', 'Transport', 'Internet', 'Network access'], 0, 'TCP/IP squashes the top three into Application.', 'osi'),
+    ] },
+    { id: 'o2', title: 'Encapsulation', mins: 3, steps: [
+      L('Wrapping the parcel', `${D.encap()}<p>The <b>IP addresses stay the same</b> end to end. The <b>MAC addresses change at every router</b>.</p>`),
+      mcq('Which address changes at every router hop?', ['MAC address', 'IP address', 'Port number'], 0, 'Each link has its own Layer 2 frame, so new MACs per hop.', 'osi'),
+    ] },
+  ], 'osi');
+
+  U('u5', 'Network layer, ARP, routers (M8–10)', '🧭', ['Final', 'SBA2'], 'Module 8 Network Layer, Module 9 Address Resolution, Module 10 Basic Router Configuration.', [
+    { id: 'n1', title: 'How a host decides where to send', mins: 4, lab: 'Lab: ping across a router', steps: [
+      L('Local or remote?', `${D.topo()}<p>PC-A wants PC-B. PC-A checks: is 192.168.2.10 on <b>my</b> network (192.168.1.0/24)? No → send it to the <b>default gateway</b> (R1's G0/0, 192.168.1.1).</p><p>If PC-B were 192.168.1.20, PC-A would send it directly.</p>`),
+      L('IPv4 packet header: the fields that get asked', `<ul><li><b>Source / Destination IP</b></li><li><b>TTL</b> (Time to Live): each router subtracts 1. At 0 the packet is dropped and an ICMP Time Exceeded is sent back. Stops loops.</li><li><b>Protocol</b>: what's inside (6 = TCP, 17 = UDP, 1 = ICMP).</li></ul><p>IP is <b>connectionless</b>, <b>best effort</b> (no guarantee), and <b>media independent</b>.</p>`),
+      mcq('What happens when a packet\'s TTL reaches 0?', ['The router drops it and sends ICMP Time Exceeded', 'It is sent to the default gateway', 'It is broadcast', 'It is resent'], 0, 'TTL stops packets looping forever.', 'm8'),
+      mcq('Which 3 words describe IPv4?', ['Connectionless, best effort, media independent', 'Connection-oriented, reliable, media dependent', 'Reliable, acknowledged, encrypted'], 0, 'IP leaves reliability to TCP.', 'm8'),
+    ] },
+    { id: 'n2', title: 'The routing table', mins: 4, lab: 'show ip route', steps: [
+      L('Codes you see', `<pre>R1# show ip route\nC  192.168.1.0/24 is directly connected, G0/0\nL  192.168.1.1/32 is directly connected, G0/0\nS* 0.0.0.0/0 [1/0] via 209.165.200.1</pre><ul><li><b>C</b> = directly connected network</li><li><b>L</b> = local: the router's own interface IP (/32)</li><li><b>S</b> = static route. <b>S*</b> + 0.0.0.0/0 = <b>default route</b> (gateway of last resort)</li></ul>`),
+      mcq('In show ip route, what does L mean?', ['The router\'s own interface address', 'A learned remote network', 'A link to the ISP'], 0, 'C = the network, L = the exact IP on the interface (/32).', 'm8'),
+      mcq('A default route is written as…', ['0.0.0.0/0', '255.255.255.255/32', '127.0.0.1/8'], 0, '0.0.0.0/0 matches anything not found elsewhere.', 'm8'),
+    ] },
+    { id: 'n3', title: 'ARP (IPv4) and ND (IPv6)', mins: 4, lab: 'arp -a, show arp', steps: [
+      L('Know the IP, need the MAC', `${D.arp()}<p>The request is a <b>broadcast</b>. The reply is <b>unicast</b>. The answer goes in the <b>ARP cache/table</b>.</p><p>For a <b>remote</b> host, the PC ARPs for the <b>default gateway's MAC</b>, not the far host.</p>`),
+      L('Commands and IPv6', `<p>Windows: <code>arp -a</code> (show), <code>arp -d</code> (clear). Cisco: <code>show ip arp</code>, <code>clear arp-cache</code>.</p><p>IPv6 has no ARP. It uses <b>Neighbor Discovery (ND)</b>: <b>NS</b> (Neighbor Solicitation) and <b>NA</b> (Neighbor Advertisement), sent with ICMPv6.</p><p>Risk: <b>ARP spoofing / poisoning</b> (fake replies).</p>`),
+      mcq('An ARP request is sent as a…', ['Broadcast', 'Unicast', 'Multicast to routers'], 0, 'It has to ask everybody.', 'm9'),
+      mcq('PC-A pings a host on another network. Whose MAC does PC-A ARP for?', ['The default gateway', 'The remote host', 'The switch'], 0, 'Frames only travel one link. The next hop is the gateway.', 'm9'),
+      mcq('IPv6 replaces ARP with…', ['Neighbor Solicitation / Neighbor Advertisement (ND)', 'DHCPv6', 'RARP'], 0, 'ICMPv6 ND messages.', 'm9'),
+    ] },
+    { id: 'n4', title: 'Basic router config', mins: 6, lab: 'Lab 6 router setup', steps: [
+      L('Same as the switch, plus interfaces', `<pre>Router> enable\nRouter# configure terminal\nRouter(config)# hostname R1\nR1(config)# enable secret class\nR1(config)# line console 0\nR1(config-line)# password cisco\nR1(config-line)# login\nR1(config)# line vty 0 4\nR1(config-line)# password cisco\nR1(config-line)# login\nR1(config)# service password-encryption\nR1(config)# banner motd #Authorized only#</pre>`),
+      L('Interfaces: the part that\'s new', `<pre>R1(config)# interface g0/0\nR1(config-if)# description Link to LAN 1\nR1(config-if)# ip address 192.168.1.1 255.255.255.0\nR1(config-if)# ipv6 address 2001:db8:acad:1::1/64\nR1(config-if)# no shutdown</pre><p>Router interfaces are <b>shut down by default</b>. Forget <code>no shutdown</code> and it shows <b>administratively down</b>.</p><p>Save: <code>copy running-config startup-config</code>.</p>`),
+      L('Check it', `<ul><li><code>show ip interface brief</code>: every interface, IP, up/down</li><li><code>show ip route</code>: routing table</li><li><code>show running-config</code>: current config (RAM)</li><li><code>show interfaces</code>: details and errors</li></ul><p>The PC's default gateway = this router interface's IP on its LAN.</p>`),
+      inp('Type the command that turns a router interface ON.', ['no shutdown', 'no shut'], 'Router interfaces start administratively down.', 'm10'),
+      inp('Type the command to save the running config so it survives a reboot.', ['copy running-config startup-config', 'copy run start', 'copy running-config startup-config', 'wr', 'write memory', 'write'], 'RAM → NVRAM.', 'm10'),
+      mcq('An interface shows "administratively down". Fix?', ['no shutdown', 'Replace the cable', 'reload'], 0, 'Admin down = turned off in config.', 'm10'),
+    ] },
+  ], 'm8');
+
+  U('u6', 'IPv6 (Module 12)', '6️⃣', ['Quiz 4', 'Final', 'SBA2'], 'Hex, colons, and the two rules to shorten it.', [
+    { id: 'v1', title: 'What an IPv6 address looks like', mins: 4, steps: [
+      L('128 bits in hex', `${D.ipv6()}<p>IPv4 = 32 bits. IPv6 = <b>128 bits</b>, written as 8 groups ("hextets") of 4 hex digits.</p><p>IPv4 ran out. IPv6 has way more addresses and <b>no broadcast</b>.</p>`),
+      L('Two rules to shorten', `<ol><li><b>Leading zeros</b> in a group can go: <code>0db8</code> → <code>db8</code>, <code>0000</code> → <code>0</code>.</li><li><b>One</b> run of all-zero groups can become <code>::</code>. Only once, or you couldn't tell how many zeros each hides.</li></ol>`),
+      g('ipv6', 3), g('ipv6expand', 2),
+      tf('You can use :: twice in one IPv6 address.', false, 'Only once, otherwise it\'s ambiguous.', 'ipv6'),
+    ] },
+    { id: 'v2', title: 'IPv6 address types', mins: 5, steps: [
+      L('The ones to know', `<table><tr><th>Type</th><th>Starts with</th><th>What for</th></tr><tr><td><b>Global unicast (GUA)</b></td><td>2000::/3 (2 or 3)</td><td>Internet-routable, like a public IPv4</td></tr><tr><td><b>Link-local (LLA)</b></td><td>fe80::/10</td><td>Only on this link. Every IPv6 interface has one. Used as the gateway address in RAs.</td></tr><tr><td>Loopback</td><td>::1</td><td>Yourself</td></tr><tr><td>Unspecified</td><td>::</td><td>"No address yet"</td></tr><tr><td>Unique local</td><td>fc00::/7 (fd…)</td><td>Like private IPv4</td></tr><tr><td>Multicast</td><td>ff00::/8</td><td>Group. ff02::1 = all nodes, ff02::2 = all routers</td></tr></table>`),
+      L('Prefix and Interface ID', `<p>Normal LAN = <b>/64</b>. First 64 bits = network (prefix), last 64 = <b>Interface ID</b> (host).</p><p>A GUA has: Global routing prefix + <b>Subnet ID</b> + Interface ID.</p>`),
+      mcq('Which address is link-local?', ['fe80::1', '2001:db8::1', 'ff02::1', '::1'], 0, 'fe80::/10 = link-local.', 'm12'),
+      mcq('ff02::1 means…', ['All nodes multicast', 'All routers multicast', 'Loopback', 'Default route'], 0, 'ff02::2 is all routers.', 'm12'),
+      mcq('Which is a global unicast address?', ['2001:db8:acad:1::10', 'fe80::a', 'fd00::5', 'ff02::2'], 0, 'GUA starts with 2 or 3 (2000::/3).', 'm12'),
+      mcq('Usual prefix length for an IPv6 LAN?', ['/64', '/24', '/48', '/128'], 0, '64 bits network + 64 bits interface ID.', 'm12'),
+    ] },
+    { id: 'v3', title: 'How IPv6 hosts get addresses', mins: 5, steps: [
+      L('Static or dynamic', `<p><b>Static</b>: <code>ipv6 address 2001:db8:acad:1::1/64</code> on the router.</p><p><b>Dynamic</b>: the router sends a <b>Router Advertisement (RA)</b>. The host can ask with a <b>Router Solicitation (RS)</b>.</p>`),
+      L('The 3 RA methods', `<ol><li><b>SLAAC only</b>: host builds its own address from the prefix in the RA.</li><li><b>SLAAC + stateless DHCPv6</b>: address from SLAAC, extra info (DNS) from DHCPv6.</li><li><b>Stateful DHCPv6</b>: DHCPv6 server gives the address (like DHCPv4). Only the gateway comes from the RA.</li></ol><p>Interface ID made by <b>EUI-64</b> (MAC + FFFE in the middle, flip 7th bit) or <b>random</b>.</p><p>Router must have <code>ipv6 unicast-routing</code> to send RAs.</p>`),
+      mcq('Which message does a router send to tell hosts the prefix?', ['Router Advertisement (RA)', 'Router Solicitation (RS)', 'Neighbor Solicitation (NS)', 'DHCP Offer'], 0, 'RS = host asks. RA = router answers/announces.', 'm12'),
+      mcq('EUI-64 builds the interface ID from…', ['The MAC address with FFFE inserted', 'A random number', 'The IPv4 address', 'The hostname'], 0, '48-bit MAC split in half, FFFE in the middle, 7th bit flipped = 64 bits.', 'm12'),
+      inp('Which global config command lets a Cisco router route IPv6 and send RAs?', ['ipv6 unicast-routing'], 'Off by default.', 'm12'),
+    ] },
+  ], 'm12');
+
+  U('u7', 'ICMP: ping and traceroute (Module 13)', '📡', ['Quiz 4', 'Final', 'SBA2'], 'The tools you already use to test.', [
+    { id: 'i1', title: 'What ping really does', mins: 4, lab: 'You ping in every lab', steps: [
+      L('Echo request / echo reply', `<p><code>ping</code> sends ICMP <b>Echo Request</b>. The target answers with <b>Echo Reply</b>.</p><p>Testing order: ping <b>127.0.0.1</b> (your own stack) → ping your <b>default gateway</b> (local network) → ping a <b>remote host</b> (routing works).</p>`),
+      L('ICMP messages to know', `<ul><li><b>Echo request / reply</b> (ping)</li><li><b>Destination unreachable</b> (network, host, port unreachable)</li><li><b>Time exceeded</b> (TTL hit 0, used by traceroute)</li><li>ICMPv6 adds <b>RS, RA, NS, NA</b></li></ul>`),
+      mcq('Which ping tests that TCP/IP works on your own PC?', ['ping 127.0.0.1', 'ping the default gateway', 'ping 8.8.8.8'], 0, 'Loopback never leaves the PC.', 'm13'),
+      mcq('PC can ping its gateway but not a remote host. Most likely problem?', ['Routing beyond the gateway (or the remote side)', 'The PC\'s NIC', 'The PC\'s IP stack'], 0, 'Local works, so the problem is further out.', 'm13'),
+    ] },
+    { id: 'i2', title: 'Traceroute', mins: 3, steps: [
+      L('How it finds every hop', `<p><code>tracert</code> (Windows) / <code>traceroute</code> (Cisco, Linux) sends packets with TTL 1, then 2, then 3…</p><p>Each router that drops one sends back <b>ICMP Time Exceeded</b>, so you learn each hop in order. Where it stops = where the problem is.</p>`),
+      mcq('Which ICMP message makes traceroute work?', ['Time exceeded', 'Echo reply', 'Redirect', 'Source quench'], 0, 'TTL increases by 1 each round; each hop returns Time Exceeded.', 'm13'),
+      inp('Windows command to trace the path to 10.1.1.1?', ['tracert 10.1.1.1'], 'Windows spells it tracert.', 'm13'),
+    ] },
+  ], 'm13');
+
+  U('u8', 'Transport layer: TCP & UDP (Module 14)', '🚚', ['Quiz 5', 'Final'], 'Ports, reliability, handshakes.', [
+    { id: 't1', title: 'TCP vs UDP', mins: 4, steps: [
+      L('Registered mail vs flyers', `<p><b>TCP</b> = registered mail. Connection-oriented, sequence numbers, ACKs, resends lost data, flow control. Slower, reliable. Web, email, file transfer, SSH.</p><p><b>UDP</b> = throwing flyers. Connectionless, no ACKs, no resend. Fast, low overhead. Video/voice streaming, DNS lookups, DHCP, TFTP.</p>`),
+      mcq('Which is connectionless?', ['UDP', 'TCP'], 0, 'UDP just sends.', 'm14'),
+      multi('Pick the TWO that use UDP.', ['VoIP', 'DHCP', 'HTTP', 'SSH'], [0, 1], 'Voice wants speed; DHCP is UDP 67/68.', 'm14'),
+    ] },
+    { id: 't2', title: 'Port numbers', mins: 5, steps: [
+      L('Port = which app', `<p>IP gets it to the right <b>computer</b>. The port gets it to the right <b>app</b>.</p><p>IP + port = a <b>socket</b>, e.g. 192.168.1.5:80.</p><table><tr><th>Range</th><th>Name</th></tr><tr><td>0–1023</td><td>Well-known (servers)</td></tr><tr><td>1024–49151</td><td>Registered</td></tr><tr><td>49152–65535</td><td>Dynamic/private (client source ports)</td></tr></table>`),
+      L('Ports to memorize', `<table><tr><td>FTP</td><td>20, 21</td><td>SSH</td><td>22</td></tr><tr><td>Telnet</td><td>23</td><td>SMTP</td><td>25</td></tr><tr><td>DNS</td><td>53</td><td>DHCP</td><td>67, 68</td></tr><tr><td>TFTP</td><td>69</td><td>HTTP</td><td>80</td></tr><tr><td>POP3</td><td>110</td><td>IMAP</td><td>143</td></tr><tr><td>HTTPS</td><td>443</td><td></td><td></td></tr></table>`),
+      mcq('HTTPS uses port…', ['443', '80', '22', '53'], 0, '', 'm14'), mcq('DNS uses port…', ['53', '25', '67', '110'], 0, '', 'm14'), mcq('SSH uses port…', ['22', '23', '21', '443'], 0, 'Telnet is 23.', 'm14'),
+      mcq('A client picks its source port from which range?', ['49152–65535 (dynamic)', '0–1023 (well-known)', '1024–49151 only'], 0, 'Servers listen on well-known; clients use random high ports.', 'm14'),
+    ] },
+    { id: 't3', title: 'TCP handshake and reliability', mins: 5, steps: [
+      L('3-way handshake (start)', `${D.handshake()}<p>SYN → SYN-ACK → ACK. Then data flows.</p><p>Ending uses <b>FIN</b> and <b>ACK</b> (4 steps: FIN, ACK, FIN, ACK).</p>`),
+      L('Reliability tools', `<ul><li><b>Sequence numbers</b>: put segments back in order.</li><li><b>Acknowledgments</b>: "got it, send the next one".</li><li><b>Window size</b>: how much can be sent before waiting for an ACK (<b>flow control</b>).</li><li>Lost? Resend (retransmission).</li></ul>`),
+      mcq('Order of the TCP 3-way handshake?', ['SYN, SYN-ACK, ACK', 'ACK, SYN, FIN', 'SYN, ACK, FIN', 'FIN, ACK, SYN'], 0, '', 'm14'),
+      mcq('Which flag ends a TCP session?', ['FIN', 'SYN', 'URG', 'PSH'], 0, 'FIN = finish.', 'm14'),
+      mcq('What does TCP use to put segments back in order?', ['Sequence numbers', 'Port numbers', 'TTL', 'MAC addresses'], 0, '', 'm14'),
+      mcq('Window size is used for…', ['Flow control', 'Addressing', 'Encryption'], 0, 'How much data before an ACK is needed.', 'm14'),
+    ] },
+  ], 'm14');
+
+  U('u9', 'Application layer (Module 15)', '🧩', ['Quiz 5', 'Final'], 'DNS, DHCP, web, email, files.', [
+    { id: 'p1', title: 'Client-server vs peer-to-peer', mins: 3, steps: [
+      L('Two models', `<p><b>Client-server</b>: the client asks, the server answers (web browser ↔ web server).</p><p><b>Peer-to-peer (P2P)</b>: every device can be both (BitTorrent, file sharing between two PCs).</p>`),
+      mcq('In P2P, a device can be…', ['Both client and server', 'Only a client', 'Only a server'], 0, '', 'm15'),
+    ] },
+    { id: 'p2', title: 'DNS and DHCP', mins: 5, lab: 'ipconfig /all, nslookup', steps: [
+      L('DNS = phone book', `<p>DNS turns a name (www.cisco.com) into an IP. UDP/TCP <b>53</b>.</p><p>Record types: <b>A</b> = IPv4, <b>AAAA</b> = IPv6, <b>NS</b> = name server, <b>MX</b> = mail server.</p><p>Test it with <code>nslookup</code>.</p>`),
+      L('DHCP = DORA', `<ol><li><b>D</b>iscover (client broadcast)</li><li><b>O</b>ffer (server)</li><li><b>R</b>equest (client)</li><li><b>A</b>cknowledgment (server)</li></ol><p>Gives IP, mask, gateway, DNS. Ports UDP 67 (server), 68 (client). Fails → 169.254.x.x. 🔧 <code>ipconfig /release</code> and <code>/renew</code> from Lab 2.</p>`),
+      mcq('DHCP message order?', ['Discover, Offer, Request, Acknowledge', 'Offer, Discover, Ack, Request', 'Request, Offer, Discover, Ack'], 0, 'DORA.', 'm15'),
+      mcq('Which DNS record holds an IPv6 address?', ['AAAA', 'A', 'MX', 'NS'], 0, 'A = IPv4, AAAA = IPv6 (4 times as long).', 'm15'),
+      mcq('Which command tests DNS name resolution?', ['nslookup', 'arp -a', 'tracert', 'show ip route'], 0, '', 'm15'),
+    ] },
+    { id: 'p3', title: 'Web, email, files', mins: 5, steps: [
+      L('Web', `<p><b>HTTP</b> (80) and <b>HTTPS</b> (443, encrypted). Messages: <b>GET</b> (ask for data), <b>POST</b> (send data, e.g. a form), <b>PUT</b> (upload).</p>`),
+      L('Email', `<ul><li><b>SMTP</b> (25): <b>sends</b> mail (client→server, server→server).</li><li><b>POP3</b> (110): downloads and usually <b>deletes</b> from the server.</li><li><b>IMAP</b> (143): keeps mail <b>on the server</b>, synced across devices.</li></ul>`),
+      L('Files', `<p><b>FTP</b>: 21 = control, 20 = data. <b>SMB</b>: Windows file/printer sharing.</p>`),
+      mcq('Which protocol SENDS email?', ['SMTP', 'POP3', 'IMAP', 'HTTP'], 0, 'S for Send.', 'm15'),
+      mcq('Which keeps your email on the server, synced on phone and laptop?', ['IMAP', 'POP3', 'SMTP'], 0, '', 'm15'),
+      mcq('Which HTTP message submits a form to the server?', ['POST', 'GET', 'PUT'], 0, 'GET asks for data, POST sends form data.', 'm15'),
+      mcq('Windows file and printer sharing uses…', ['SMB', 'FTP', 'SMTP', 'DNS'], 0, '', 'm15'),
+    ] },
+  ], 'm15');
+
+  U('u10', 'Network security basics (Module 16)', '🔒', ['Final', 'SBA2'], 'Theory only per the schedule, plus the SSH config you may be asked to do.', [
+    { id: 'x1', title: 'Threats and attacks', mins: 5, steps: [
+      L('Malware', `<ul><li><b>Virus</b>: attaches to a program, needs a person to run it.</li><li><b>Worm</b>: spreads by itself across the network.</li><li><b>Trojan horse</b>: looks legit, hides something bad.</li></ul>`),
+      L('Network attacks', `<ul><li><b>Reconnaissance</b>: scouting (ping sweeps, port scans).</li><li><b>Access</b>: getting in (password attacks, trust exploitation, man-in-the-middle).</li><li><b>Denial of Service (DoS / DDoS)</b>: flooding so nobody can use it.</li></ul>`),
+      L('Defences', `<p>Backups, updates/patches, <b>AAA</b> (Authentication, Authorization, Accounting), firewalls, endpoint security (antivirus). Disable unused services and ports.</p>`),
+      mcq('Which malware spreads by itself without a user running it?', ['Worm', 'Virus', 'Trojan horse'], 0, '', 'm16'),
+      mcq('A ping sweep and port scan is what kind of attack?', ['Reconnaissance', 'Access', 'DoS'], 0, 'Scouting first.', 'm16'),
+      mcq('AAA stands for…', ['Authentication, Authorization, Accounting', 'Access, Audit, Alarm', 'Admin, Account, Access'], 0, '', 'm16'),
+    ] },
+    { id: 'x2', title: 'Hardening a device + SSH', mins: 6, steps: [
+      L('Strong passwords', `<pre>R1(config)# security passwords min-length 8\nR1(config)# service password-encryption\nR1(config)# login block-for 120 attempts 3 within 60\nR1(config)# line vty 0 4\nR1(config-line)# exec-timeout 5 0</pre><p>min-length = minimum length. login block-for = lock out after failed tries. exec-timeout = log idle users out (minutes seconds).</p>`),
+      L('Turn on SSH (and off Telnet)', `<pre>R1(config)# ip domain-name cisco.com\nR1(config)# crypto key generate rsa general-keys modulus 1024\nR1(config)# username admin secret Str0ngPa55\nR1(config)# line vty 0 4\nR1(config-line)# transport input ssh\nR1(config-line)# login local\nR1(config)# ip ssh version 2</pre><p>Needs: a hostname (not default), a domain name, RSA keys, a local user, VTY set to ssh + login local.</p>`),
+      inp('Which line command makes VTY lines accept ONLY SSH?', ['transport input ssh'], '', 'm16'),
+      inp('Which line command makes VTY use the local username database?', ['login local'], '', 'm16'),
+      mcq('What is needed before you can generate RSA keys?', ['A hostname and domain name', 'A DHCP pool', 'A default route'], 0, 'The key name is built from hostname + domain.', 'm16'),
+    ] },
+  ], 'm16');
+
+  U('u11', 'Build a small network (Module 17)', '🏗️', ['Final', 'SBA2'], 'Verify and troubleshoot like the SBA.', [
+    { id: 'y1', title: 'Verify commands', mins: 5, steps: [
+      L('PC side', `<ul><li><code>ipconfig</code> / <code>ipconfig /all</code>: IP, mask, gateway, DNS, MAC</li><li><code>ping</code>, <code>tracert</code></li><li><code>arp -a</code>, <code>nslookup</code></li></ul>`),
+      L('Cisco side', `<ul><li><code>show ip interface brief</code></li><li><code>show ip route</code></li><li><code>show running-config</code></li><li><code>show interfaces</code> (errors, duplex)</li><li><code>show version</code> (IOS, uptime, RAM, config register)</li><li><code>show cdp neighbors</code> (directly connected Cisco devices)</li><li><code>show arp</code>, <code>show mac address-table</code> (switch)</li></ul>`),
+      mcq('Which command lists directly connected Cisco devices?', ['show cdp neighbors', 'show ip route', 'show version', 'show arp'], 0, 'CDP = Cisco Discovery Protocol.', 'm17'),
+      mcq('Which command shows IOS version and uptime?', ['show version', 'show running-config', 'show flash only', 'show ip interface brief'], 0, '', 'm17'),
+      inp('Windows command that shows IP, mask, gateway, DNS AND MAC?', ['ipconfig /all'], '', 'm17'),
+    ] },
+    { id: 'y2', title: 'Troubleshooting approach', mins: 4, steps: [
+      L('Methods', `<ul><li><b>Bottom-up</b>: start at Layer 1 (cable, lights) and go up. Good when you suspect physical.</li><li><b>Top-down</b>: start at the app.</li><li><b>Divide and conquer</b>: start in the middle (e.g. ping) and go up or down.</li></ul>`),
+      L('Common problems', `<ul><li><b>Duplex mismatch</b>: one side full, one half → slow, collisions, errors.</li><li>Wrong <b>IP or mask</b>, wrong <b>default gateway</b>.</li><li><b>DNS</b> wrong: ping by IP works, by name fails.</li><li>Interface <b>shutdown</b>.</li></ul>`),
+      mcq('Ping by IP works, ping by name fails. Problem?', ['DNS', 'Default gateway', 'Cable'], 0, '', 'm17'),
+      mcq('Slow link with lots of errors/collisions between a switch and router. Likely?', ['Duplex mismatch', 'Wrong DNS', 'No default route'], 0, '', 'm17'),
+      mcq('Start at the cable and go up the layers is called…', ['Bottom-up', 'Top-down', 'Divide and conquer'], 0, '', 'm17'),
+    ] },
+  ], 'm17');
+
+  U('u12', 'SBA #2 command recall', '🧑‍🔧', ['SBA2'], 'Type the commands from memory. Format of SBA #2 is not posted yet; this follows SBA #1 practice and Modules 10–17 (estimate).', [
+    { id: 'z1', title: 'Router from blank, from memory', mins: 8, steps: [
+      L('The full sequence', `<pre>enable\nconfigure terminal\nhostname R1\nno ip domain-lookup\nenable secret class\nline console 0\n password cisco\n login\nline vty 0 4\n password cisco\n login\nservice password-encryption\nbanner motd #Authorized only#\ninterface g0/0\n ip address 192.168.1.1 255.255.255.0\n no shutdown\ninterface g0/1\n ip address 192.168.2.1 255.255.255.0\n no shutdown\nend\ncopy running-config startup-config</pre><p><code>no ip domain-lookup</code> stops the router hanging when you mistype a command.</p>`),
+      inp('Command to enter privileged EXEC from user EXEC?', ['enable', 'en'], '', 'ios'),
+      inp('Command to enter global configuration mode?', ['configure terminal', 'conf t', 'config t'], '', 'ios'),
+      inp('Set the privileged password, encrypted, to "class".', ['enable secret class'], 'secret = hashed. password = plain.', 'ios'),
+      inp('Enter config for all 5 VTY lines on a router (0 to 4).', ['line vty 0 4'], '', 'ios'),
+      inp('Encrypt all plain-text passwords in the config.', ['service password-encryption'], '', 'ios'),
+      inp('Give the interface 192.168.1.1 with a /24 mask.', ['ip address 192.168.1.1 255.255.255.0'], 'Cisco IOS wants the dotted mask, not /24.', 'ios'),
+      inp('Stop the router trying to look up mistyped commands as hostnames.', ['no ip domain-lookup', 'no ip domain lookup'], '', 'ios'),
+      inp('Run a show command from inside config mode (show ip interface brief).', ['do show ip interface brief', 'do sh ip int br', 'do show ip int brief'], 'Put do in front.', 'ios'),
+      inp('Set a static default route out to next hop 10.0.0.1.', ['ip route 0.0.0.0 0.0.0.0 10.0.0.1'], 'Default route = 0.0.0.0 with mask 0.0.0.0.', 'ios'),
+    ] },
+    { id: 'z2', title: 'Plan the addressing (subnetting for the SBA)', mins: 8, steps: [
+      L('How addressing usually works in the lab', `<p>You get a network and the number of hosts per LAN. Then:</p><ol><li>Subnet it (VLSM if sizes differ).</li><li>Router interface = <b>first usable</b> in each subnet (common convention; follow the handout if it says otherwise).</li><li>PCs get addresses in the range, gateway = router interface.</li></ol>`),
+      g('vlsm', 2), g('full', 2), g('gatewayOk', 2),
+    ] },
+  ], 'ios');
+})();
+
+/* ---- net/content3.js ---- */
+/* CST8182 content part 3: extra exam-style bank, flashcards, practice sets, mocks, plan. */
+(function () {
+  const C = window.COURSE;
+  const tagKey = t => ({ 'Quiz 4': 'quiz4', 'Quiz 5': 'quiz5', 'Final': 'final', 'SBA2': 'sba2', 'Foundation': 'found', 'Lab demo': 'lab' }[t] || t);
+  // 1) every practice step inside lessons also goes into the bank
+  C.units.forEach(u => u.lessons.forEach(l => l.steps.forEach((s, i) => { if (['mcq', 'tf', 'multi', 'input'].includes(s.t)) C.bank.push(Object.assign({ id: l.id + '-' + i, kind: s.t, tags: (u.tags || []).map(tagKey), topicName: u.title }, s, { topic: s.topic || u.topic })); })));
+  // 2) extra exam-style questions (not shown in lessons)
+  const Q = (id, topic, tags, q, opts, a, why) => C.bank.push({ id, kind: Array.isArray(a) ? 'multi' : 'mcq', topic, tags, q, opts, a, why });
+  const TF = (id, topic, tags, q, a, why) => C.bank.push({ id, kind: 'tf', topic, tags, q, a, why });
+  const F = ['final'];
+  Q('x8a', 'm8', F, 'Which field in the IPv4 header stops packets looping forever?', ['TTL', 'Protocol', 'Header checksum', 'Version'], 0, 'Each router decrements TTL.');
+  Q('x8b', 'm8', F, 'Which IPv6 header field replaces IPv4 TTL?', ['Hop Limit', 'Flow Label', 'Traffic Class', 'Next Header'], 0, 'Same job, new name.');
+  Q('x8c', 'm8', F, 'A host sends a packet to a different network. Where does it go first?', ['Its default gateway', 'The DNS server', 'Straight to the destination', 'The switch\'s IP'], 0, '');
+  Q('x8d', 'm8', F, 'Which routing table entry is used when nothing else matches?', ['Default route (0.0.0.0/0)', 'Directly connected route', 'Local route', 'Host route'], 0, '');
+  Q('x9a', 'm9', F, 'Where does a host store learned IP-to-MAC mappings?', ['ARP cache / table', 'Routing table', 'MAC address table', 'DNS cache'], 0, 'Switches keep a MAC address table (MAC→port). Hosts keep an ARP cache (IP→MAC).');
+  Q('x9b', 'm9', F, 'Which attack sends fake ARP replies to redirect traffic?', ['ARP spoofing / poisoning', 'DoS', 'Port scan', 'Phishing'], 0, '');
+  Q('x9c', 'm9', F, 'Destination MAC of an ARP request frame?', ['FF-FF-FF-FF-FF-FF', '00-00-00-00-00-00', 'The gateway MAC', '01-00-5E-00-00-01'], 0, 'Broadcast.');
+  Q('x10a', 'm10', F, 'Where is the startup-config stored?', ['NVRAM', 'RAM', 'Flash', 'ROM'], 0, 'running-config = RAM. IOS image = flash.');
+  Q('x10b', 'm10', F, 'Which command shows a summary of interfaces with IP and status?', ['show ip interface brief', 'show interfaces', 'show running-config', 'show version'], 0, '');
+  Q('x10c', 'm10', F, 'What must a PC\'s default gateway be?', ['The router interface IP on the PC\'s own LAN', 'Any router IP', 'The DNS server', 'The switch management IP'], 0, '');
+  Q('x11a', 'm11', ['quiz4', 'final'], 'How many usable hosts in 172.16.0.0/16?', ['65534', '65536', '254', '16382'], 0, '2^16 − 2.');
+  Q('x11b', 'm11', ['quiz4', 'final'], 'Which is a valid host address in 192.168.10.64/26?', ['192.168.10.100', '192.168.10.64', '192.168.10.127', '192.168.10.130'], 0, '.64 network, .127 broadcast, .130 is in the next block.');
+  Q('x11c', 'm11', ['quiz4', 'final'], 'Which address is the broadcast of 10.10.10.32/28?', ['10.10.10.47', '10.10.10.48', '10.10.10.63', '10.10.10.31'], 0, 'Block 16: .32–.47.');
+  Q('x11d', 'm11', ['quiz4', 'final'], 'Which mask gives 30 usable hosts?', ['255.255.255.224', '255.255.255.240', '255.255.255.192', '255.255.255.248'], 0, '/27: 2^5 − 2 = 30.');
+  Q('x11e', 'm11', ['quiz4', 'final'], 'What does NAT mainly do?', ['Translates private addresses to a public one', 'Gives out IP addresses', 'Resolves names', 'Finds MAC addresses'], 0, '');
+  Q('x11f', 'm11', ['quiz4', 'final'], 'Which TWO are private addresses?', ['10.5.5.5', '172.20.1.1', '172.32.1.1', '192.169.1.1'], [0, 1], '172.16–31 only. 192.168 only.');
+  Q('x11g', 'm11', ['quiz4', 'final'], 'Which mask goes with /22?', ['255.255.252.0', '255.255.255.252', '255.255.248.0', '255.255.254.0'], 0, '8+8+6 = 22. 6 ones = 252 in the 3rd octet.');
+  Q('x12a', 'm12', ['quiz4', 'final'], 'Shortest form of 2001:0db8:0000:0000:0000:0000:0000:0001?', ['2001:db8::1', '2001:db8:0:0::1:', '2001::db8::1', '2001:db8:::1'], 0, '');
+  Q('x12b', 'm12', ['quiz4', 'final'], 'Which type of address does IPv6 NOT have?', ['Broadcast', 'Multicast', 'Unicast', 'Anycast'], 0, 'IPv6 uses multicast (like ff02::1) instead of broadcast.');
+  Q('x12c', 'm12', ['quiz4', 'final'], 'What address does a host use as its IPv6 default gateway when learned from an RA?', ['The router\'s link-local address', 'The router\'s GUA', 'ff02::2', '::1'], 0, 'RAs come from the router\'s fe80:: address.');
+  Q('x12d', 'm12', ['quiz4', 'final'], 'Which method gives an address ONLY from a DHCPv6 server?', ['Stateful DHCPv6', 'SLAAC', 'SLAAC with stateless DHCPv6', 'EUI-64'], 0, '');
+  Q('x12e', 'm12', ['quiz4', 'final'], 'How many bits in an IPv6 address?', ['128', '64', '32', '48'], 0, '');
+  Q('x12f', 'm12', ['quiz4', 'final'], 'A /64 IPv6 subnet uses how many bits for the Interface ID?', ['64', '48', '16', '80'], 0, '128 − 64.');
+  Q('x13a', 'm13', ['quiz4', 'final'], 'Which tool uses ICMP Echo Request?', ['ping', 'nslookup', 'ipconfig', 'telnet'], 0, '');
+  Q('x13b', 'm13', ['quiz4', 'final'], 'Which ICMPv6 messages are used for address resolution?', ['NS and NA', 'RS and RA', 'Echo request and reply', 'Time exceeded'], 0, 'RS/RA = router discovery. NS/NA = neighbor (MAC) discovery and DAD.');
+  Q('x13c', 'm13', ['quiz4', 'final'], 'A router sends "Destination Unreachable". What does it mean?', ['It can\'t deliver the packet to that network/host/port', 'TTL expired', 'The host is busy', 'The packet was encrypted'], 0, '');
+  Q('x13d', 'm13', ['quiz4', 'final'], 'Duplicate Address Detection (DAD) in IPv6 uses…', ['Neighbor Solicitation', 'Router Advertisement', 'DHCPv6 Request', 'ARP'], 0, 'The host sends an NS for its own address; nobody should answer.');
+  Q('x14a', 'm14', ['quiz5', 'final'], 'What does a socket consist of?', ['IP address + port number', 'MAC + IP', 'Port + protocol', 'Hostname + MAC'], 0, '');
+  Q('x14b', 'm14', ['quiz5', 'final'], 'Which TWO are TCP features?', ['Acknowledgments', 'Sequencing', 'No connection setup', 'Lowest overhead'], [0, 1], '');
+  Q('x14c', 'm14', ['quiz5', 'final'], 'Header size: which is smaller?', ['UDP (8 bytes)', 'TCP (20 bytes)'], 0, 'UDP has less overhead.');
+  Q('x14d', 'm14', ['quiz5', 'final'], 'Which port range is "well-known"?', ['0–1023', '1024–49151', '49152–65535', '1–65535'], 0, '');
+  Q('x14e', 'm14', ['quiz5', 'final'], 'TFTP uses which transport?', ['UDP 69', 'TCP 69', 'TCP 21', 'UDP 53'], 0, '');
+  Q('x14f', 'm14', ['quiz5', 'final'], 'Which command shows open TCP connections on a PC?', ['netstat', 'ipconfig', 'tracert', 'arp -a'], 0, '');
+  Q('x15a', 'm15', ['quiz5', 'final'], 'Which protocol automatically assigns IP settings?', ['DHCP', 'DNS', 'ARP', 'SMTP'], 0, '');
+  Q('x15b', 'm15', ['quiz5', 'final'], 'Which DNS record points to a mail server?', ['MX', 'A', 'AAAA', 'NS'], 0, '');
+  Q('x15c', 'm15', ['quiz5', 'final'], 'FTP uses TWO TCP ports. Which?', ['20 and 21', '21 and 22', '25 and 110', '67 and 68'], 0, '21 control, 20 data.');
+  Q('x15d', 'm15', ['quiz5', 'final'], 'Which DHCP message is broadcast by a client looking for a server?', ['DHCPDISCOVER', 'DHCPOFFER', 'DHCPACK', 'DHCPNAK'], 0, '');
+  Q('x15e', 'm15', ['quiz5', 'final'], 'POP3 uses port…', ['110', '143', '25', '995'], 0, '');
+  Q('x16a', 'm16', F, 'Which is the most secure way to manage a router remotely?', ['SSH', 'Telnet', 'HTTP', 'Console over the Internet'], 0, '');
+  Q('x16b', 'm16', F, 'A DDoS attack differs from DoS because…', ['It comes from many sources at once', 'It steals passwords', 'It uses one computer', 'It only targets switches'], 0, '');
+  Q('x16c', 'm16', F, 'What does a firewall do?', ['Controls which traffic is allowed in/out', 'Gives out IPs', 'Speeds up the network', 'Translates names'], 0, '');
+  Q('x16d', 'm16', F, 'Which command makes the router lock logins after 3 failed tries in 60 s, for 120 s?', ['login block-for 120 attempts 3 within 60', 'exec-timeout 120', 'security passwords min-length 3', 'login local 120'], 0, '');
+  Q('x16e', 'm16', F, 'Which AAA part records what a user did?', ['Accounting', 'Authentication', 'Authorization'], 0, 'Authentication = who are you. Authorization = what you can do. Accounting = what you did.');
+  Q('x17a', 'm17', F, 'Which device type is usually given the FIRST usable address in a subnet (common lab convention)?', ['The router interface (default gateway)', 'The printer', 'The DHCP client', 'The switch port'], 0, 'Follow the handout if it says otherwise.');
+  Q('x17b', 'm17', F, 'A PC shows 169.254.10.5. What failed?', ['DHCP', 'DNS', 'ARP', 'Routing'], 0, '');
+  Q('x17c', 'm17', F, 'Which command saves a copy of the config to a TFTP server?', ['copy running-config tftp', 'copy tftp running-config', 'save tftp', 'backup config'], 0, 'copy FROM TO.');
+  TF('t1', 'm14', ['quiz5', 'final'], 'UDP resends lost data.', false, 'Only TCP does.');
+  TF('t2', 'm12', ['quiz4', 'final'], 'Every IPv6-enabled interface has a link-local address.', true, '');
+  TF('t3', 'm9', F, 'A switch uses ARP to forward frames.', false, 'Switches use the MAC address table. Hosts use ARP.');
+  TF('t4', 'm10', F, 'Router interfaces are enabled (up) by default.', false, 'Need no shutdown.');
+  TF('t5', 'm11', ['quiz4', 'final'], '172.31.255.1 is a private address.', true, '172.16.0.0 – 172.31.255.255.');
+  TF('t6', 'm15', ['quiz5', 'final'], 'DNS uses port 53.', true, '');
+  // 3) flashcards (front / back). lesson = the lesson after which it enters the deck
+  const K = (id, lesson, topic, front, back) => C.cards.push({ id: 'c-' + id, lesson, topic, front, back });
+  K('pv', 'b1', 'binary', 'The 8 place values of an octet?', '<b>128 64 32 16 8 4 2 1</b>');
+  K('o255', 'b1', 'binary', 'Biggest value in one octet?', '<b>255</b> (all 8 bits on)');
+  K('m224', 'b3', 'binary', '11100000 = ?', '<b>224</b>');
+  K('m240', 'b3', 'binary', '11110000 = ?', '<b>240</b>');
+  K('m248', 'b3', 'binary', '11111000 = ?', '<b>248</b>');
+  K('m252', 'b3', 'binary', '11111100 = ?', '<b>252</b>');
+  K('m192', 'b3', 'binary', '11000000 = ?', '<b>192</b>');
+  K('p10', 'b4', 'binary', '2<sup>10</sup> = ?', '<b>1024</b>');
+  K('p8', 'b4', 'binary', '2<sup>8</sup> = ?', '<b>256</b>');
+  K('hexF', 'b5', 'hex', 'Hex F = ? and hex FF = ?', 'F = <b>15</b>, FF = <b>255</b>');
+  K('hexb', 'b5', 'hex', 'Bits per hex digit?', '<b>4</b>');
+  K('c24', 'a2', 'masks', '/24 mask?', '<b>255.255.255.0</b>');
+  K('c26', 'a2', 'masks', '/26 mask?', '<b>255.255.255.192</b> (block 64)');
+  K('c27', 'a2', 'masks', '/27 mask?', '<b>255.255.255.224</b> (block 32)');
+  K('c28', 'a2', 'masks', '/28 mask?', '<b>255.255.255.240</b> (block 16)');
+  K('c29', 'a2', 'masks', '/29 mask?', '<b>255.255.255.248</b> (block 8)');
+  K('c30', 'a2', 'masks', '/30 mask?', '<b>255.255.255.252</b> (block 4, 2 hosts: router links)');
+  K('c25', 'a2', 'masks', '/25 mask?', '<b>255.255.255.128</b> (block 128)');
+  K('c20', 's6', 'masks', '/20 mask?', '<b>255.255.240.0</b> (block 16 in the 3rd octet)');
+  K('c22', 's6', 'masks', '/22 mask?', '<b>255.255.252.0</b> (block 4 in the 3rd octet)');
+  K('hf', 'a3', 'hosts', 'Usable hosts formula?', '<b>2<sup>host bits</sup> − 2</b>');
+  K('priv', 'a4', 'iptypes', 'The 3 private IPv4 ranges?', '10.0.0.0/8 · 172.16.0.0/12 (172.16–31) · 192.168.0.0/16');
+  K('apipa', 'a4', 'iptypes', '169.254.x.x means…', 'APIPA / link-local: <b>DHCP failed</b>');
+  K('lo', 'a4', 'iptypes', '127.0.0.1 is…', '<b>Loopback</b>: your own PC');
+  K('cls', 'a5', 'classes', 'First-octet ranges for A, B, C?', 'A 1–126 · B 128–191 · C 192–223');
+  K('mc', 'a6', 'm11', 'IPv4 multicast range?', '224.0.0.0 – 239.255.255.255');
+  K('magic', 's2', 'magic', 'Magic number = ?', '<b>256 − the interesting mask octet</b>');
+  K('net', 's3', 'netid', 'Network address in the interesting octet = ?', 'Biggest multiple of the magic number that is ≤ the IP\'s value');
+  K('bc', 's4', 'netid', 'Broadcast = ?', 'Next network − 1');
+  K('vlsm', 's9', 'vlsm', 'VLSM golden rule?', '<b>Biggest LAN first</b>, smallest subnet that fits, pack them one after another');
+  K('osi', 'o1', 'osi', 'OSI layers top to bottom?', '7 Application, 6 Presentation, 5 Session, 4 Transport, 3 Network, 2 Data Link, 1 Physical');
+  K('pdu', 'o1', 'osi', 'PDUs by layer?', 'Data → Segment (4) → Packet (3) → Frame (2) → Bits (1)');
+  K('dev', 'o1', 'osi', 'Hub / switch / router layers?', 'Hub L1 · Switch L2 (MAC) · Router L3 (IP)');
+  K('ttl', 'n1', 'm8', 'What is TTL for?', 'Each router −1. At 0: dropped + ICMP Time Exceeded. Stops loops.');
+  K('ipchar', 'n1', 'm8', '3 characteristics of IP?', 'Connectionless, best effort, media independent');
+  K('rtcodes', 'n2', 'm8', 'Routing table codes C, L, S*?', 'C connected network · L local interface IP (/32) · S* static default route');
+  K('arp', 'n3', 'm9', 'ARP request vs reply?', 'Request = <b>broadcast</b>. Reply = <b>unicast</b>.');
+  K('nd', 'n3', 'm9', 'IPv6 version of ARP?', 'Neighbor Discovery: <b>NS / NA</b> (ICMPv6)');
+  K('noshut', 'n4', 'm10', 'Interface shows administratively down?', '<b>no shutdown</b>');
+  K('runstart', 'n4', 'm10', 'running-config vs startup-config?', 'running = RAM (lost on reboot). startup = NVRAM (kept). Save: copy run start');
+  K('v6r', 'v1', 'ipv6', 'Two IPv6 shortening rules?', '1) drop leading zeros in a group 2) one run of zero groups → ::');
+  K('v6t', 'v2', 'm12', 'fe80::/10 · 2000::/3 · ff00::/8 · ::1?', 'Link-local · Global unicast · Multicast · Loopback');
+  K('ra', 'v3', 'm12', 'RS vs RA?', 'RS = host asks. RA = router announces prefix + gateway.');
+  K('eui', 'v3', 'm12', 'EUI-64?', 'Interface ID from MAC: split, insert FFFE, flip 7th bit');
+  K('ping', 'i1', 'm13', 'ping uses which ICMP messages?', 'Echo Request / Echo Reply');
+  K('tr', 'i2', 'm13', 'How does traceroute work?', 'TTL 1, 2, 3… each hop returns ICMP Time Exceeded');
+  K('tcpudp', 't1', 'm14', 'TCP vs UDP in one line each', 'TCP: reliable, connection, ACKs. UDP: fast, connectionless, no ACKs.');
+  K('ports1', 't2', 'm14', 'Ports: FTP, SSH, Telnet, SMTP, DNS', '20/21, 22, 23, 25, 53');
+  K('ports2', 't2', 'm14', 'Ports: DHCP, TFTP, HTTP, POP3, IMAP, HTTPS', '67/68, 69, 80, 110, 143, 443');
+  K('ranges', 't2', 'm14', 'Port ranges?', '0–1023 well-known · 1024–49151 registered · 49152–65535 dynamic');
+  K('hs', 't3', 'm14', 'TCP 3-way handshake?', 'SYN → SYN-ACK → ACK');
+  K('dora', 'p2', 'm15', 'DHCP steps?', 'Discover, Offer, Request, Acknowledge (DORA)');
+  K('dnsr', 'p2', 'm15', 'DNS records A / AAAA / MX / NS?', 'IPv4 / IPv6 / mail server / name server');
+  K('mail', 'p3', 'm15', 'SMTP vs POP3 vs IMAP?', 'SMTP sends (25). POP3 downloads + deletes (110). IMAP keeps on server (143).');
+  K('mal', 'x1', 'm16', 'Virus vs worm vs trojan?', 'Virus needs a user to run it. Worm spreads itself. Trojan pretends to be legit.');
+  K('atk', 'x1', 'm16', '3 attack types?', 'Reconnaissance, Access, Denial of Service');
+  K('ssh', 'x2', 'm16', 'Steps to enable SSH?', 'hostname · ip domain-name · crypto key generate rsa · username/secret · line vty: transport input ssh + login local');
+  K('cdp', 'y1', 'm17', 'Show directly connected Cisco devices?', '<b>show cdp neighbors</b>');
+  K('dup', 'y2', 'm17', 'Duplex mismatch symptoms?', 'Slow, collisions, errors on the link');
+  // 4) practice sets
+  C.practice = [
+    { label: '✂️ Subnetting: 5 quick problems', mix: { tags: [], n: 0, gens: [['fullLast', 3], ['netAddr', 1], ['magic', 1]] }, minutes: 10 },
+    { label: '🔢 Binary + hex warm-up (10)', mix: { tags: [], n: 0, gens: [['binToDec', 4], ['decToBin', 4], ['hexToDec', 2]] }, minutes: 8 },
+    { label: '🎭 Masks, hosts, borrowing (10)', mix: { tags: [], n: 0, gens: [['cidrToMask', 2], ['maskToCidr', 2], ['hostsIn', 2], ['prefixForHosts', 2], ['borrow', 2]] }, minutes: 12 },
+    { label: '🧩 VLSM (4)', mix: { tags: [], n: 0, gens: [['vlsm', 4]] }, minutes: 16 },
+    { label: '6️⃣ IPv6 (8)', mix: { tags: ['m12'], n: 0, gens: [['ipv6', 4], ['ipv6expand', 2]] }, minutes: 10 },
+    { label: '📘 Quiz 4 topics (Modules 11–13)', mix: { tags: ['quiz4'], n: 15, gens: [['full', 2], ['ipv6', 1]] }, minutes: 20 },
+    { label: '📗 Quiz 5 topics (Modules 14–15)', mix: { tags: ['quiz5'], n: 15 }, minutes: 15 },
+    { label: '🧑‍🔧 SBA #2 command recall', mix: { tags: ['sba2'], n: 15 }, minutes: 15 },
+  ];
+  // 5) mock exams (format notes come from the schedule and your study files; anything unposted is marked estimate)
+  C.mocks = [
+    { id: 'q4', title: 'Quiz 4 mock: Modules 11–13', desc: 'Real quiz: NetAcad module "exam", online, 5% total for all quizzes (Weekly Schedule). Mostly multiple choice (estimate based on NetAcad format). 20 questions.', mix: { tags: ['quiz4'], n: 16, gens: [['full', 2], ['ipv6', 1], ['ipType', 1]] }, minutes: 30, pass: 70 },
+    { id: 'q5', title: 'Quiz 5 mock: Modules 14–15', desc: 'Real quiz: NetAcad module exam in Week 14. 15 questions.', mix: { tags: ['quiz5'], n: 15 }, minutes: 25, pass: 70 },
+    { id: 'fin', title: 'Final exam mock (Modules 8–17 + subnetting)', desc: 'Real final: 30%, covers everything since the midterm (Weekly Schedule). Your midterm was multiple choice + short answers (your study notes); the final format is NOT posted, so this is an estimate. 40 questions.', mix: { tags: ['final', 'quiz4', 'quiz5'], n: 30, gens: [['full', 3], ['vlsm', 1], ['sameSubnet', 1], ['ipv6', 1], ['prefixForHosts', 1], ['ipType', 1], ['gatewayOk', 1], ['magic', 1]] }, minutes: 90, pass: 70 },
+    { id: 'sub', title: 'Subnetting speed drill (10)', desc: 'Like the Week 10 in-class demo: solve on your own, no internet. Turn the timer on to practise pace.', mix: { tags: [], n: 0, gens: [['full', 6], ['vlsm', 2], ['borrow', 2]] }, minutes: 30, pass: 80 },
+  ];
+  // 6) plan
+  const ROWS = [
+    { from: '2026-11-16', to: '2026-11-22', title: 'Week 11: numbers + IPv4 basics', focus: 'Units: Numbers, IPv4 addresses. Start Subnetting lessons s1–s3. Lab 8 Thu is addressing. Linux Midterm 2 may be Mon Nov 23, so Linux comes first this week; keep this to 1 lesson + 5 subnet problems a day.' },
+    { from: '2026-11-23', to: '2026-11-29', title: 'Week 12: subnetting + Quiz 4 (M11–13)', focus: 'Finish Subnetting (s4–s9). IPv6 + ICMP units. Quiz 4 mock by Wed. Lab 9 Thu Nov 26.' },
+    { from: '2026-11-30', to: '2026-12-06', title: 'Week 13: Transport + Application (M14–15) + SBA #2 recall', focus: 'TCP/UDP and Application units. SBA #2 command recall every day. 1 VLSM a day. Lab 10 Thu Dec 3.' },
+    { from: '2026-12-07', to: '2026-12-11', title: 'Week 14: SBA #2 + Quiz 5', focus: 'Night before SBA #2: command recall + 3 full subnet problems + Packet Tracer run of your Week 6 practice SBA. Security + Small network units.' },
+    { from: '2026-12-12', to: '2026-12-16', title: 'Exam week: Final mock', focus: 'One Final mock every other day, then fix weak spots. Another final Mon Dec 14 and the Linux final Wed Dec 16, so keep networking to 20 min on those days.' },
+    { from: '2026-12-17', to: '2026-12-17', title: 'Final day', focus: '10-minute warm-up only: 3 subnet problems + port flashcards. Eat. Bring ID. Write 128 64 32 16 8 4 2 1 and the OSI table on scrap paper first.' },
+  ];
+  const DAYNOTE = { 1: 'Mon: Linux lecture 3:30 PM. Do networking in the morning.', 2: 'Tue: Networking lecture 6–9 PM (T119). Review today\'s lesson before class.', 3: 'Wed: long day (three classes). Just flashcards today.', 4: 'Thu: Networking lab 10:30 AM (T113). Do 5 subnet problems before lab.', 5: 'Fri: free day. Best day for a longer session or a mock.', 6: 'Sat: 2 short blocks.', 0: 'Sun: light review + plan the week.' };
+  C.planFor = (t) => { const r = ROWS.find(x => t >= x.from && t <= x.to); const dn = DAYNOTE[new Date(t + 'T12:00:00').getDay()]; return (r ? `<b>${r.title}</b><p class="small">${r.focus}</p>` : '') + `<p class="small muted">${dn}</p>`; };
+  C.planRows = (t) => ROWS.map(r => `<div class="card" style="${t >= r.from && t <= r.to ? 'border:3px solid var(--acc)' : ''}"><div class="small muted">${r.from}${r.to !== r.from ? ' → ' + r.to : ''}</div><h2>${r.title}</h2><p class="small">${r.focus}</p></div>`).join('');
+})();
+
+/* ---- net/tools.js ---- */
+/* CST8182 tools: step-by-step subnet explainer, bit flipper game, VLSM planner. */
+(function () {
+  const C = window.COURSE; const E = () => window.ENGINE;
+  C.tools = [
+    { id: 'explain', label: '🔍 Explain any subnet, step by step', render(el) {
+      el.innerHTML = `<div class="card"><h2>Subnet explainer</h2><p class="small muted">Type any IP and prefix. You get every step, with pictures. Use it to check your own work, not as the answer key for graded work.</p><div class="row"><input type="text" id="ip" value="192.168.1.130" style="flex:3" autocapitalize="off"><input type="text" id="pf" value="26" style="flex:1" inputmode="numeric"></div><div style="height:10px"></div><button id="go" style="width:100%">Explain</button></div><div id="out"></div>`;
+      const go = () => { const ip = el.querySelector('#ip').value.trim(); let p = +String(el.querySelector('#pf').value).replace('/', ''); const out = el.querySelector('#out');
+        if (SN.ipToInt(ip) === null || !(p >= 1 && p <= 32)) { out.innerHTML = '<div class="fb bad">Check the IP (4 numbers 0–255) and prefix (1–32).</div>'; return; }
+        const i = SN.info(ip, p); const o = i.octet;
+        out.innerHTML = `<div class="card"><h3>The bits</h3>${D.ipBits(ip, p)}<p class="small">Blue = network bits (${p}). Orange = host bits (${32 - p}).</p>${p % 8 ? D.blocks(i.block, +ip.split('.')[o], ['1st', '2nd', '3rd', '4th'][o]) : ''}<h3>Steps</h3>${SN.steps(ip, p).map((s, k) => `<div class="step"><b>${k + 1}.</b> ${s}</div>`).join('')}
+        <h3>Summary</h3><table><tr><td>Mask</td><td class="mono">${i.mask}</td></tr><tr><td>Network</td><td class="mono">${i.network}</td></tr><tr><td>First usable</td><td class="mono">${i.first}</td></tr><tr><td>Last usable</td><td class="mono">${i.last}</td></tr><tr><td>Broadcast</td><td class="mono">${i.broadcast}</td></tr><tr><td>Usable hosts</td><td>${i.usable}</td></tr><tr><td>Class (legacy)</td><td>${SN.ipClass(ip)}</td></tr><tr><td>Type</td><td>${SN.ipType(ip)}</td></tr><tr><td>Wildcard</td><td class="mono">${i.wildcard}</td></tr></table></div>`; };
+      el.querySelector('#go').onclick = go; go(); } },
+    { id: 'bits', label: '💡 Bit switch game (binary by feel)', render(el) {
+      let target = 0, on = 0, score = 0; const P = [128, 64, 32, 16, 8, 4, 2, 1];
+      const nt = () => { target = 1 + Math.floor(Math.random() * 255); on = 0; draw(); };
+      const draw = () => { el.innerHTML = `<div class="card center"><h2>Make <span class="big">${target}</span></h2><p class="small muted">Tap switches to turn them on. Score: ${score}</p><div class="bits">${P.map(p => `<button class="${on & p ? '' : 'sec'}" data-p="${p}"><span class="lbl">${p}</span>${on & p ? 1 : 0}</button>`).join('')}</div><p class="big">${on}</p><p class="mono">${SN.toBin8(on)}</p>${on === target ? '<div class="fb ok">✅ Yes! <button id="nx">Next</button></div>' : on > target ? '<div class="fb bad">Too big. Turn one off.</div>' : ''}</div>`;
+        el.querySelectorAll('[data-p]').forEach(b => b.onclick = () => { on ^= +b.dataset.p; if (on === target) { score++; E().markDay(1); E().topicHit('binary', true); } draw(); }); const nx = el.querySelector('#nx'); if (nx) nx.onclick = nt; };
+      nt(); } },
+    { id: 'vlsmplan', label: '🧩 VLSM planner (check your work)', render(el) {
+      el.innerHTML = `<div class="card"><h2>VLSM planner</h2><p class="small muted">Do it on paper first. Then check here.</p><label class="small">Starting network</label><input type="text" id="base" value="192.168.10.0/24"><label class="small">Hosts per LAN (comma separated)</label><input type="text" id="hs" value="100, 25, 12, 2"><div style="height:10px"></div><button id="go" style="width:100%">Plan it</button></div><div id="out"></div>`;
+      el.querySelector('#go').onclick = () => { const [b, p] = el.querySelector('#base').value.split('/'); const hs = el.querySelector('#hs').value.split(',').map(x => +x.trim()).filter(x => x > 0); const out = el.querySelector('#out');
+        if (SN.ipToInt(b) === null || !(+p >= 8 && +p <= 30) || !hs.length) { out.innerHTML = '<div class="fb bad">Use a format like 192.168.10.0/24 and numbers like 100, 25.</div>'; return; }
+        const plan = SN.vlsm(b, +p, hs.map((h, i) => ({ name: 'LAN ' + (i + 1) + ' (' + h + ')', hosts: h })));
+        out.innerHTML = plan ? `<div class="card"><table><tr><th>LAN</th><th>Prefix</th><th>Network</th><th>Range</th><th>Broadcast</th></tr>${plan.map(x => `<tr><td>${x.name}</td><td>/${x.prefix}</td><td class="mono">${x.network}</td><td class="mono small">${x.first}–${x.last}</td><td class="mono">${x.broadcast}</td></tr>`).join('')}</table><p class="small">Biggest first, then each one starts right after the last broadcast.</p></div>` : '<div class="fb bad">Does not fit in that network.</div>'; };
+      el.querySelector('#go').onclick(); } },
+  ];
+})();
+
+/* ---- shared/engine.js ---- */
+/* Study engine shared by both apps. Reads window.COURSE. Stores progress in localStorage. No external deps. */
+(function () {
+  const C = window.COURSE;
+  const KEY = 'study.' + C.id + '.v1';
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+  const dayNum = s => Math.round(new Date(s + 'T12:00:00').getTime() / 864e5);
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+
+  // ---------- state ----------
+  const blank = () => ({ done: {}, srs: {}, topics: {}, xp: 0, days: {}, mistakes: {}, settings: { fs: 19, theme: 'light', autoSpeak: false, timer: false, extra: 1 }, dates: {}, mocks: [] });
+  let S; try { S = Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = blank(); }
+  S.settings = Object.assign(blank().settings, S.settings || {});
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } };
+  const markDay = (xp) => { const t = today(); S.days[t] = (S.days[t] || 0) + 1; S.xp += xp || 0; save(); };
+  const streak = () => { let n = 0; let d = new Date(); if (!S.days[today()]) d.setDate(d.getDate() - 1); for (; ;) { const k = d.toISOString().slice(0, 10); const k2 = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); if (S.days[k2]) { n++; d.setDate(d.getDate() - 1); } else break; } return n; };
+  const topicHit = (t, ok) => { if (!t) return; const r = S.topics[t] || (S.topics[t] = { r: 0, w: 0, last: [] }); ok ? r.r++ : r.w++; r.last = (r.last || []).concat(ok ? 1 : 0).slice(-10); };
+  const topicScore = t => { const r = S.topics[t]; if (!r || !r.last || !r.last.length) return null; return r.last.reduce((a, b) => a + b, 0) / r.last.length; };
+  // ---------- spaced repetition (Leitner) ----------
+  const GAPS = [0, 1, 2, 4, 7, 14, 30];
+  const srsAdd = id => { if (!S.srs[id]) S.srs[id] = { b: 0, due: today() }; };
+  const srsGrade = (id, ok) => { const c = S.srs[id] || { b: 0 }; c.b = ok ? Math.min(c.b + 1, GAPS.length - 1) : 0; const d = new Date(); d.setDate(d.getDate() + (ok ? GAPS[c.b] : 0)); c.due = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); S.srs[id] = c; save(); };
+  const srsDue = () => Object.keys(S.srs).filter(id => S.srs[id].due <= today() && (cardById[id] || bankById[id]));
+  // ---------- indexes ----------
+  const lessons = []; C.units.forEach(u => u.lessons.forEach(l => { l.unit = u; lessons.push(l); }));
+  const lessonById = {}; lessons.forEach(l => lessonById[l.id] = l);
+  const cardById = {}; (C.cards || []).forEach(c => cardById[c.id] = c);
+  const bankById = {}; (C.bank || []).forEach(q => bankById[q.id] = q);
+  const unlocked = l => { const i = lessons.indexOf(l); if (i <= 0) return true; const prev = lessons[i - 1]; return !!S.done[prev.id] || !!S.done[l.id] || l.unit !== prev.unit && l.unit.open; };
+  // ---------- speech ----------
+  const speak = (html) => { if (!('speechSynthesis' in window)) return toast('Read-aloud not supported here'); speechSynthesis.cancel(); const div = document.createElement('div'); div.innerHTML = html; div.querySelectorAll('svg,.nosay').forEach(n => n.remove()); let t = div.textContent.replace(/\s+/g, ' ').replace(/\//g, ' slash ').trim(); const u = new SpeechSynthesisUtterance(t); u.rate = 0.95; speechSynthesis.speak(u); };
+  window.__speak = () => { const el = $('#sayme'); if (el) speak(el.innerHTML); };
+  const sayBtn = () => `<button class="speak" onclick="__speak()" aria-label="Read aloud">🔊 Read aloud</button>`;
+  function toast(m) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 1600); }
+  // ---------- question model ----------
+  // q = {kind:'mcq'|'tf'|'multi'|'input'|'fields', q, opts, a, why, steps, topic, id}
+  const norm = s => String(s).trim().toLowerCase().replace(/\s+/g, ' ').replace(/^\/+(?=\d)/, '');
+  const expand = (st) => { // turns a lesson/practice step into concrete question objects
+    if (st.t === 'gen') { const out = []; for (let i = 0; i < (st.n || 1); i++) out.push(Object.assign({ gen: st.g }, C.gens[st.g]())); return out; }
+    if (st.t === 'bank') return [bankById[st.id]];
+    if (st.t === 'learn') return [st];
+    return [Object.assign({ kind: st.t }, st)];
+  };
+  function renderQ(q, host, onDone, opts = {}) {
+    // renders a question in host; calls onDone(ok) after the learner presses Continue
+    let answered = false, stepShown = 0; window.__curQ = q;
+    const kind = q.kind || 'mcq';
+    const order = (kind === 'mcq' || kind === 'multi') && !q.keepOrder ? shuffle(q.opts.map((o, i) => i)) : (q.opts || []).map((o, i) => i);
+    let sel = new Set();
+    const optsHtml = () => kind === 'tf' ? ['True', 'False'].map((o, i) => `<button class="opt" data-i="${i}">${o}</button>`).join('') :
+      order.map(i => `<button class="opt" data-i="${i}">${q.opts[i]}</button>`).join('');
+    let body = '';
+    if (kind === 'mcq' || kind === 'tf' || kind === 'multi') body = `<div id="opts">${optsHtml()}</div>${kind === 'multi' ? '<button id="chk" class="sec" style="width:100%">Check</button>' : ''}`;
+    if (kind === 'input') body = `<input type="text" id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(q.ph || 'Type your answer')}"><div style="height:10px"></div><button id="chk" style="width:100%">Check</button>`;
+    if (kind === 'fields') body = q.fields.map((f, i) => `<label class="small muted">${f.label}</label><input type="text" data-f="${i}" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="${f.num ? 'decimal' : 'text'}"><div style="height:8px"></div>`).join('') + `<button id="chk" style="width:100%">Check</button>`;
+    host.innerHTML = `<div id="sayme"><div class="row" style="justify-content:space-between"><span class="tag">${esc(q.topicName || q.topic || '')}</span>${opts.label ? `<span class="tag">${opts.label}</span>` : ''}</div><div class="qtext">${q.q}</div></div>${sayBtn()}<div style="height:12px"></div>${body}
+      ${q.steps && q.steps.length ? '<button id="hint" class="ghost" style="width:100%;margin-top:10px">💡 Show me the next step</button><div id="steps"></div>' : ''}<div id="fb"></div>`;
+    if (S.settings.autoSpeak) speak($('#sayme', host).innerHTML);
+    const finish = (ok, detail) => {
+      answered = true; topicHit(q.topic, ok);
+      if (q.id) { if (!ok) { S.mistakes[q.id] = (S.mistakes[q.id] || 0) + 1; srsAdd(q.id); srsGrade(q.id, false); } }
+      save();
+      const fb = $('#fb', host);
+      fb.innerHTML = `<div class="fb ${ok ? 'ok' : 'bad'}"><b>${ok ? pick(['✅ Yes!', '✅ Nice.', '✅ Correct.', '✅ Got it.']) : '❌ Not quite.'}</b> ${detail || ''}<div>${q.why || ''}</div>
+        ${!ok && q.steps ? '<h3>Worked answer</h3>' + q.steps.map(s => `<div class="step">${s}</div>`).join('') : ''}</div>
+        <button id="next" style="width:100%">${ok ? 'Continue →' : 'Got it, continue →'}</button>`;
+      const h = $('#hint', host); if (h) h.remove();
+      $('#next', host).onclick = () => onDone(ok); $('#next', host).focus();
+    };
+    if (kind === 'mcq' || kind === 'tf') host.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+      if (answered) return; const i = +b.dataset.i; const ok = i === (kind === 'tf' ? (q.a ? 0 : 1) : q.a);
+      b.classList.add(ok ? 'ok' : 'bad'); if (!ok) { const right = host.querySelector(`.opt[data-i="${kind === 'tf' ? (q.a ? 0 : 1) : q.a}"]`); right && right.classList.add('ok'); }
+      finish(ok);
+    });
+    if (kind === 'multi') { host.querySelectorAll('.opt').forEach(b => b.onclick = () => { if (answered) return; const i = +b.dataset.i; sel.has(i) ? sel.delete(i) : sel.add(i); b.classList.toggle('sel'); }); $('#chk', host).onclick = () => { if (answered) return; const want = new Set(q.a); const ok = want.size === sel.size && [...want].every(x => sel.has(x)); host.querySelectorAll('.opt').forEach(b => { const i = +b.dataset.i; if (want.has(i)) b.classList.add('ok'); else if (sel.has(i)) b.classList.add('bad'); }); $('#chk', host).remove(); finish(ok, ok ? '' : `(pick ${q.a.length})`); }; }
+    if (kind === 'input') { const inp = $('#inp', host); inp.focus(); const go = () => { if (answered || !inp.value.trim()) return; const acc = [].concat(q.a).map(norm); const ok = acc.includes(norm(inp.value)) || (q.check && q.check(inp.value)); inp.classList.add(ok ? 'ok' : 'bad'); $('#chk', host).remove(); finish(ok, ok ? '' : `Answer: <code>${esc([].concat(q.a)[0])}</code>`); }; $('#chk', host).onclick = go; inp.onkeydown = e => { if (e.key === 'Enter') go(); }; }
+    if (kind === 'fields') { const ins = [...host.querySelectorAll('input[data-f]')]; ins[0].focus(); ins.forEach((inp, i) => inp.onkeydown = e => { if (e.key === 'Enter') { (ins[i + 1] || $('#chk', host)).focus(); } }); $('#chk', host).onclick = () => { if (answered) return; let all = true; const wrong = []; ins.forEach((inp, i) => { const f = q.fields[i]; const ok = [].concat(f.a).map(norm).includes(norm(inp.value)); inp.classList.add(ok ? 'ok' : 'bad'); if (!ok) { all = false; wrong.push(`${f.label}: <code>${esc([].concat(f.a)[0])}</code>`); } }); $('#chk', host).remove(); finish(all, all ? '' : '<br>' + wrong.join('<br>')); }; }
+    const h = $('#hint', host); if (h) h.onclick = () => { if (stepShown < q.steps.length) { $('#steps', host).insertAdjacentHTML('beforeend', `<div class="step">${q.steps[stepShown++]}</div>`); } if (stepShown >= q.steps.length) h.remove(); };
+  }
+  // ---------- lesson runner (mastery gating) ----------
+  function runLesson(l) {
+    const queue = []; l.steps.forEach((st, si) => expand(st).forEach(x => queue.push(Object.assign({ topic: l.topic || l.unit.topic, topicName: l.unit.title }, x, (['mcq', 'tf', 'multi', 'input'].includes(st.t) ? { id: l.id + '-' + si } : {})))));
+    const practiceTotal = queue.filter(x => x.t !== 'learn').length; let practiceDone = 0, pos = 0, firstTry = 0, seen = new Set();
+    const m = $('main');
+    const draw = () => {
+      if (pos >= queue.length) return finishLesson();
+      const it = queue[pos];
+      const total = queue.length; const bar = queue.map((x, i) => `<i class="${i < pos ? 'd' : i === pos ? 'c' : ''}"></i>`).join('');
+      m.innerHTML = `<div class="prog">${bar}</div><div class="card" id="host"></div><div class="center small muted">${esc(l.title)} · ${practiceDone}/${practiceTotal} practice done</div>`;
+      const host = $('#host');
+      if (it.t === 'learn') {
+        host.innerHTML = `<div id="sayme">${it.title ? `<h2>${it.title}</h2>` : ''}${it.html}</div>${sayBtn()}<div style="height:12px"></div><button id="next" style="width:100%">Next →</button>`;
+        if (S.settings.autoSpeak) speak($('#sayme').innerHTML);
+        $('#next').onclick = () => { pos++; draw(); window.scrollTo(0, 0); };
+      } else {
+        renderQ(it, host, ok => {
+          const key = queue.indexOf(it);
+          if (ok) { practiceDone++; if (!seen.has(it)) firstTry++; }
+          else { seen.add(it); // mastery gating: it comes back (a fresh one for generated items) after 2 more screens
+            const again = it.gen ? Object.assign({ gen: it.gen, topic: it.topic, topicName: it.topicName }, C.gens[it.gen]()) : it; if (it.gen) seen.add(again);
+            queue.splice(Math.min(pos + 3, queue.length), 0, again); }
+          pos++; draw(); window.scrollTo(0, 0);
+        }, { label: seen.has(it) ? 'Try again' : '' });
+      }
+    };
+    const finishLesson = () => {
+      const first = !S.done[l.id]; S.done[l.id] = today(); (l.cards || []).forEach(srsAdd); (C.cards || []).filter(c => c.lesson === l.id).forEach(c => srsAdd(c.id)); markDay(first ? 20 : 5);
+      const idx = lessons.indexOf(l); const nx = lessons[idx + 1];
+      m.innerHTML = `<div class="card center"><div class="big">🎉 Lesson done</div><p>${esc(l.title)}</p><p>${practiceTotal ? `First-try score: <b>${firstTry}/${practiceTotal}</b>. Everything you missed came back until you got it.` : ''}</p><p class="muted small">+${first ? 20 : 5} XP · streak ${streak()} day(s)</p>
+      <div class="stack">${nx ? `<a class="btn" href="#lesson/${nx.id}">Next: ${esc(nx.title)} →</a>` : ''}<a class="btn sec" href="#learn">Back to lessons</a><a class="btn sec" href="#home">Take a break 🙂</a></div></div>`;
+    };
+    draw();
+  }
+  // ---------- generic quiz runner (practice, weak spots, mistakes, mock) ----------
+  function runQuiz(title, items, o = {}) {
+    const m = $('main'); let i = 0, right = 0; const log = []; let t0 = Date.now(); let timerId;
+    const limit = o.minutes ? o.minutes * 60 * (o.extra || 1) : 0;
+    const tick = () => { if (!limit) return; const left = Math.max(0, Math.round(limit - (Date.now() - t0) / 1000)); const el = $('#tmr'); if (el) el.textContent = `⏱ ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; if (left <= 0) { clearInterval(timerId); i = items.length; end(); } };
+    if (limit) timerId = setInterval(tick, 1000);
+    const draw = () => {
+      if (i >= items.length) return end();
+      const q = items[i];
+      m.innerHTML = `<div class="row small muted" style="margin-bottom:8px"><span>${esc(title)} · ${i + 1}/${items.length}</span><span class="timer" id="tmr" style="text-align:right"></span></div><div class="bar" style="margin-bottom:12px"><i style="width:${100 * i / items.length}%"></i></div><div class="card" id="host"></div><button class="ghost" id="quit" style="width:100%">Stop and see results</button>`;
+      tick();
+      renderQ(q, $('#host'), ok => { log.push({ q, ok }); if (ok) right++; if (q.id && S.srs[q.id]) srsGrade(q.id, ok); i++; draw(); window.scrollTo(0, 0); }, {});
+      $('#quit').onclick = () => { i = items.length; end(); };
+    };
+    const end = () => {
+      clearInterval(timerId); markDay(Math.round(right * 2));
+      const byT = {}; log.forEach(x => { const t = x.q.topicName || x.q.topic || 'General'; byT[t] = byT[t] || [0, 0]; byT[t][1]++; if (x.ok) byT[t][0]++; });
+      const pct = log.length ? Math.round(100 * right / log.length) : 0;
+      if (o.mock) { S.mocks.push({ id: o.mock, date: today(), pct, n: log.length }); save(); }
+      m.innerHTML = `<div class="card center"><div class="big">${pct}%</div><p>${right} of ${log.length} right${o.pass ? ` · pass line ${o.pass}%` : ''}</p>${o.pass ? `<p><b>${pct >= o.pass ? '✅ Above the line' : '⚠️ Below the line. The app will push these topics.'}</b></p>` : ''}</div>
+        <div class="card"><h2>By topic</h2><table>${Object.entries(byT).sort((a, b) => a[1][0] / a[1][1] - b[1][0] / b[1][1]).map(([t, v]) => `<tr><td>${esc(t)}</td><td>${v[0]}/${v[1]}</td></tr>`).join('')}</table></div>
+        ${log.filter(x => !x.ok).length ? `<div class="card"><h2>Review what you missed</h2>${log.filter(x => !x.ok).map(x => `<details><summary>${x.q.q.replace(/<[^>]+>/g, ' ').slice(0, 90)}…</summary><div>${x.q.q}</div>${x.q.kind === 'mcq' ? `<p><b>Answer:</b> ${x.q.opts[x.q.a]}</p>` : x.q.kind === 'tf' ? `<p><b>Answer:</b> ${x.q.a ? 'True' : 'False'}</p>` : x.q.kind === 'multi' ? `<p><b>Answer:</b> ${x.q.a.map(k => x.q.opts[k]).join(' + ')}</p>` : x.q.kind === 'fields' ? '<p><b>Answer:</b> ' + x.q.fields.map(f => f.label + ' ' + [].concat(f.a)[0]).join(', ') + '</p>' : `<p><b>Answer:</b> ${esc([].concat(x.q.a)[0])}</p>`}<div>${x.q.why || ''}</div>${x.q.steps ? x.q.steps.map(s => `<div class="step">${s}</div>`).join('') : ''}</details>`).join('')}</div>` : ''}
+        <div class="stack"><a class="btn" href="#home">Home</a><a class="btn sec" href="#practice">More practice</a></div>`;
+    };
+    draw();
+  }
+  const genQ = (g, extra) => Object.assign({ gen: g }, C.gens[g](), extra || {});
+  const bankFor = (tags) => (C.bank || []).filter(q => !tags || (q.tags || []).some(t => tags.includes(t)));
+  function buildMix(spec) { // spec: {tags, n, gens:[[name,count]]}
+    const out = shuffle(bankFor(spec.tags)).slice(0, spec.n || 20);
+    (spec.gens || []).forEach(([g, n]) => { for (let k = 0; k < n; k++) out.push(genQ(g)); });
+    return spec.keepOrder ? out : shuffle(out);
+  }
+  // ---------- views ----------
+  const VIEWS = {};
+  VIEWS.home = () => {
+    const due = srsDue().length; const next = lessons.find(l => !S.done[l.id]); const ds = datesList(); const up = ds.filter(d => d.date >= today()).slice(0, 4);
+    const doneN = lessons.filter(l => S.done[l.id]).length;
+    const weak = weakTopics().slice(0, 3);
+    const todayPlan = C.planFor ? C.planFor(today(), ds) : null;
+    return `<div class="card"><div class="row"><div><div class="big">🔥 ${streak()}</div><div class="small muted">day streak</div></div><div><div class="big">${S.xp}</div><div class="small muted">XP</div></div><div><div class="big">${doneN}/${lessons.length}</div><div class="small muted">lessons</div></div></div></div>
+    <div class="card"><h2>Do this now (about 15 min)</h2><div class="stack">
+      ${next ? `<a class="btn" href="#lesson/${next.id}">1. Lesson: ${esc(next.title)} <span class="small">(~${next.mins || 4} min)</span></a>` : '<div class="fb ok">All lessons done. Keep the reviews going.</div>'}
+      <a class="btn sec" href="#cards">2. Flashcards due: ${due}</a>
+      ${C.quickDrill ? `<a class="btn sec" href="${C.quickDrill.href}">3. ${C.quickDrill.label}</a>` : ''}
+    </div>${todayPlan ? `<h3>Today's focus</h3><div>${todayPlan}</div>` : ''}</div>
+    <div class="card"><h2>Coming up</h2>${up.map(d => `<div class="row" style="margin-bottom:8px"><div style="flex:3"><b>${esc(d.label)}</b><div class="small muted">${esc(d.when || '')}${d.confirmed ? '' : ' · <span style="color:var(--warn)">not confirmed</span>'}</div></div><div class="center"><span class="pill">${dayNum(d.date) - dayNum(today())} days</span></div></div>`).join('') || '<p class="muted">Nothing upcoming.</p>'}<a class="small" href="#dates">Edit dates</a></div>
+    ${weak.length ? `<div class="card"><h2>Weak spots</h2>${weak.map(w => `<div>${esc(w.name)} <span class="muted small">${Math.round(w.s * 100)}%</span></div>`).join('')}<div style="height:10px"></div><a class="btn sec" href="#weak">Practice weak spots</a></div>` : ''}`;
+  };
+  VIEWS.learn = () => C.units.map(u => `<div class="card"><h2>${u.icon || '📘'} ${esc(u.title)}</h2>${u.sub ? `<p class="small muted">${u.sub}</p>` : ''}${(u.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}
+    ${u.lessons.map(l => { const d = S.done[l.id], ok = unlocked(l); return `<a class="lesson ${d ? 'done' : ''} ${ok ? '' : 'lock'}" href="${ok ? '#lesson/' + l.id : '#learn'}" ${ok ? '' : 'onclick="return false"'}><span class="ic">${d ? '✅' : ok ? '▶️' : '🔒'}</span><span class="t">${esc(l.title)}<small>~${l.mins || 4} min${l.lab ? ' · 🔧 ' + esc(l.lab) : ''}</small></span></a>`; }).join('')}</div>`).join('') + `<p class="small muted center">Lessons unlock in order. Each one: example first, rule second, then practice until you get every question right.</p>`;
+  VIEWS.cards = () => { setTimeout(cardsRun, 0); return '<div id="cardhost"></div>'; };
+  function cardsRun() {
+    let ids = srsDue(); const host = $('#cardhost'); if (!host) return;
+    if (!ids.length) { const all = Object.keys(S.srs).length; host.innerHTML = `<div class="card center"><div class="big">🎉</div><p>No cards due right now.</p><p class="small muted">${all} cards in your deck. Cards join the deck when you finish a lesson. Missed quiz questions join too.</p><div class="stack"><button id="cram">Study all cards anyway</button>${all ? '' : '<a class="btn sec" href="#learn">Go do a lesson</a>'}</div></div>`; const b = $('#cram'); b.onclick = () => { ids = shuffle((C.cards || []).filter(c => S.srs[c.id] || !Object.keys(S.srs).length).map(c => c.id)); if (!ids.length) ids = shuffle((C.cards || []).map(c => c.id)); go(); }; return; }
+    ids = shuffle(ids); go();
+    function go() {
+      let i = 0; const one = () => {
+        if (i >= ids.length) { markDay(ids.length); host.innerHTML = `<div class="card center"><div class="big">✅ Deck done</div><p>${ids.length} cards reviewed.</p><a class="btn" href="#home">Home</a></div>`; return; }
+        const id = ids[i]; const c = cardById[id];
+        if (!c) { const q = bankById[id]; host.innerHTML = '<div class="card" id="qh"></div>'; renderQ(Object.assign({ topicName: 'Review: you missed this before' }, q), $('#qh'), ok => { srsGrade(id, ok); i++; one(); }); return; }
+        host.innerHTML = `<div class="small muted center">${i + 1}/${ids.length} · box ${(S.srs[id] || { b: 0 }).b + 1} of ${GAPS.length}</div><div class="card flash" id="fc"><div id="sayme">${c.front}</div></div><div class="center small muted">Tap the card to flip</div>${sayBtn()}<div id="grade" style="display:none" class="row"><button class="ghost" id="no">😕 Didn't know</button><button id="yes">😀 Knew it</button></div>`;
+        let flipped = false; $('#fc').onclick = () => { if (flipped) return; flipped = true; $('#sayme').innerHTML = `<div class="small muted">${c.front}</div><hr>${c.back}`; $('#grade').style.display = 'flex'; if (S.settings.autoSpeak) speak(c.back); };
+        $('#no').onclick = () => { srsGrade(id, false); topicHit(c.topic, false); ids.push(id); i++; one(); };
+        $('#yes').onclick = () => { srsGrade(id, true); topicHit(c.topic, true); i++; one(); };
+      }; one();
+    }
+  }
+  VIEWS.practice = () => `<div class="card"><h2>Practice</h2><p class="small muted">No timer unless you turn it on in Settings. Every answer explains why.</p><div class="stack">
+    ${(C.practice || []).map((p, k) => `<a class="btn ${k ? 'sec' : ''}" href="#prac/${k}">${p.label}</a>`).join('')}
+    <a class="btn sec" href="#weak">🎯 My weak spots</a><a class="btn sec" href="#mist">🔁 Questions I got wrong (${Object.keys(S.mistakes).length})</a></div></div>
+    ${(C.tools || []).length ? `<div class="card"><h2>Tools</h2><div class="stack">${C.tools.map(t => `<a class="btn sec" href="#tool/${t.id}">${t.label}</a>`).join('')}</div></div>` : ''}`;
+  VIEWS.mock = () => `<div class="card"><h2>Mock exams</h2><p class="small">These copy the real format as closely as we know it. Untimed by default. Turn on the timer in Settings to practise exam pace (extra time multiplier: ×${S.settings.extra}).</p></div>` + (C.mocks || []).map((mk, k) => { const past = S.mocks.filter(x => x.id === mk.id).slice(-3); return `<div class="card"><h2>${esc(mk.title)}</h2><p class="small">${mk.desc}</p>${past.length ? `<p class="small muted">Last scores: ${past.map(p => p.pct + '% (' + p.date + ')').join(', ')}</p>` : ''}<a class="btn" style="width:100%" href="#mockrun/${k}">Start</a></div>`; }).join('');
+  VIEWS.plan = () => { const ds = datesList(); return `<div class="card"><h2>Plan to exam day</h2><p class="small muted">Short sessions: 2–3 blocks of 15 min a day. Lighter on long class days. Edit dates when your profs confirm them.</p></div>` + (C.planRows ? C.planRows(today(), ds) : '') + `<div class="card"><a class="btn sec" href="#dates" style="width:100%">Edit exam dates</a></div>`; };
+  VIEWS.dates = () => { const ds = datesList(); setTimeout(() => { document.querySelectorAll('[data-d]').forEach(inp => inp.onchange = () => { const k = inp.dataset.d; S.dates[k] = Object.assign(S.dates[k] || {}, { date: inp.value }); save(); toast('Saved'); }); document.querySelectorAll('[data-c]').forEach(cb => cb.onchange = () => { const k = cb.dataset.c; S.dates[k] = Object.assign(S.dates[k] || {}, { confirmed: cb.checked }); save(); }); }, 0);
+    return `<div class="card"><h2>Exam and test dates</h2><p class="small muted">Some dates conflict between sources. Change them here when confirmed; the plan updates.</p>${ds.map(d => `<div style="margin:0 0 14px"><b>${esc(d.label)}</b><div class="small muted">${esc(d.when || '')}<br>Source: ${esc(d.src || '')}</div><input type="date" data-d="${d.key}" value="${d.date}"><label class="small"><input type="checkbox" data-c="${d.key}" ${d.confirmed ? 'checked' : ''}> Confirmed</label></div>`).join('')}</div>`; };
+  VIEWS.progress = () => { const rows = Object.keys(S.topics).map(t => ({ t, s: topicScore(t), r: S.topics[t] })).sort((a, b) => (a.s ?? 1) - (b.s ?? 1));
+    const doneN = lessons.filter(l => S.done[l.id]).length; const days = Object.keys(S.days).sort().slice(-14);
+    return `<div class="card"><h2>Progress</h2><p>Lessons: ${doneN}/${lessons.length}</p><div class="bar"><i style="width:${100 * doneN / lessons.length}%"></i></div><p>Cards in deck: ${Object.keys(S.srs).length} · mastered (box 5+): ${Object.values(S.srs).filter(c => c.b >= 4).length}</p><p>Streak: ${streak()} days · XP ${S.xp}</p></div>
+    <div class="card"><h2>Topics (last 10 answers)</h2>${rows.length ? `<table>${rows.map(x => `<tr><td>${esc((C.topicNames || {})[x.t] || x.t)}</td><td style="width:40%"><div class="bar"><i style="width:${Math.round((x.s || 0) * 100)}%;background:${x.s < .6 ? 'var(--bad)' : x.s < .8 ? 'var(--warn)' : 'var(--ok)'}"></i></div></td><td>${Math.round((x.s || 0) * 100)}%</td></tr>`).join('')}</table>` : '<p class="muted">Answer some questions first.</p>'}</div>
+    <div class="card"><h2>Mock exams</h2>${S.mocks.length ? `<table>${S.mocks.slice(-10).map(x => `<tr><td>${x.date}</td><td>${esc(((C.mocks || []).find(m => m.id === x.id) || {}).title || x.id)}</td><td>${x.pct}%</td></tr>`).join('')}</table>` : '<p class="muted">None yet.</p>'}</div>
+    <div class="card"><h2>Days studied</h2><p class="small">${days.map(d => d.slice(5)).join(' · ') || 'none yet'}</p></div>`; };
+  VIEWS.settings = () => { setTimeout(() => {
+      $('#fs').oninput = e => { S.settings.fs = +e.target.value; applySettings(); save(); };
+      $('#th').onchange = e => { S.settings.theme = e.target.value; applySettings(); save(); };
+      $('#as').onchange = e => { S.settings.autoSpeak = e.target.checked; save(); };
+      $('#tm').onchange = e => { S.settings.timer = e.target.checked; save(); };
+      $('#ex').onchange = e => { S.settings.extra = +e.target.value; save(); };
+      $('#exp').onclick = () => { const blob = new Blob([JSON.stringify(S)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = C.id + '-progress-' + today() + '.json'; a.click(); };
+      $('#imp').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(t => { try { S = Object.assign(blank(), JSON.parse(t)); save(); toast('Progress loaded'); route(); } catch (er) { toast('That file did not work'); } }); };
+      $('#rst').onclick = () => { if (confirm('Erase all progress for this app?')) { S = blank(); save(); route(); } };
+    }, 0);
+    return `<div class="card"><div class="stack"><a class="btn sec" href="#progress">📈 My progress</a><a class="btn sec" href="#dates">📅 Exam dates</a><a class="btn sec" href="#help">❓ How to install on iPhone / Mac</a></div></div><div class="card"><h2>Settings</h2><label>Text size</label><input id="fs" type="range" min="16" max="26" value="${S.settings.fs}" style="width:100%"><label>Theme</label><select id="th"><option value="light" ${S.settings.theme === 'light' ? 'selected' : ''}>Light</option><option value="dark" ${S.settings.theme === 'dark' ? 'selected' : ''}>Dark</option></select>
+    <p><label><input type="checkbox" id="as" ${S.settings.autoSpeak ? 'checked' : ''}> Read every screen aloud automatically</label></p>
+    <p><label><input type="checkbox" id="tm" ${S.settings.timer ? 'checked' : ''}> Timer on for mock exams and drills</label></p>
+    <label>Extra-time multiplier for mock exams</label><select id="ex">${[1, 1.25, 1.5, 2].map(v => `<option ${S.settings.extra == v ? 'selected' : ''}>${v}</option>`).join('')}</select><p class="small muted">Set this to match any extra test time you get (1 = none).</p></div>
+    <div class="card"><h2>Move progress between phone and Mac</h2><p class="small">Progress lives on each device. Save a file on one, load it on the other.</p><div class="stack"><button id="exp" class="sec">Save progress file</button><label class="btn sec">Load progress file<input id="imp" type="file" accept=".json,application/json" style="display:none"></label><button id="rst" class="ghost">Erase progress</button></div></div>
+    <div class="card small muted">${C.about || ''}</div>`; };
+  VIEWS.help = () => `<div class="card"><h2>Install on iPhone</h2><ol><li>Open the app's web link in <b>Safari</b>.</li><li>Tap the <b>Share</b> button (square with arrow).</li><li>Tap <b>Add to Home Screen</b>, then <b>Add</b>.</li><li>Open it once with internet. After that it works offline.</li></ol><h2>On the Mac</h2><p>Open the same link in Safari and choose <b>File → Add to Dock</b>, or in Chrome use the install icon in the address bar. You can also just double-click <code>index.html</code> in the downloaded folder.</p><p class="small muted">Progress is saved separately on each device and each browser. Use Settings → Save progress file to move it.</p></div>`;
+  // ---------- dates ----------
+  function datesList() { return (C.dates || []).map(d => Object.assign({}, d, S.dates[d.key] || {})).sort((a, b) => a.date < b.date ? -1 : 1); }
+  window.__dates = datesList;
+  function weakTopics() { return Object.keys(S.topics).map(t => ({ t, name: (C.topicNames || {})[t] || t, s: topicScore(t), n: (S.topics[t].last || []).length })).filter(x => x.n >= 3 && x.s < 0.8).sort((a, b) => a.s - b.s); }
+  // ---------- router ----------
+  function applySettings() { document.documentElement.style.setProperty('--fs', S.settings.fs + 'px'); document.documentElement.dataset.theme = S.settings.theme; }
+  function route() {
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    const h = (location.hash || '#home').slice(1); const [v, arg] = h.split('/');
+    document.querySelectorAll('nav.tabs a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + v));
+    $('#streak').textContent = '🔥 ' + streak();
+    const m = $('main'); window.scrollTo(0, 0);
+    if (v === 'lesson' && lessonById[arg]) return runLesson(lessonById[arg]);
+    if (v === 'prac' && C.practice[+arg]) { const p = C.practice[+arg]; return runQuiz(p.label, buildMix(p.mix), { minutes: S.settings.timer ? p.minutes : 0 }); }
+    if (v === 'weak') { const w = weakTopics().map(x => x.t); if (!w.length) { m.innerHTML = `<div class="card center"><p>No weak spots yet (you need 3+ answers in a topic under 80%).</p><a class="btn" href="#practice">Practice</a></div>`; return; }
+      const items = shuffle((C.bank || []).filter(q => w.includes(q.topic))).slice(0, 12); Object.entries(C.genTopics || {}).forEach(([g, t]) => { if (w.includes(t)) for (let k = 0; k < 3; k++) items.push(genQ(g)); }); return runQuiz('Weak spots', shuffle(items).slice(0, 15)); }
+    if (v === 'mist') { const items = Object.keys(S.mistakes).map(id => bankById[id]).filter(Boolean); if (!items.length) { m.innerHTML = '<div class="card center"><p>No saved mistakes. 👍</p></div>'; return; } return runQuiz('My mistakes', shuffle(items).slice(0, 15)); }
+    if (v === 'mockrun' && C.mocks[+arg]) { const mk = C.mocks[+arg]; return runQuiz(mk.title, buildMix(mk.mix), { minutes: S.settings.timer ? mk.minutes : 0, extra: S.settings.extra, pass: mk.pass, mock: mk.id }); }
+    if (v === 'tool') { const t = (C.tools || []).find(x => x.id === arg); if (t) { m.innerHTML = '<div id="tool"></div>'; t.render($('#tool'), { renderQ, speak, sayBtn, S, save, markDay, topicHit, genQ, runQuiz }); return; } }
+    m.innerHTML = (VIEWS[v] || VIEWS.home)();
+  }
+  window.ENGINE = { renderQ, runQuiz, speak, sayBtn, shuffle, pick, esc, today, dayNum, S: () => S, save, markDay, topicHit, genQ };
+  function boot() {
+    applySettings();
+    document.title = C.title;
+    document.body.insertAdjacentHTML('afterbegin', `<header><h1>${C.icon || ''} ${esc(C.short)}</h1><span class="pill" id="streak"></span></header><main></main>
+    <nav class="tabs"><a href="#home"><b>🏠</b>Today</a><a href="#learn"><b>📚</b>Learn</a><a href="#practice"><b>✏️</b>Practice</a><a href="#cards"><b>🃏</b>Cards</a><a href="#mock"><b>📝</b>Mock</a><a href="#plan"><b>📅</b>Plan</a><a href="#settings"><b>⚙️</b>More</a></nav>`);
+    window.addEventListener('hashchange', route); route();
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => { });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script></body></html>

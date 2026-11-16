@@ -1,0 +1,949 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Linux Trainer CST8207</title><meta name="theme-color" content="#1f8a4c"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Linux Trainer"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
+<style>:root{--bg:#f7f5ef;--card:#fff;--ink:#1d2433;--muted:#5b6475;--acc:#2a62d8;--acc2:#e8f0ff;--ok:#1f8a4c;--okbg:#e5f6ec;--bad:#c0392b;--badbg:#fdecea;--warn:#a86a00;--line:#d9dde5;--r:16px;--fs:19px}
+[data-theme=dark]{--bg:#14171d;--card:#1e232c;--ink:#eef1f6;--muted:#a9b2c3;--acc:#7aa7ff;--acc2:#24324d;--ok:#5fd28f;--okbg:#173626;--bad:#ff8a80;--badbg:#3d1f1d;--line:#333b48}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs)/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Verdana,Arial,sans-serif;letter-spacing:.01em;padding-bottom:84px}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top)) 14px 8px;display:flex;align-items:center;gap:10px}
+header h1{font-size:1.05em;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{background:var(--acc2);color:var(--acc);border-radius:999px;padding:3px 10px;font-weight:700;font-size:.8em;white-space:nowrap}
+main{max-width:760px;margin:0 auto;padding:14px}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:5}
+nav.tabs a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font-size:.68em;padding:4px 2px;border-radius:10px}
+nav.tabs a b{display:block;font-size:1.6em;line-height:1.1}
+nav.tabs a.on{color:var(--acc);background:var(--acc2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:0 0 14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.card h2{font-size:1.15em;margin:.1em 0 .5em}.card h3{font-size:1.02em;margin:.8em 0 .3em}
+.muted{color:var(--muted)}.small{font-size:.85em}.center{text-align:center}
+button,.btn{font:inherit;border:0;border-radius:14px;padding:14px 18px;min-height:52px;background:var(--acc);color:#fff;font-weight:700;cursor:pointer;display:inline-block;text-decoration:none;text-align:center}
+button.sec,.btn.sec{background:var(--acc2);color:var(--acc)}button.ghost{background:transparent;color:var(--acc);border:2px solid var(--line)}
+button:disabled{opacity:.45}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.stack>*{display:block;width:100%;margin:0 0 10px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);font-weight:500;margin:0 0 10px}
+.opt.sel{border-color:var(--acc);background:var(--acc2)}.opt.ok{border-color:var(--ok);background:var(--okbg)}.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.fb{border-radius:14px;padding:12px 14px;margin:12px 0}.fb.ok{background:var(--okbg);border-left:6px solid var(--ok)}.fb.bad{background:var(--badbg);border-left:6px solid var(--bad)}
+input[type=text],input[type=number],input[type=date],select,textarea{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+input.ok{border-color:var(--ok);background:var(--okbg)}input.bad{border-color:var(--bad);background:var(--badbg)}
+code,kbd,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
+code{background:var(--acc2);padding:1px 6px;border-radius:6px}
+pre{background:#10141b;color:#e8edf5;padding:12px;border-radius:12px;overflow:auto;font-size:.85em;line-height:1.45}
+.bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+.prog{display:flex;gap:4px;margin:0 0 12px}.prog i{flex:1;height:8px;border-radius:9px;background:var(--line)}.prog i.d{background:var(--ok)}.prog i.c{background:var(--acc)}
+.lesson{display:flex;gap:12px;align-items:center;padding:12px;border:2px solid var(--line);border-radius:14px;margin:0 0 10px;text-decoration:none;color:var(--ink);background:var(--card)}
+.lesson .ic{font-size:1.5em;width:1.6em;text-align:center}.lesson.done{border-color:var(--ok)}.lesson.lock{opacity:.5}
+.lesson .t{flex:1}.lesson .t small{display:block;color:var(--muted)}
+svg.dia{width:100%;height:auto;max-height:420px;display:block;margin:8px 0}
+.flash{min-height:210px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.15em;cursor:pointer;padding:22px}
+.key{display:inline-block;border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;padding:0 6px;font-family:ui-monospace,Menlo,monospace}
+.big{font-size:1.6em;font-weight:800}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.bits{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}.bits button{min-width:44px;min-height:56px;padding:4px;font-family:ui-monospace,monospace;font-size:1.2em}
+.bits .lbl{display:block;font-size:.55em;opacity:.8}
+.tag{display:inline-block;font-size:.72em;padding:2px 8px;border-radius:99px;background:var(--acc2);color:var(--acc);margin:0 4px 4px 0;font-weight:700}
+.warn{background:#fff6e0;border-left:6px solid var(--warn);padding:10px 12px;border-radius:12px}[data-theme=dark] .warn{background:#3a2f12}
+.speak{background:transparent;color:var(--acc);border:2px solid var(--line);min-height:40px;padding:6px 10px;font-size:.85em}
+details{margin:8px 0}summary{cursor:pointer;font-weight:700;color:var(--acc)}
+.step{padding:8px 12px;border-left:4px solid var(--acc);background:var(--acc2);border-radius:8px;margin:6px 0}
+.timer{font-variant-numeric:tabular-nums}
+.toast{position:fixed;left:50%;top:70px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;z-index:9;font-weight:700}
+</style></head><body><noscript>Turn on JavaScript to use this app.</noscript>
+<script>/* ---- shared/diagrams.js ---- */
+/* Inline SVG diagrams. Each returns an SVG string. Colors chosen to read in light and dark themes. */
+window.D = (function () {
+  const T = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${o.fs || 14}" text-anchor="${o.a || 'middle'}" fill="${o.c || 'currentColor'}" font-weight="${o.w || 400}" font-family="${o.mono ? 'ui-monospace,Menlo,monospace' : 'inherit'}">${s}</text>`;
+  const R = (x, y, w, h, f, o = {}) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx ?? 8}" fill="${f}" stroke="${o.s || 'none'}" stroke-width="${o.sw || 2}"/>`;
+  const svg = (w, h, inner, label) => `<svg class="dia" viewBox="0 0 ${w} ${h}" role="img" aria-label="${label || 'diagram'}">${inner}</svg>`;
+  const COL = ['#e57373', '#f0a35e', '#e6c84f', '#7cc576', '#4fb3bf', '#6f8fe0', '#a07ad6'];
+  const D = {};
+  D.osi = (hi) => { const L = ['7 Application', '6 Presentation', '5 Session', '4 Transport', '3 Network', '2 Data Link', '1 Physical']; const P = ['Data', 'Data', 'Data', 'Segment', 'Packet', 'Frame', 'Bits']; const E = ['HTTP DNS DHCP', '', '', 'TCP UDP ports', 'IP · router', 'MAC · switch', 'cables · hub'];
+    let s = ''; L.forEach((l, i) => { const y = 10 + i * 46; s += R(10, y, 250, 40, COL[6 - i], { s: hi === 7 - i ? '#111' : 'none', sw: 4 }) + T(135, y + 26, l, { c: '#111', w: 700, fs: 16 }) + T(330, y + 26, P[i], { w: 700 }) + T(470, y + 26, E[i], { fs: 13 }); });
+    s += R(560, 10, 130, 132, '#a07ad6') + T(625, 80, 'Application', { c: '#111', w: 700 }) + R(560, 148, 130, 40, '#7cc576') + T(625, 174, 'Transport', { c: '#111', w: 700 }) + R(560, 194, 130, 40, '#4fb3bf') + T(625, 220, 'Internet', { c: '#111', w: 700 }) + R(560, 240, 130, 86, '#6f8fe0') + T(625, 288, 'Network Access', { c: '#111', w: 700, fs: 13 });
+    s += T(135, 345, 'OSI (7 layers)', { w: 700 }) + T(330, 345, 'PDU name', { w: 700 }) + T(470, 345, 'Examples', { w: 700 }) + T(625, 345, 'TCP/IP (4)', { w: 700 });
+    return svg(700, 355, s, 'OSI model and TCP/IP model'); };
+  D.encap = () => { let s = ''; const rows = [['Data', [['DATA', '#a07ad6']]], ['Segment', [['TCP/UDP hdr (ports)', '#7cc576'], ['DATA', '#a07ad6']]], ['Packet', [['IP hdr (IPs)', '#4fb3bf'], ['TCP hdr', '#7cc576'], ['DATA', '#a07ad6']]], ['Frame', [['Eth hdr (MACs)', '#6f8fe0'], ['IP', '#4fb3bf'], ['TCP', '#7cc576'], ['DATA', '#a07ad6'], ['FCS', '#6f8fe0']]], ['Bits', [['0101101001110100101…', '#ccc']]]];
+    rows.forEach(([n, parts], i) => { const y = 10 + i * 52; s += T(60, y + 28, n, { w: 700 }); let x = 120; const W = { 'DATA': 110, 'FCS': 50 }; parts.forEach(([p, c]) => { const w = W[p] || (p.length > 12 ? 170 : 80); s += R(x, y, w, 40, c) + T(x + w / 2, y + 25, p, { c: '#111', fs: 12, w: 700 }); x += w + 4; }); });
+    s += T(350, 280, 'Going DOWN = add a header (encapsulate). Going UP = remove it.', { fs: 14, w: 700 });
+    return svg(700, 292, s, 'encapsulation'); };
+  D.place = (v, showSum) => { const P = [128, 64, 32, 16, 8, 4, 2, 1]; let s = ''; let sum = [];
+    P.forEach((p, i) => { const on = v !== undefined && (v & p); if (on) sum.push(p); const x = 10 + i * 84; s += R(x, 10, 76, 40, '#6f8fe0') + T(x + 38, 36, p, { c: '#fff', w: 700, fs: 18 }) + R(x, 56, 76, 50, on ? '#7cc576' : 'transparent', { s: '#888' }) + T(x + 38, 90, v === undefined ? '?' : on ? '1' : '0', { w: 800, fs: 26, mono: 1 }) + T(x + 38, 124, '2^' + (7 - i), { fs: 12 }); });
+    if (v !== undefined && showSum !== false) s += T(340, 156, sum.length ? sum.join(' + ') + ' = ' + v : 'all 0 = 0', { w: 700, fs: 18 });
+    return svg(680, 166, s, 'binary place values'); };
+  D.ipBits = (ip, p) => { const b = ip.split('.').map(x => (+x).toString(2).padStart(8, '0')).join(''); let s = ''; for (let i = 0; i < 32; i++) { const row = Math.floor(i / 16), col = i % 16; const x = 6 + col * 22 + Math.floor(col / 8) * 10; const y = 28 + row * 70; s += R(x, y, 20, 32, i < p ? '#6f8fe0' : '#f0a35e', { rx: 3 }) + T(x + 10, y + 22, b[i], { c: '#111', w: 700, mono: 1, fs: 15 }); }
+    ip.split('.').forEach((o, i) => { const row = Math.floor(i / 2), col = (i % 2) * 8; s += T(6 + col * 22 + (i % 2) * 10 + 87, 28 + row * 70 + 50, 'octet ' + (i + 1) + ': ' + o, { w: 700, fs: 13 }); });
+    s += T(6, 18, `■ network ${p} bits`, { a: 'start', w: 700, c: '#4a6fd0', fs: 13 }) + T(370, 18, `■ host ${32 - p} bits`, { a: 'end', w: 700, c: '#d9822b', fs: 13 });
+    return svg(376, 170, s, 'IP address bits'); };
+  D.blocks = (blk, val, octName) => { const n = Math.min(256 / blk, 16); const w = 680 / n; let s = ''; for (let i = 0; i < n; i++) { const start = i * blk; const has = val >= start && val < start + blk; s += R(10 + i * w, 20, w - 4, 50, has ? '#7cc576' : i % 2 ? '#cfd8ea' : '#e3e9f5', { rx: 4 }) + T(10 + i * w + (w - 4) / 2, 50, start, { c: '#111', fs: n > 8 ? 11 : 14, w: has ? 800 : 400 }); }
+    if (256 / blk > 16) s += T(690, 100, '… keeps going to 256', { a: 'end', fs: 12 });
+    s += T(10, 14, `Blocks of ${blk} in the ${octName || 'interesting'} octet`, { a: 'start', fs: 13, w: 700 });
+    if (val !== undefined) { const i = Math.floor(val / blk); if (i < n) s += T(10 + i * w + (w - 4) / 2, 92, '▲ ' + val + ' is here', { fs: 13, w: 700 }); }
+    return svg(700, 104, s, 'subnet blocks'); };
+  D.topo = (labels) => { labels = labels || {}; const dev = (x, y, kind, name, sub) => { let g = ''; if (kind === 'pc') g = R(x - 26, y - 20, 52, 34, '#6f8fe0') + R(x - 10, y + 14, 20, 8, '#6f8fe0', { rx: 2 }); if (kind === 'sw') g = R(x - 40, y - 16, 80, 32, '#4fb3bf') + T(x, y + 5, '⇄ ⇄', { c: '#111', w: 800 }); if (kind === 'r') g = `<circle cx="${x}" cy="${y}" r="24" fill="#f0a35e"/>` + T(x, y + 6, '✣', { c: '#111', fs: 20 }); return g + T(x, y + 44, name, { w: 700, fs: 13 }) + (sub ? T(x, y + 60, sub, { fs: 11, mono: 1 }) : ''); };
+    let s = `<line x1="70" y1="60" x2="200" y2="60" stroke="#888" stroke-width="3"/><line x1="200" y1="60" x2="350" y2="60" stroke="#888" stroke-width="3"/><line x1="350" y1="60" x2="500" y2="60" stroke="#888" stroke-width="3"/><line x1="500" y1="60" x2="630" y2="60" stroke="#888" stroke-width="3"/>`;
+    s += dev(70, 60, 'pc', 'PC-A', labels.a || '192.168.1.10') + dev(200, 60, 'sw', 'S1', labels.s1 || 'L2: MACs') + dev(350, 60, 'r', 'R1', labels.r || 'G0/0 .1 | G0/1 .1') + dev(500, 60, 'sw', 'S2', labels.s2 || '') + dev(630, 60, 'pc', 'PC-B', labels.b || '192.168.2.10');
+    s += T(135, 140, labels.n1 || 'LAN 1: 192.168.1.0/24', { fs: 12, w: 700 }) + T(565, 140, labels.n2 || 'LAN 2: 192.168.2.0/24', { fs: 12, w: 700 });
+    return svg(700, 150, s, 'network topology'); };
+  D.arp = () => { let s = R(10, 20, 120, 40, '#6f8fe0') + T(70, 45, 'PC-A', { c: '#fff', w: 700 }); ['PC-B', 'PC-C', 'PC-D'].forEach((n, i) => s += R(560, 10 + i * 50, 120, 40, i === 1 ? '#7cc576' : '#cfd8ea') + T(620, 35 + i * 50, n + (i === 1 ? ' (.5)' : ''), { c: '#111', w: 700 }));
+    s += `<path d="M130 40 L555 30 M130 40 L555 80 M130 40 L555 130" stroke="#e57373" stroke-width="2" stroke-dasharray="6 4" fill="none"/>` + T(340, 20, '① Request (broadcast FF-FF-FF-FF-FF-FF): "Who has .5?"', { fs: 13, w: 700, c: '#c0392b' });
+    s += `<path d="M555 90 C 400 190, 250 190, 130 55" stroke="#1f8a4c" stroke-width="3" fill="none"/>` + T(340, 185, '② Reply (unicast): ".5 is at my MAC 00-1A-…"', { fs: 13, w: 700, c: '#1f8a4c' });
+    return svg(700, 200, s, 'ARP'); };
+  D.handshake = () => { let s = R(10, 10, 120, 36, '#6f8fe0') + T(70, 34, 'Client', { c: '#fff', w: 700 }) + R(570, 10, 120, 36, '#f0a35e') + T(630, 34, 'Server', { c: '#111', w: 700 }) + '<line x1="70" y1="46" x2="70" y2="230" stroke="#888"/><line x1="630" y1="46" x2="630" y2="230" stroke="#888"/>';
+    [['① SYN', 70, 630, 80], ['② SYN-ACK', 630, 70, 135], ['③ ACK', 70, 630, 190]].forEach(([t, a, b, y]) => s += `<line x1="${a}" y1="${y}" x2="${b}" y2="${y + 20}" stroke="#2a62d8" stroke-width="3" marker-end="url(#ah)"/>` + T(350, y + 2, t, { w: 700 }));
+    return svg(700, 240, '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2a62d8"/></marker></defs>' + s, 'TCP three-way handshake'); };
+  D.tree = (hi) => { const kids = ['bin', 'boot', 'dev', 'etc', 'home', 'root', 'tmp', 'usr', 'var']; let s = R(320, 8, 60, 32, '#a07ad6') + T(350, 30, '/', { c: '#111', w: 800, fs: 20 }); kids.forEach((k, i) => { const x = 20 + i * 76; s += `<line x1="350" y1="40" x2="${x + 32}" y2="80" stroke="#888"/>` + R(x, 80, 66, 30, hi === k ? '#7cc576' : '#cfd8ea') + T(x + 33, 100, '/' + k, { c: '#111', fs: 13, w: 700, mono: 1 }); });
+    s += '<line x1="356" y1="110" x2="300" y2="150" stroke="#888"/><line x1="356" y1="110" x2="420" y2="150" stroke="#888"/>' + R(250, 150, 100, 30, '#e3e9f5') + T(300, 170, 'sam', { c: '#111', fs: 13, mono: 1 }) + R(370, 150, 100, 30, '#e3e9f5') + T(420, 170, 'user1', { c: '#111', fs: 13, mono: 1 });
+    s += '<line x1="300" y1="180" x2="300" y2="210" stroke="#888"/>' + R(230, 210, 140, 30, '#e3e9f5') + T(300, 230, 'Assignments', { c: '#111', fs: 13, mono: 1 }) + T(560, 172, '/home/sam = your HOME (~)', { fs: 13, w: 700 }) + T(560, 196, '/root = root\'s home (not /)', { fs: 13, w: 700 });
+    return svg(700, 250, s, 'Linux file tree'); };
+  D.perm = (str) => { str = str || '-rwxr-x---'; const grp = ['owner (u)', 'group (g)', 'others (o)']; let s = R(10, 30, 50, 50, '#ccc') + T(35, 62, str[0], { c: '#111', w: 800, fs: 22, mono: 1 }) + T(35, 100, 'type', { fs: 12 });
+    for (let g = 0; g < 3; g++) { let n = 0; for (let k = 0; k < 3; k++) { const ch = str[1 + g * 3 + k]; const w = [4, 2, 1][k]; if (ch !== '-') n += w; const x = 80 + g * 205 + k * 62; s += R(x, 30, 56, 50, ch === '-' ? 'transparent' : COL[3 + g], { s: '#888' }) + T(x + 28, 62, ch, { w: 800, fs: 22, mono: 1, c: ch === '-' ? 'currentColor' : '#111' }) + T(x + 28, 100, w, { fs: 13 }); }
+      s += T(80 + g * 205 + 90, 20, grp[g], { w: 700, fs: 13 }) + T(80 + g * 205 + 90, 128, '= ' + n, { w: 800, fs: 18 }); }
+    return svg(700, 140, s, 'permission bits'); };
+  D.fds = () => { let s = R(250, 50, 200, 70, '#6f8fe0') + T(350, 92, 'command', { c: '#fff', w: 800, fs: 18 }) + R(20, 60, 150, 50, '#cfd8ea') + T(95, 82, '0 stdin', { c: '#111', w: 700 }) + T(95, 100, 'keyboard  <', { c: '#111', fs: 12 }) + R(530, 20, 160, 50, '#7cc576') + T(610, 42, '1 stdout', { c: '#111', w: 700 }) + T(610, 60, 'screen  >  >>  |', { c: '#111', fs: 12 }) + R(530, 100, 160, 50, '#e57373') + T(610, 122, '2 stderr', { c: '#111', w: 700 }) + T(610, 140, 'screen  2>  2>&1', { c: '#111', fs: 12 });
+    s += '<line x1="170" y1="85" x2="248" y2="85" stroke="#888" stroke-width="3"/><line x1="450" y1="70" x2="528" y2="45" stroke="#888" stroke-width="3"/><line x1="450" y1="100" x2="528" y2="125" stroke="#888" stroke-width="3"/>';
+    return svg(700, 165, s, 'stdin stdout stderr'); };
+  D.inode = () => { let s = R(10, 10, 250, 140, '#e3e9f5') + T(135, 32, 'Directory = name → inode #', { c: '#111', w: 700, fs: 13 }) + T(30, 62, 'f1        →  1234', { a: 'start', c: '#111', mono: 1 }) + T(30, 92, 'hardlink  →  1234', { a: 'start', c: '#111', mono: 1 }) + T(30, 122, 'f2        →  5678', { a: 'start', c: '#111', mono: 1 });
+    s += R(400, 20, 280, 120, '#7cc576') + T(540, 44, 'Inode 1234', { c: '#111', w: 800 }) + T(540, 68, 'owner, perms, size, times,', { c: '#111', fs: 13 }) + T(540, 88, 'link count = 2, data blocks', { c: '#111', fs: 13 }) + T(540, 112, '(NO file name in here)', { c: '#111', fs: 13, w: 700 });
+    s += '<line x1="200" y1="58" x2="398" y2="70" stroke="#1f8a4c" stroke-width="3"/><line x1="200" y1="88" x2="398" y2="80" stroke="#1f8a4c" stroke-width="3"/>';
+    return svg(700, 160, s, 'inodes and hard links'); };
+  D.cron = () => { const f = [['minute', '0-59'], ['hour', '0-23'], ['day of month', '1-31'], ['month', '1-12'], ['day of week', '0-7 (0,7=Sun)']]; let s = ''; f.forEach(([n, r], i) => { const x = 10 + i * 120; s += R(x, 10, 110, 44, COL[i + 1]) + T(x + 55, 38, ['30', '2', '*', '*', '1'][i], { c: '#111', w: 800, fs: 20, mono: 1 }) + T(x + 55, 76, n, { fs: 13, w: 700 }) + T(x + 55, 94, r, { fs: 12 }); });
+    s += R(615, 10, 80, 44, '#ccc') + T(655, 38, 'cmd', { c: '#111', w: 800, mono: 1 }) + T(350, 124, '30 2 * * 1 /home/sam/backup.sh  →  every Monday at 2:30 AM', { w: 700, fs: 14 });
+    return svg(700, 134, s, 'crontab fields'); };
+  D.ipv6 = () => { let s = T(350, 30, '2001:0db8:0000:0000:0000:ff00:0042:8329', { mono: 1, w: 700, fs: 17 }) + T(350, 62, '① drop leading 0s in each group → 2001:db8:0:0:0:ff00:42:8329', { fs: 14 }) + T(350, 92, '② replace ONE run of all-0 groups with :: → 2001:db8::ff00:42:8329', { fs: 14 }) + T(350, 126, '128 bits = 8 groups × 16 bits (4 hex digits each)', { fs: 13, w: 700 });
+    return svg(700, 140, s, 'IPv6 compression'); };
+  return D;
+})();
+
+/* ---- linux/gens.js ---- */
+/* Random question generators for Linux (CST8207). Each one simulates what bash really does; tests in tests/test_linux.js compare against real bash. */
+window.LXGENS = (function () {
+  const r = n => Math.floor(Math.random() * n);
+  const pick = a => a[r(a.length)];
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = r(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const G = {}; const X = {}; // X = pure helpers (exported for tests)
+  // ---------- permissions ----------
+  X.octToSym = o => String(o).split('').map(d => { d = +d; return (d & 4 ? 'r' : '-') + (d & 2 ? 'w' : '-') + (d & 1 ? 'x' : '-'); }).join('');
+  X.symToOct = s => [0, 3, 6].map(i => (s[i] !== '-' ? 4 : 0) + (s[i + 1] !== '-' ? 2 : 0) + (s[i + 2] !== '-' ? 1 : 0)).join('');
+  X.umaskApply = (um, isDir) => [0, 1, 2].map(i => ((isDir ? 7 : 6) & ~(+String(um).padStart(3, '0').slice(-3)[i])) & 7).join('');
+  X.chmodSym = (oct, expr) => { // expr like u+x,g-w,o=r
+    let bits = String(oct).split('').map(Number); const who = { u: [0], g: [1], o: [2], a: [0, 1, 2] };
+    expr.split(',').forEach(part => { const m = part.match(/^([ugoa]*)([+=-])([rwx]*)$/); const ws = (m[1] || 'a').split('').flatMap(c => who[c]); const v = m[3].split('').reduce((a, c) => a | { r: 4, w: 2, x: 1 }[c], 0);
+      [...new Set(ws)].forEach(i => { if (m[2] === '+') bits[i] |= v; else if (m[2] === '-') bits[i] &= ~v & 7; else bits[i] = v; }); });
+    return bits.join(''); };
+  const PERMS = ['755', '644', '700', '600', '750', '640', '775', '664', '711', '444', '555', '751', '754', '705', '640', '770', '740', '604'];
+  G.octToSym = () => { const o = pick(PERMS); return { kind: 'input', topic: 'perm', q: `<code>chmod ${o} file</code>. What does <code>ls -l</code> show for the 9 permission letters?`, a: X.octToSym(o), ph: 'like rwxr-x---', steps: ['Each digit is one group: owner, group, others.', 'r = 4, w = 2, x = 1. Split each digit into those.', ...o.split('').map((d, i) => `${['owner', 'group', 'others'][i]}: ${d} = ${[4, 2, 1].filter(v => d & v).join(' + ') || '0'} → ${X.octToSym(d)}`), `Answer: <code>${X.octToSym(o)}</code>`], why: D.perm('-' + X.octToSym(o)) }; };
+  G.symToOct = () => { const o = pick(PERMS); const s = X.octToSym(o); return { kind: 'input', topic: 'perm', q: `<code>ls -l</code> shows <code>-${s}</code>. What is the number (octal) for <code>chmod</code>?`, a: o, ph: '3 digits', steps: ['Skip the first character (file type).', 'Split into 3 groups of 3.', ...[0, 1, 2].map(i => `${s.slice(i * 3, i * 3 + 3)} = ${o[i]}`), `Answer: <b>${o}</b>`], why: D.perm('-' + s) }; };
+  G.chmodSym = () => { const o = pick(PERMS); const parts = []; const n = 1 + r(2); const used = new Set(); for (let i = 0; i < n; i++) { let w; do { w = pick(['u', 'g', 'o']); } while (used.has(w)); used.add(w); parts.push(w + pick(['+', '-', '=']) + shuffle(['r', 'w', 'x']).slice(0, 1 + r(2)).sort((a, b) => 'rwx'.indexOf(a) - 'rwx'.indexOf(b)).join('')); } const ex = parts.join(','); const res = X.chmodSym(o, ex);
+    return { kind: 'input', topic: 'perm', q: `A file is <code>${o}</code> (<code>${X.octToSym(o)}</code>). You run <code>chmod ${ex} file</code>. What is the new octal?`, a: res, ph: '3 digits', steps: [`Start: ${X.octToSym(o)}`, ...parts.map(p => `${p}: ${p[1] === '+' ? 'add' : p[1] === '-' ? 'remove' : 'set exactly'} ${p.slice(2)} for ${{ u: 'owner', g: 'group', o: 'others' }[p[0]]}`), `Result: ${X.octToSym(res)} = <b>${res}</b>`] }; };
+  G.umask = () => { const um = pick(['022', '002', '027', '077', '007', '033', '026', '037', '023']); const dir = r(2) === 1; const res = X.umaskApply(um, dir); return { kind: 'input', topic: 'umask', q: `<code>umask ${um}</code>. You create a new <b>${dir ? 'directory (mkdir)' : 'file (touch)'}</b>. What are its permissions in octal?`, a: res, steps: [`Start: ${dir ? 'directories 777' : 'files 666'}.`, `The umask <b>removes</b> bits (it's a mask, not subtraction): each digit, keep only the bits NOT in the umask.`, ...[0, 1, 2].map(i => { const base = dir ? 7 : 6; const m = +um[i]; return `${X.octToSym(String(base))} minus bits of ${m} (${X.octToSym(String(m))}) → ${X.octToSym(res[i])} = ${res[i]}`; }), `Answer: <b>${res}</b>${um.includes('3') && !dir ? ' (not 633! files never get x from umask)' : ''}`] }; };
+  // ---------- paths ----------
+  X.normPath = (cwd, p) => { const parts = (p.startsWith('/') ? p : cwd + '/' + p).split('/'); const out = []; parts.forEach(s => { if (!s || s === '.') return; if (s === '..') out.pop(); else out.push(s); }); return '/' + out.join('/'); };
+  G.path = () => { const dirs = ['home', 'etc', 'var', 'usr', 'bin', 'tmp', 'sam', 'log', 'a', 'b', 'c']; const abs = r(3) > 0; const cwd = pick(['/home/sam', '/usr/bin', '/var/log', '/etc', '/home']); let segs = []; const n = 4 + r(4); for (let i = 0; i < n; i++) segs.push(pick([pick(dirs), pick(dirs), '.', '..'])); segs.push(pick(['passwd', 'foo', 'notes.txt', 'ls'])); const p = (abs ? '/' : '') + segs.join('/'); const res = X.normPath(cwd, p);
+    return { kind: 'input', topic: 'paths', q: `${abs ? '' : `Your current directory is <code>${cwd}</code>.<br>`}Simplify this pathname to an absolute path with no <code>.</code> or <code>..</code>:<br><code style="word-break:break-all">${p}</code>`, a: res, ph: '/like/this', steps: [abs ? 'It starts with / so start at root.' : `It doesn't start with /, so start from ${cwd}.`, '<code>.</code> = stay here (delete it). <code>..</code> = go up one (cancel the name before it). <code>..</code> at / stays at /.', 'Walk it one name at a time:', ...(() => { const st = []; const out = abs ? [] : cwd.split('/').filter(Boolean); segs.forEach(s => { if (s === '.') st.push(`. → stay: /${out.join('/')}`); else if (s === '..') { out.pop(); st.push(`.. → up: /${out.join('/')}`); } else { out.push(s); st.push(`${s} → /${out.join('/')}`); } }); return st; })(), `Answer: <code>${res}</code>`] }; };
+  // ---------- globbing ----------
+  X.globRe = pat => { let re = '^'; for (let i = 0; i < pat.length; i++) { const c = pat[i]; if (c === '*') re += '[^/]*'; else if (c === '?') re += '[^/]'; else if (c === '[') { const j = pat.indexOf(']', i + 2); if (j < 0) { re += '\\['; continue; } let cls = pat.slice(i + 1, j); if (cls[0] === '!') cls = '^' + cls.slice(1); re += '[' + cls.replace(/\\/g, '\\\\') + ']'; i = j; } else re += c.replace(/[.+^${}()|\\]/g, '\\$&'); } return new RegExp(re + '$'); };
+  X.glob = (pat, files) => { const re = X.globRe(pat); const m = files.filter(f => (pat[0] === '.' || f[0] !== '.') && re.test(f)).sort(); return m.length ? m : [pat]; };
+  const FILESETS = [['a', 'ab', 'abc', 'b1', 'b2', 'c', 'cat', 'dog', '.hidden', '1', '13', '30', '39', '.13'], ['f1.txt', 'f2.txt', 'f10.txt', 'notes', 'n1', 'n2', 'x', 'xyz', '.bashrc', 'data1', 'data22'], ['tim', 'tom', 'tam', 't1', 't22', 'jim', 'j', 'aa', 'ab', 'ba', 'bb', '.profile']];
+  const PATS = ['*', '?', '??', '???', 't?m', 't*', '*m', '[ab]*', '[ab]?', '[!ab]*', '*[0-9]', '?[0-9]', '[13]?', 'f?.txt', 'f*.txt', '*.txt', 'n?', 'data?', 'data*', '[tj]*', '.*', '.??*', '[a-c]', 'b?', 'x*z', '*[!0-9]', 'q*'];
+  G.glob = () => { const fs = pick(FILESETS); let pat; do { pat = pick(PATS); } while (r(4) && X.glob(pat, fs)[0] === pat && pat !== 'q*'); const res = X.glob(pat, fs); const none = res.length === 1 && res[0] === pat && !fs.includes(pat);
+    return { kind: 'input', topic: 'glob', q: `Your directory has: <code>${fs.join(' ')}</code><br>What does <code>echo ${pat}</code> print?`, a: res.join(' '), ph: 'names separated by spaces', check: v => { const got = v.trim().split(/\s+/).sort().join(' '); return got === res.slice().sort().join(' '); },
+      steps: ['The SHELL expands the glob before echo runs.', '<code>*</code> = any number of any characters (even none). <code>?</code> = exactly ONE character. <code>[ab]</code> = one character from the list. <code>[!ab]</code> = one character NOT in the list.', 'Names starting with <code>.</code> are hidden: only matched when the pattern itself starts with <code>.</code>', none ? 'Nothing matches → bash passes the pattern unchanged, so echo prints the pattern itself.' : `Matches: ${res.join(' ')}`, `Answer: <code>${res.join(' ')}</code>`] }; };
+  // ---------- redirection simulator ----------
+  X.runRedir = cmds => { const fs = {}; const out = []; cmds.forEach(c => {
+    if (c.t === 'echo') { const lines = [c.w]; c.redir.forEach((rd, i) => { const last = i === c.redir.length - 1; if (rd.op === '>') fs[rd.f] = []; else fs[rd.f] = fs[rd.f] || []; if (last) fs[rd.f] = fs[rd.f].concat(lines); }); if (!c.redir.length) out.push(c.w); }
+    if (c.t === 'cat') { const dest = c.redir; if (dest) { if (dest.op === '>') fs[dest.f] = []; else fs[dest.f] = fs[dest.f] || []; } let content = []; c.src.forEach(s => { content = content.concat(fs[s] || []); }); if (dest) fs[dest.f] = (fs[dest.f] || []).concat(dest.op === '>' ? content : content); else out.push(...content); }
+  }); return fs; };
+  const fmt = c => c.t === 'echo' ? `echo ${c.w}${c.redir.map(x => ` ${x.op}${x.f}`).join('')}` : `cat ${c.src.join(' ')}${c.redir ? ` ${c.redir.op}${c.redir.f}` : ''}`;
+  G.redir = () => { const F = ['x', 'y', 'foo']; const W = ['one', 'two', 'ten', 'hi', 'ho']; const cmds = []; const n = 2 + r(3);
+    for (let i = 0; i < n; i++) { const k = r(10); if (k < 4) cmds.push({ t: 'echo', w: pick(W), redir: [{ op: pick(['>', '>>']), f: pick(F) }] }); else if (k < 6) cmds.push({ t: 'echo', w: pick(W), redir: [{ op: '>', f: 'x' }, { op: '>', f: 'y' }] }); else if (k < 8 && i > 0) { const s = shuffle(F).slice(0, 1 + r(2)); const op = pick(['>', '>>']); const dst = op === '>>' ? pick(F.filter(f => !s.includes(f))) : pick(F); cmds.push({ t: 'cat', src: s, redir: { op, f: dst } }); } else cmds.push({ t: 'echo', w: pick(W), redir: [{ op: '>>', f: pick(F) }] }); }
+    const fs = X.runRedir(cmds); const target = pick(F); const lines = fs[target]; const exists = lines !== undefined;
+    return { kind: 'input', topic: 'redir', q: `Starting in an empty directory, you run:<pre>${cmds.map(fmt).join(' ; ')}</pre>How many lines are in <code>${target}</code>? (Type 0 if it's empty${exists ? '' : ' or doesn\'t exist'}.)`, a: String(exists ? lines.length : 0),
+      steps: ['<code>></code> empties the file FIRST, then writes. <code>>></code> adds to the end.', 'Two <code>></code> on one command: BOTH files get emptied, only the LAST one gets the output.', '<code>cat a b >c</code>: the shell empties c before cat even starts, so if c is also an input it reads as empty.', ...(() => { const st = []; const sim = []; cmds.forEach(c => { sim.push(c); const f2 = X.runRedir(sim); st.push(`<code>${fmt(c)}</code> → ${F.filter(f => f2[f] !== undefined).map(f => `${f}: [${f2[f].join(', ')}]`).join(' · ')}`); }); return st; })(), `So <code>${target}</code> has <b>${exists ? lines.length : 0}</b> line(s)${exists && lines.length ? ': ' + lines.join(', ') : ''}.`] }; };
+  // ---------- scripting ----------
+  G.params = () => { const name = pick(['./greet.sh', './login.sh', './backup.sh', 'test.sh']); const args = shuffle(['tim', 'jim', 'user1', 'toor', '42', 'a', 'bob']).slice(0, 1 + r(4)); const what = pick(['$#', '$1', '$2', '$0', '$@', '$#', '$1']); let ans; if (what === '$#') ans = String(args.length); else if (what === '$0') ans = name; else if (what === '$@') ans = args.join(' '); else ans = args[+what[1] - 1] || '';
+    return { kind: 'input', topic: 'script', q: `You run <code>${name} ${args.join(' ')}</code>. Inside the script: <code>echo ${what}</code>. What prints? ${ans === '' ? '(type <b>blank</b> if nothing)' : ''}`, a: ans === '' ? ['blank', '(blank)', 'nothing'] : ans, steps: ['$0 = the script name as typed. $1, $2… = each argument. $# = how many arguments. $@ (or $*) = all arguments.', `Here: $0=${name}, ${args.map((a, i) => `$${i + 1}=${a}`).join(', ')}, $#=${args.length}`, `→ <b>${ans || '(blank line)'}</b>`] }; };
+  G.arith = () => { const a = 2 + r(20), b = 1 + r(6); const op = pick(['+', '-', '*', '/', '%', '/', '%', '**']); const bb = op === '**' ? 1 + r(3) : b; const v = { '+': a + bb, '-': a - bb, '*': a * bb, '/': Math.trunc(a / bb), '%': a % bb, '**': Math.pow(a, bb) }[op];
+    return { kind: 'input', topic: 'script', q: `<pre>a=${a}\nb=${bb}\necho $((a ${op} b))</pre>What prints?`, a: String(v), steps: [op === '/' ? 'Bash does INTEGER math: the decimal part is dropped.' : op === '%' ? '% = remainder after dividing.' : op === '**' ? '** = power.' : 'Inside $(( )) you don\'t need $ in front of the variable names.', `${a} ${op} ${bb} = <b>${v}</b>`] }; };
+  G.testExit = () => { const k = r(5); let expr, ok, why; if (k === 0) { const a = r(20), b = r(20); const o = pick(['-eq', '-ne', '-lt', '-gt', '-le', '-ge']); ok = { '-eq': a === b, '-ne': a !== b, '-lt': a < b, '-gt': a > b, '-le': a <= b, '-ge': a >= b }[o]; expr = `[ ${a} ${o} ${b} ]`; why = `${o}: eq =, ne ≠, lt <, gt >, le ≤, ge ≥. ${a} ${o} ${b} is ${ok}.`; }
+    else if (k === 1) { const s = pick(['abc', 'abd', 'Abc']); ok = s === 'abc'; expr = `x=${s} ; [ "$x" = "abc" ]`; why = `= compares text exactly (case matters). "${s}" vs "abc" → ${ok}.`; }
+    else if (k === 2) { const v = pick(['', 'hi']); const o = pick(['-z', '-n']); ok = o === '-z' ? v === '' : v !== ''; expr = `v="${v}" ; [ ${o} "$v" ]`; why = `-z = true if empty. -n = true if NOT empty. v is ${v ? 'not empty' : 'empty'} → ${ok}.`; }
+    else if (k === 3) { const isd = r(2) === 1; const o = pick(['-f', '-d']); ok = (o === '-d') === isd; expr = `${isd ? 'mkdir thing' : 'touch thing'} ; [ ${o} thing ]`; why = `-f = is a regular file. -d = is a directory. thing is a ${isd ? 'directory' : 'file'} → ${ok}.`; }
+    else { const a = r(10), b = r(10); ok = a > b; expr = `(( ${a} > ${b} ))`; why = `(( )) does math comparisons with normal symbols. ${a} > ${b} is ${ok}.`; }
+    return { kind: 'mcq', topic: 'script', q: `<pre>${expr}\necho $?</pre>What prints?`, opts: ['0', '1'], a: ok ? 0 : 1, keepOrder: true, why: `<b>0 means true / success</b>, non-zero (1) means false / failure. Opposite of most languages! ${why}` }; };
+  // ---------- cron ----------
+  const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const t12 = (h, m) => `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`;
+  X.cronDesc = f => { const [m, h, dom, mon, dow] = f; let when = (h === '*' ? `every hour at minute ${m}` : `at ${t12(+h, +m)}`); let days = 'every day'; if (dom !== '*' && dow === '*') days = `on day ${dom} of the month`; if (dow !== '*' && dom === '*') days = dow === '1-5' ? 'Monday to Friday' : `every ${DOW[+dow]}`; if (dom !== '*' && dow !== '*') days = `on day ${dom} and every ${DOW[+dow]}`; let mons = mon === '*' ? '' : ` in ${MON[+mon - 1]}`; return `${when}, ${days}${mons}`; };
+  const randCron = () => { const m = pick([0, 0, 1, 15, 30, 45, 5]); const h = pick(['*', 0, 2, 9, 12, 13, 18, 22, 23]); const dd = r(4); const dom = dd === 1 ? pick([1, 15, 28]) : '*'; const dow = dd === 2 ? pick([0, 1, 5, 6]) : dd === 3 ? '1-5' : '*'; const mon = r(5) === 0 ? 1 + r(12) : '*'; return [String(m), String(h), String(dom), String(mon), String(dow)]; };
+  G.cronRead = () => { const f = randCron(); const right = X.cronDesc(f); const opts = [right]; let g = 0; while (opts.length < 4 && g++ < 50) { const d = X.cronDesc(randCron()); if (!opts.includes(d)) opts.push(d); }
+    return { kind: 'mcq', topic: 'cron', q: `What does this crontab line do?<pre>${f.join(' ')} ~/script.sh</pre>`, opts, a: 0, steps: ['Fields: minute, hour, day-of-month, month, day-of-week. Then the command.', '* = every. Day of week: 0 = Sunday … 6 = Saturday (7 is Sunday too).', `→ ${right}`], why: D.cron() }; };
+  G.cronWrite = () => { const f = randCron(); return { kind: 'input', topic: 'cron', q: `Write the 5 time fields for a crontab line that runs <b>${X.cronDesc(f)}</b>.`, a: f.join(' '), ph: 'm h dom mon dow', check: v => v.trim().split(/\s+/).join(' ') === f.join(' ') || v.trim().split(/\s+/).map(x => x === '7' ? '0' : x).join(' ') === f.join(' '), steps: ['Order: minute hour day-of-month month day-of-week.', `→ <code>${f.join(' ')}</code>`], why: D.cron() }; };
+  // ---------- regex (ERE, checked with a real regex engine) ----------
+  const RX = [['^ab+$', ['ab', 'abb', 'abbbb', 'a', 'abab', 'cabbb', 'acb']], ['^(ted|fred)$', ['ted', 'fred', 'edited', 'freddy', 'Ted']], ['^[^g]', ['hello', 'Good', 'go', 'gap', '9lives']], ['^(g|[0-9])', ['go', '7up', 'Go', 'big', '0x']], ['^tim.*jim$', ['tim jim', 'timjim', 'tim and jim', 'jim tim', 'tim jimmy']], ['colou?r', ['color', 'colour', 'colr', 'colouur']], ['^[0-9]{3}$', ['123', '12', '1234', 'abc', '007']], ['^[A-Z][a-z]+$', ['Alex', 'alex', 'ALEX', 'Al', 'A']], ['a.c', ['abc', 'a-c', 'ac', 'abbc', 'xa1cx']], ['a.*c', ['ac', 'abc', 'abbbc', 'ca', 'ab']], ['^$', ['', ' ', 'x']], ['(ab)+', ['ab', 'abab', 'aabb', 'ba', 'a b']], ['[ab]c', ['ac', 'bc', 'cc', 'abc', 'ca']], ['^[a-z]+@[a-z]+\\.(com|ca)$', ['tim@ac.ca', 'tim@ac.com', 'Tim@ac.ca', 'tim@ac.org', 'tim@ac.c']], ['x{2,3}', ['x', 'xx', 'xxx', 'xxxx', 'yxx']]];
+  G.regex = () => { const [p, pool] = pick(RX); const re = new RegExp(p); const cands = shuffle(pool).slice(0, 4); if (!cands.some(s => re.test(s))) cands[0] = pool.find(s => re.test(s)); const a = cands.map((s, i) => re.test(s) ? i : -1).filter(i => i >= 0);
+    return { kind: 'multi', topic: 'regex', q: `Which lines does <code>grep -E '${p}'</code> print? Pick all that match.`, opts: cands.map(s => `<code>${s === '' ? '(empty line)' : s.replace(/ /g, '␣')}</code>`), a, keepOrder: true, why: 'Key symbols: <code>^</code> start, <code>$</code> end, <code>.</code> any one char, <code>*</code> 0 or more, <code>+</code> 1 or more, <code>?</code> 0 or 1, <code>{n,m}</code> n to m times, <code>[ ]</code> one char from the list, <code>[^ ]</code> one char NOT in the list, <code>|</code> or, <code>( )</code> group. Without ^ and $, grep matches anywhere in the line.' }; };
+  // ---------- sed ----------
+  G.sed = () => { const line = pick(['user=tim user=jim', 'cat cat dog', 'ERROR user=bob', 'a-b-c', 'old old new']); const pairs = { 'user=tim user=jim': ['user=', 'account='], 'cat cat dog': ['cat', 'cow'], 'ERROR user=bob': ['user', 'name'], 'a-b-c': ['-', '+'], 'old old new': ['old', 'new'] }; const [o, n] = pairs[line]; const g = r(2) === 1; const res = g ? line.split(o).join(n) : line.replace(o, n);
+    return { kind: 'input', topic: 'sed', q: `<pre>echo "${line}" | sed 's/${o}/${n}/${g ? 'g' : ''}'</pre>What prints?`, a: res, steps: ['s/old/new/ replaces the FIRST match on each line.', 'Add g at the end (s/old/new/g) to replace EVERY match.', `→ <code>${res}</code>`] }; };
+  G._X = X; return G;
+})();
+
+/* ---- linux/content1.js ---- */
+/* CST8207 content part 1: dates, units Weeks 1-4. Topics from the CST8207 Fall 2026 CSI and the weekly lecture slides on Brightspace. */
+(function () {
+  const g = (name, n) => ({ t: 'gen', g: name, n: n || 1 });
+  const L = (title, html) => ({ t: 'learn', title, html });
+  const mcq = (q, opts, a, why, topic) => ({ t: 'mcq', q, opts, a, why, topic });
+  const multi = (q, opts, a, why, topic) => ({ t: 'multi', q, opts, a, why, topic });
+  const tf = (q, a, why, topic) => ({ t: 'tf', q, a, why, topic });
+  const inp = (q, a, why, topic) => ({ t: 'input', q, a, why, topic });
+  const C = window.COURSE = {
+    id: 'cst8207', title: 'Linux Trainer · CST8207', short: 'Linux Trainer', icon: '🐧',
+    about: 'A personal study tool (CST8207 GNU/Linux System Support, Fall 2026) as a personal study tool. Nothing here is submitted. Topics come from the CST8207 CSI learning schedule, the weekly lecture slides and Assignments 1–10 on Brightspace, and your Quiz 1 review notes. Midterm 1 was 60 multiple choice / true-false in 90 minutes (Oct 7 announcement); Midterm 2 and the final format are not posted, so mock formats are estimates.',
+    dates: [
+      { key: 'demo9', label: 'Demo 9 / Assignment 9 (scripts, live in lab)', date: '2026-11-18', when: 'CSI: Week 11 → Wed Nov 18, 4 PM, B133. notes says Wed Nov 25.', src: 'CSI vs notes (conflict)', confirmed: false },
+      { key: 'mid2', label: 'Midterm 2 (10%, written)', date: '2026-11-23', when: 'CSI: Week 12 (Nov 23–27). notes: Week 13 (Nov 30–Dec 4). Midterm 1 was in Monday theory class, so Mon Nov 23 is the earliest (estimate).', src: 'CSI vs notes (conflict)', confirmed: false },
+      { key: 'demo10', label: 'Demo 10 / Assignment 10 (regex)', date: '2026-11-25', when: 'CSI: Week 12 (Wed Nov 25). notes: Wed Dec 2.', src: 'CSI vs notes (conflict)', confirmed: false },
+      { key: 'fsba', label: 'Final SBA (10%, hands-on, in lab)', date: '2026-12-02', when: 'CSI: Week 13 (Wed Dec 2 lab). notes: Week 14 (Wed Dec 9).', src: 'CSI vs notes (conflict)', confirmed: false },
+      { key: 'final', label: 'Final exam (30%)', date: '2026-12-16', when: 'Wed Dec 16, 8:00 AM–12:30 PM (time tentative). Written vs hands-on not confirmed.', src: 'notes; CSI Week 15', confirmed: false },
+      { key: 'quiz2', label: 'Brightspace Quiz 2', date: '2026-12-17', when: 'Due Thu Dec 17, 11:59 PM. Not in the CSI weights; ask if it counts.', src: 'Brightspace Quizzes', confirmed: true },
+      { key: 'quiz1', label: 'Brightspace Quiz 1 (practice for written tests)', date: '2026-12-20', when: 'Closes Sun Dec 20, 11:59 PM.', src: 'Brightspace Quizzes', confirmed: true },
+    ],
+    units: [], cards: [], bank: [], gens: window.LXGENS,
+    genTopics: { octToSym: 'perm', symToOct: 'perm', chmodSym: 'perm', umask: 'umask', path: 'paths', glob: 'glob', redir: 'redir', params: 'script', arith: 'script', testExit: 'script', cronRead: 'cron', cronWrite: 'cron', regex: 'regex', sed: 'sed' },
+    topicNames: { basics: 'Shell & commands', man: 'man pages', paths: 'Paths', glob: 'Globbing', redir: 'Redirection & pipes', find: 'find / grep / awk', sed: 'sed', perm: 'Permissions', umask: 'umask', vars: 'Variables & PATH', inode: 'Inodes & links', proc: 'Processes & jobs', tar: 'Archives & compression', cron: 'at & cron', script: 'Shell scripts', debug: 'Debugging & errors', regex: 'Regular expressions', fs: 'File system' },
+    quickDrill: { href: '#prac/0', label: 'Trace drill: 5 "what prints?" questions' },
+  };
+  const U = (id, title, icon, tags, sub, lessons, topic) => C.units.push({ id, title, icon, tags, sub, lessons, topic });
+
+  U('l0', 'Start here', '🚀', [], 'How this app works. 3 minutes.', [
+    { id: 'lstart', title: 'Why your lab marks are great but tests aren\'t (yet)', mins: 3, steps: [
+      L('You already know more than you think', `<p>If your assignments and lab tests go well, you can already <b>do</b> Linux.</p><p>The written tests ask you to <b>predict</b> what a command does without running it. Like "what does <code>echo .??*</code> print?"</p><p>That's a different skill, and it can be trained.</p>`),
+      L('How each lesson works', `<ol><li>One idea per screen.</li><li>Example first ("you typed this in Assignment 3"), then the rule.</li><li>Practice right away. Wrong ones come back until you get them.</li></ol><p>Tap <b>🔊 Read aloud</b> on any screen.</p>`),
+      L('The secret for trace questions', `<p>Never guess the whole line at once. <b>Walk it one piece at a time</b>, like you're the shell:</p><ol><li>What does the shell expand first? (globs, variables, redirections)</li><li>Then what does the command do with what's left?</li></ol><p>Every 💡 hint in this app does exactly that.</p>`),
+      mcq('When you get a practice question wrong, what happens?', ['It comes back until you get it', 'You lose the lesson', 'It\'s skipped'], 0, '', 'basics'),
+    ] }
+  ], 'basics');
+
+  U('l1', 'Shell, commands, man pages (Wk 1–2)', '💻', ['Mid1 review', 'Final'], 'The parts of Linux and how a command line is built.', [
+    { id: 'k1', title: 'Kernel, shell, file system', mins: 4, steps: [
+      L('Three big parts', `<ul><li><b>Kernel</b>: the core. Talks to hardware: processes, memory, files, devices.</li><li><b>Shell</b>: the program you type into (bash). It reads your line, expands it, and runs the program. It does <b>not</b> know how <code>ls</code> works; it just finds and runs it.</li><li><b>File system</b>: one tree starting at <code>/</code>. No C: or D: drives. "Everything is a file."</li></ul>`),
+      L('The tree', `${D.tree('etc')}<ul><li><code>/etc</code> config files · <code>/home</code> users' homes · <code>/root</code> root's home</li><li><code>/bin</code>, <code>/usr/bin</code> commands · <code>/sbin</code> admin commands</li><li><code>/var</code> changing data (logs in /var/log) · <code>/tmp</code> temp · <code>/dev</code> devices · <code>/proc</code> process info</li></ul>`),
+      mcq('Which directory holds system-wide configuration files?', ['/etc', '/var', '/bin', '/root'], 0, '', 'fs'),
+      mcq('Which part of Linux runs your typed command and expands * and $?', ['The shell', 'The kernel', 'The file system'], 0, 'bash does all expansion before the command runs.', 'basics'),
+      tf('/root is the top of the file system.', false, '/ is the top (ROOT directory). /root is just the root user\'s HOME.', 'fs'),
+    ] },
+    { id: 'k2', title: 'Command, options, arguments', mins: 4, lab: 'Assignment 1', steps: [
+      L('Anatomy', `<p><code>ls -l /etc</code></p><ul><li><code>ls</code> = command name</li><li><code>-l</code> = option (changes HOW it works, usually starts with -)</li><li><code>/etc</code> = argument (WHAT it works on)</li></ul><p>Spaces separate them. Linux is <b>case-sensitive</b>: <code>Dir</code> and <code>dir</code> are different names.</p>`),
+      L('Commands from Week 1', `<table><tr><td><code>pwd</code></td><td>print where you are</td></tr><tr><td><code>cd dir</code></td><td>go there. <code>cd</code> alone = HOME</td></tr><tr><td><code>ls -la</code></td><td>long list incl. hidden</td></tr><tr><td><code>mkdir -p a/b/c</code></td><td>make dirs (and parents)</td></tr><tr><td><code>rmdir d</code></td><td>remove EMPTY dir</td></tr><tr><td><code>rm -r d</code></td><td>remove dir and everything in it</td></tr><tr><td><code>touch f</code></td><td>make empty file / update time</td></tr><tr><td><code>cp a b</code>, <code>mv a b</code></td><td>copy, move/rename</td></tr><tr><td><code>cat f</code>, <code>echo hi</code></td><td>show file, print text</td></tr></table>`),
+      inp('Command to go back to your HOME directory from anywhere (shortest).', ['cd', 'cd ~'], '<code>cd ..</code> only goes up one.', 'basics'),
+      mcq('Delete an EMPTY directory named Dir:', ['rmdir Dir', 'rmdir dir', 'rm Dir', 'del Dir'], 0, 'Case matters. rm without -r won\'t remove a directory.', 'basics'),
+      mcq('What does <code>ls tim</code> show if tim is a FILE?', ['Just the name tim', 'The contents of tim', 'Nothing', 'An error'], 0, 'ls lists names. cat/head/tail/sort show contents.', 'basics'),
+      mcq('<code>mkdir -p dir/{a,b,c}</code> makes…', ['dir with a, b, c inside it', 'a folder named {a,b,c}', 'three folders called dir'], 0, 'Brace expansion: the shell turns it into dir/a dir/b dir/c. 🔧 Midterm SBA skill.', 'basics'),
+    ] },
+    { id: 'k3', title: 'man pages and control keys', mins: 4, steps: [
+      L('man', `<p><code>man ls</code> opens the manual. Inside: <code>/word</code> searches, <code>n</code> = next match, <code>q</code> quits.</p><p>Sections: <b>1</b> = user commands, <b>5</b> = file formats (e.g. <code>man 5 passwd</code>), <b>8</b> = admin commands.</p><p>SYNOPSIS: <code>[ ]</code> = optional, <code>...</code> = can repeat.</p><p>🔧 The Midterm SBA was closed-book but <b>man was allowed</b>.</p>`),
+      L('Control keys', `<ul><li><span class="key">Ctrl</span>+<span class="key">C</span> = interrupt / kill the running command</li><li><span class="key">Ctrl</span>+<span class="key">D</span> = end of input (EOF). On an empty prompt it logs out.</li><li><span class="key">Ctrl</span>+<span class="key">Z</span> = suspend (stop) the foreground job</li></ul>`),
+      mcq('In a man page SYNOPSIS, square brackets [ ] mean…', ['Optional', 'Required', 'A glob', 'A comment'], 0, '', 'man'),
+      mcq('Which man section has file formats like /etc/passwd?', ['5', '1', '8', '3'], 0, '', 'man'),
+      mcq('Which key sends EOF (end of input) to a command reading the keyboard?', ['Ctrl+D', 'Ctrl+C', 'Ctrl+Z', 'Ctrl+X'], 0, '', 'basics'),
+    ] },
+  ], 'basics');
+
+  U('l2', 'Paths: absolute, relative, . and .. (Wk 2–3)', '🗺️', ['Mid1 review', 'Final'], 'Quiz 1 had 8 path questions. This is easy marks once you walk them.', [
+    { id: 'p1', title: 'ROOT, /root, HOME, current', mins: 4, steps: [
+      L('Four different things', `${D.tree()}<ul><li><b>ROOT</b> = <code>/</code>, top of the tree</li><li><code>/root</code> = HOME of the root user</li><li><b>HOME</b> = your own folder, e.g. <code>/home/sam</code>. Shortcut <code>~</code></li><li><b>current directory</b> = where you are now (<code>pwd</code>)</li></ul>`),
+      L('Absolute vs relative', `<p><b>Absolute</b> starts with <code>/</code>: same meaning from anywhere. <code>/etc/passwd</code></p><p><b>Relative</b> doesn't: it starts from where you are. In <code>/usr</code>, <code>bin/ls</code> means <code>/usr/bin/ls</code>.</p><p><code>.</code> = this directory. <code>..</code> = the parent.</p>`),
+      mcq('In /usr, which is the same as /usr/x/y/z?', ['x/./y/z', '/x/y/z', '../x/y/z', './../x/y/z'], 0, '. does nothing; relative starts at /usr. (Quiz 1)', 'paths'),
+      mcq('Which is the same file as /etc/passwd?', ['/./etc/./passwd', 'etc/passwd', './etc/passwd', '~/etc/passwd'], 0, 'Needs to start with /. Dots that are . do nothing. (Quiz 1)', 'paths'),
+    ] },
+    { id: 'p2', title: 'Walk the path, one name at a time', mins: 5, steps: [
+      L('Example', `<p><code>/../../var/./a/../../var/b/../../etc/./bar/../foo</code></p><ol><li><code>/..</code> → still / (can't go above root)</li><li><code>var</code> → /var. <code>.</code> → /var. <code>a</code> → /var/a. <code>..</code> → /var</li><li><code>..</code> → /. <code>var</code> → /var. <code>b</code> → /var/b. <code>..</code> → /var. <code>..</code> → /</li><li><code>etc</code> → /etc. <code>.</code>, <code>bar</code>, <code>..</code> → /etc. <code>foo</code> → <b>/etc/foo</b></li></ol>`),
+      L('The rule', `<p><code>..</code> <b>cancels the name before it</b>. <code>.</code> disappears. Go left to right.</p>`),
+      g('path', 5),
+      mcq('In /home, HOME is /home/me. Which copies /etc/passwd to your HOME as foo?', ['cp me/../../etc/passwd me/foo', 'cp ../etc/passwd foo', 'cp /home/etc/passwd me/foo', 'cp me/../etc/passwd me/foo'], 0, 'me/.. = /home, ../ = /, then etc/passwd. (Quiz 1)', 'paths'),
+      mcq('The path /a/b/c/d/e has at least how many directories?', ['5', '4', '6', '3'], 0, '/, a, b, c, d. e could be a file. (Quiz 1)', 'paths'),
+    ] },
+  ], 'paths');
+
+  U('l3', 'Globbing: * ? [ ] (Wk 2–3)', '✳️', ['Mid1 review', 'Final', 'SBA'], 'The shell matches file names before the command runs.', [
+    { id: 'g1', title: '* and ?', mins: 4, lab: 'Assignment 2', steps: [
+      L('The shell does it, not the command', `<p>Files: <code>a ab abc b1</code>. You type <code>echo a*</code>.</p><p>bash sees <code>a*</code>, looks at file names, and swaps in <code>a ab abc</code>. Then echo runs with those 3 words.</p><p><code>*</code> = any number of any characters (even zero).</p>`),
+      L('? = exactly one character', `<p>Same files: <code>echo ??</code> → <code>ab b1</code> (2-character names only).</p><p><code>echo ?</code> → <code>a</code>.</p>`),
+      g('glob', 3),
+    ] },
+    { id: 'g2', title: '[ ] lists, hidden files, no match', mins: 5, steps: [
+      L('[ ] = ONE character from a list', `<p><code>[ab]*</code> = starts with a or b. <code>[0-9]</code> = one digit. <code>[!ab]</code> = one character that is NOT a or b.</p><p>From <code>1 13 .13 2 213 3 30 39</code>, <code>[13]?</code> → <b>13 30 39</b>. (Quiz 1)</p>`),
+      L('Two traps', `<ol><li><b>Hidden names</b> (start with <code>.</code>) only match if the pattern starts with <code>.</code></li><li><b>No match?</b> bash leaves the pattern alone. If only <code>.1</code> and <code>.2</code> exist, <code>echo .??*</code> prints <code>.??*</code> (Quiz 1).</li></ol><p>To stop globbing, quote it: <code>echo '*'</code> prints <code>*</code>.</p>`),
+      g('glob', 4),
+      mcq('Files: aa AB ab a c k t. <code>cp [Aa][Ba] ? dir</code> copies how many files?', ['6', '4', '7', '3'], 0, '[Aa][Ba] → aa, AB (ab is out: lowercase b not in [Ba]). ? → a, c, k, t. Total 6. (Quiz 1)', 'glob'),
+      tf('<code>echo \'*\'</code> prints every file name.', false, 'Quotes hide the glob from the shell, so it prints a literal *.', 'glob'),
+    ] },
+  ], 'glob');
+
+  U('l4', 'Redirection and pipes (Wk 2, 4)', '🚰', ['Mid1 review', 'Mid2', 'Final', 'SBA'], 'Where output goes. Quiz 1 had lots of these.', [
+    { id: 'r1', title: 'stdin, stdout, stderr', mins: 4, steps: [
+      L('Three streams', `${D.fds()}<ul><li><b>0 stdin</b>: input (keyboard). <code>&lt; file</code></li><li><b>1 stdout</b>: normal output. <code>&gt;</code> overwrite, <code>&gt;&gt;</code> append</li><li><b>2 stderr</b>: error messages. <code>2&gt;</code></li></ul>`),
+      L('Both into one file', `<p><code>cmd &gt; out 2&gt;&amp;1</code> = stdout to out, THEN stderr to wherever stdout goes now (out).</p><p>Order matters: file first, then <code>2&gt;&amp;1</code>.</p>`),
+      mcq('Which puts both output AND errors in out.txt?', ['ls > out.txt 2>&1', 'ls 2>&1 > out.txt', 'ls > out.txt', 'ls 2> out.txt'], 0, 'File first, then 2>&1. (Quiz 1 Q1, Q19)', 'redir'),
+      mcq('Send only error messages to err.txt:', ['cmd 2> err.txt', 'cmd > err.txt', 'cmd 1> err.txt', 'cmd < err.txt'], 0, '', 'redir'),
+    ] },
+    { id: 'r2', title: '> empties the file FIRST', mins: 5, steps: [
+      L('Example', `<p><code>head c &gt; c</code></p><p>The shell sets up <code>&gt; c</code> <b>before</b> head runs, which empties c. Then head reads an empty c. Result: <b>c is empty</b>.</p>`),
+      L('Two > on one line', `<p><code>echo hi &gt;foo &gt;bar</code>: both get emptied, output goes to the <b>last</b> one. foo is empty, bar has hi. (Quiz 1)</p><p><code>cp a &gt;foo</code>: cp prints nothing, so foo is empty. To join files: <code>cat a &gt;foo ; cat b &gt;&gt;foo</code>.</p>`),
+      g('redir', 5),
+      mcq('<code>echo one &gt;x ; echo ten &gt;y ; echo &gt;x two ; cat x y</code> prints:', ['two / ten', 'one / ten', 'one / two', 'ten'], 0, 'echo >x two is the same as echo two >x, so x now has "two". (Practice Questions)', 'redir'),
+    ] },
+    { id: 'r3', title: 'Pipes and counting', mins: 5, steps: [
+      L('| sends output into the next command', `<p><code>ls | wc -l</code> = count the names. <code>sort file | head -n 5 | tail -n 1</code> = the 5th line after sorting.</p><p>Redirection goes to a <b>file</b>. A pipe goes to another <b>command</b>.</p>`),
+      L('Tools you pipe into', `<ul><li><code>wc -l</code> lines, <code>-w</code> words, <code>-c</code> bytes</li><li><code>sort</code> (<code>-n</code> numbers, <code>-r</code> reverse), <code>uniq</code></li><li><code>head -n 3</code>, <code>tail -n 3</code></li><li><code>cut</code>, <code>tr</code>, <code>grep</code></li></ul>`),
+      mcq('Empty dir. <code>echo hi &gt;a ; ls | wc -l</code> prints:', ['1', '0', '3', '2'], 0, 'ls shows just a. (With ls -a it would be 3: . .. a) (Quiz 1)', 'redir'),
+      mcq('foo has lines 1 to 9. <code>sort foo foo | head -n 5 | tail -n 1</code> prints:', ['3', '5', '2', '9'], 0, 'Sorted: 1 1 2 2 3 3… First 5: 1 1 2 2 3. Last of those: 3. (Quiz 1)', 'redir'),
+      mcq('Difference between > and |?', ['> sends to a file, | sends to another command', 'They are the same', '| sends to a file, > to a command'], 0, '', 'redir'),
+    ] },
+  ], 'redir');
+})();
+
+/* ---- linux/content2.js ---- */
+/* CST8207 content part 2: Weeks 3-9. */
+(function () {
+  const C = window.COURSE;
+  const g = (name, n) => ({ t: 'gen', g: name, n: n || 1 });
+  const L = (title, html) => ({ t: 'learn', title, html });
+  const mcq = (q, opts, a, why, topic) => ({ t: 'mcq', q, opts, a, why, topic });
+  const multi = (q, opts, a, why, topic) => ({ t: 'multi', q, opts, a, why, topic });
+  const tf = (q, a, why, topic) => ({ t: 'tf', q, a, why, topic });
+  const inp = (q, a, why, topic) => ({ t: 'input', q, a, why, topic });
+  const U = (id, title, icon, tags, sub, lessons, topic) => C.units.push({ id, title, icon, tags, sub, lessons, topic });
+
+  U('l5', 'find, grep, awk, sed (Wk 2–4)', '🔎', ['Mid1 review', 'Final', 'SBA'], 'Search for files, search inside files, pull out columns, change text.', [
+    { id: 'f1', title: 'find (search for FILES)', mins: 4, lab: 'Assignment 3', steps: [
+      L('Pattern', `<p><code>find /etc -type f -name "*.conf"</code></p><ul><li>where to start: <code>/etc</code></li><li><code>-type f</code> files, <code>-type d</code> directories</li><li><code>-name "*.conf"</code> quoted so the SHELL doesn't glob it first</li><li>also: <code>-iname</code> (ignore case), <code>-size +1M</code>, <code>-user sam</code>, <code>-inum 1234</code></li></ul>`),
+      mcq('Find all directories under / whose names end in .sh:', ['find / -type d -name "*.sh"', 'find -name *.sh /', 'find / -type f -name *.sh', 'grep / "*.sh"'], 0, 'Start folder first, then tests. Quote the pattern. (Quiz 1)', 'find'),
+      inp('Find regular FILES named notes.txt starting from your HOME (use ~).', ['find ~ -type f -name notes.txt', 'find ~ -type f -name "notes.txt"', "find ~ -type f -name 'notes.txt'", 'find ~ -name notes.txt -type f'], '', 'find'),
+    ] },
+    { id: 'f2', title: 'grep (search INSIDE files)', mins: 4, steps: [
+      L('Pattern goes first', `<p><code>grep 'root' /etc/passwd</code> = show lines that contain root.</p><ul><li><code>-i</code> ignore case</li><li><code>-v</code> lines that do NOT match</li><li><code>-n</code> show line numbers</li><li><code>-c</code> count matching lines</li><li><code>-w</code> whole word only</li><li><code>-r</code> search folders</li><li><code>-E</code> extended regex</li></ul>`),
+      mcq('Show lines of log.txt that do NOT contain ERROR:', ["grep -v 'ERROR' log.txt", "grep -c 'ERROR' log.txt", "grep 'ERROR' -n log.txt", "find -v ERROR log.txt"], 0, '', 'find'),
+      mcq('Search for a literal ? in /etc/passwd:', ["grep '?' /etc/passwd", "grep /etc/passwd '?'", "grep ? /etc/passwd", "find '?' /etc/passwd"], 0, 'Pattern first, quoted (so the shell doesn\'t glob ?). (Quiz 1)', 'find'),
+      mcq('Count how many lines contain bash:', ["grep -c bash file", "grep -n bash file", "wc bash file", "grep -v bash file"], 0, '', 'find'),
+    ] },
+    { id: 'f3', title: 'awk fields: $1 and $NF', mins: 4, steps: [
+      L('Columns', `<p>Line: <code>tim 42 Ottawa</code></p><p><code>awk '{print $1}'</code> → tim. <code>$2</code> → 42. <code>$NF</code> → Ottawa (<b>last</b> field). <code>NF</code> = number of fields (3).</p><p>Different separator: <code>awk -F: '{print $1}' /etc/passwd</code> prints every username.</p>`),
+      mcq("<code>echo 'a b c d' | awk '{print $NF}'</code> prints:", ['d', '4', 'a', 'NF'], 0, '$NF = the last field.', 'find'),
+      mcq("Print usernames from /etc/passwd (fields split by :):", ["awk -F: '{print $1}' /etc/passwd", "awk '{print $1}' /etc/passwd", "cut /etc/passwd", "awk -F: '{print $NF}' /etc/passwd"], 0, '$NF would be the shell.', 'find'),
+    ] },
+    { id: 'f4', title: 'sed (change text)', mins: 5, lab: 'Midterm SBA', steps: [
+      L('Substitute', `<p><code>sed 's/user=/account=/' server.log</code></p><ul><li>Replaces the <b>first</b> match on each line. Add <code>g</code> for all: <code>s/a/b/g</code></li><li>Prints to the screen. The file is <b>not changed</b> unless you use <code>-i</code></li><li>Only lines with ERROR: <code>sed '/ERROR/s/user=/account=/'</code></li><li>Slashes in the text? Use another separator: <code>s#/var/old#/var/new#g</code></li><li>Print lines 2 to 4: <code>sed -n '2,4p'</code> (comma, not dash)</li></ul>`),
+      g('sed', 3),
+      mcq('Print only lines 2 through 4 of f:', ["sed -n '2,4p' f", "sed -n '2-4p' f", "sed '2,4' f", "sed -p 2,4 f"], 0, '(Quiz 1)', 'sed'),
+      mcq('Which actually changes the file in place?', ["sed -i 's/a/b/' f", "sed 's/a/b/' f", "sed 's/a/b/g' f", "sed -n 's/a/b/' f"], 0, '', 'sed'),
+    ] },
+  ], 'find');
+
+  U('l6', 'Permissions, chmod, umask (Wk 3–4)', '🔐', ['Mid1 review', 'Mid2', 'Final', 'SBA'], 'Read ls -l, set perms with numbers or letters, predict umask.', [
+    { id: 'm1', title: 'Reading ls -l', mins: 4, lab: 'Assignment 3–4', steps: [
+      L('Example', `<pre>-rwxr-x--- 1 sam staff 120 Oct 2 notes.sh</pre>${D.perm('-rwxr-x---')}<ul><li>1st char: <code>-</code> file, <code>d</code> directory, <code>l</code> symlink</li><li>owner rwx, group r-x, others ---</li><li>then: link count, owner, group, size, date, name</li></ul>`),
+      L('r w x mean different things on directories', `<table><tr><th></th><th>File</th><th>Directory</th></tr><tr><td>r</td><td>read contents</td><td>list names (ls)</td></tr><tr><td>w</td><td>change contents</td><td>create / delete / rename inside</td></tr><tr><td>x</td><td>run as program</td><td>enter it (cd) and use names inside</td></tr></table><p>Deleting a file needs <b>w on the directory</b>, not on the file.</p>`),
+      mcq('In <code>drwxr-x---</code>, what can the group do?', ['List and enter the directory', 'Nothing', 'Create files inside', 'Everything'], 0, 'group = r-x.', 'perm'),
+      tf('To delete a file you need write permission on the file itself.', false, 'You need w (and x) on the directory that holds it.', 'perm'),
+    ] },
+    { id: 'm2', title: 'chmod with numbers', mins: 5, steps: [
+      L('r=4 w=2 x=1, add them per group', `${D.perm('-rwxr-xr--')}<p>rwx = 4+2+1 = 7, r-x = 4+1 = 5, r-- = 4. So <code>chmod 754 file</code>.</p><p>Common: <b>755</b> (scripts/dirs), <b>644</b> (files), <b>700</b> (private), <b>600</b> (private file).</p>`),
+      g('octToSym', 3), g('symToOct', 3),
+    ] },
+    { id: 'm3', title: 'chmod with letters', mins: 4, steps: [
+      L('who, + - =, what', `<p><code>chmod u+x script.sh</code> = add execute for owner.</p><ul><li>who: <b>u</b> owner, <b>g</b> group, <b>o</b> others, <b>a</b> all</li><li><b>+</b> add, <b>-</b> remove, <b>=</b> set exactly</li></ul><p>Combine with commas: <code>chmod g-w,o=r f</code></p>`),
+      g('chmodSym', 4),
+    ] },
+    { id: 'm4', title: 'umask: masking is NOT subtracting', mins: 5, steps: [
+      L('Starting points', `<p>New files start at <b>666</b> (no x ever). New directories start at <b>777</b>.</p><p>The <b>umask</b> lists bits to <b>turn off</b>. umask 022 → files 644, dirs 755.</p>`),
+      L('Why it\'s not subtraction', `<p>umask <b>033</b> on a file: 666 − 033 would be 633. Wrong!</p><p>Do it per bit: 6 = rw-. 3 = -wx. Remove w and x from rw- → r-- = 4. So the file is <b>644</b>.</p><p>Check with <code>umask</code> (shows it) and <code>umask 027</code> (sets it).</p>`),
+      g('umask', 5),
+    ] },
+  ], 'perm');
+
+  U('l7', 'Variables, quoting, PATH, startup files (Wk 4–5)', '💲', ['Mid2', 'Final'], 'How the shell stores and expands things.', [
+    { id: 'v1', title: 'Setting and using variables', mins: 4, steps: [
+      L('No spaces around =', `<pre>name=Alex\necho $name\necho "Hi $name"</pre><p><code>name = Alex</code> (with spaces) is an error: bash tries to run a command called name.</p><p><code>echo $ab</code> means the variable <b>ab</b>, not $a then b. Use <code>\${a}b</code> to stick text on.</p>`),
+      L('Quoting', `<ul><li><b>Double quotes</b> "…": variables still expand, globs don't</li><li><b>Single quotes</b> '…': nothing expands. Strongest.</li><li><b>Backslash</b> \\$ hides one character</li></ul><pre>x=5\necho "$x" '$x' \\$x\n5 $x $x</pre>`),
+      mcq("<code>a=1 ; b=2 ; echo $ab</code> prints:", ['(nothing)', '12', '1b', '$ab'], 0, 'There is no variable named ab. (Quiz 1)', 'vars'),
+      mcq("<code>x=hi ; echo '$x'</code> prints:", ['$x', 'hi', "'hi'", '(nothing)'], 0, 'Single quotes stop expansion.', 'vars'),
+      mcq("<code>x=hi ; echo \"$x\"</code> prints:", ['hi', '$x', '"hi"', '(nothing)'], 0, 'Double quotes let $ expand.', 'vars'),
+    ] },
+    { id: 'v2', title: 'Environment, export, PATH', mins: 5, steps: [
+      L('Local vs environment', `<p>A plain variable stays in this shell. <code>export VAR</code> copies it to <b>child</b> processes (scripts you run). Children can't change the parent's variables.</p><p>Know: <code>$HOME</code>, <code>$USER</code>, <code>$SHELL</code>, <code>$PATH</code>, <code>$PWD</code>, <code>$PS1</code> (prompt).</p>`),
+      L('PATH = list of FOLDERS', `<p><code>PATH=/usr/local/bin:/usr/bin:/bin</code>. Type <code>ls</code> → the shell looks in each folder in order and runs the first <code>ls</code> it finds.</p><p>A command with a <code>/</code> in it (like <code>./script.sh</code> or <code>/bin/ls</code>) skips PATH and runs that exact file.</p><p>Add a folder: <code>PATH=$PATH:~/bin</code>. Check: <code>which ls</code>, <code>type ls</code>.</p>`),
+      mcq('<code>PATH=/usr/sbin/tim:/bin/tim:/bin ; tim</code>. /usr/sbin/tim and /bin/tim are programs. /bin/tim prints 8207. What prints?', ['8207', 'command not found', 'CST', 'nothing'], 0, 'PATH holds folders. /usr/sbin/tim and /bin/tim aren\'t folders, so they\'re skipped. tim is found inside /bin. (Quiz 1)', 'vars'),
+      mcq('Why does <code>./myscript.sh</code> work when the current folder is not in PATH?', ['It has a / in it, so PATH is skipped', 'The current folder is always searched', 'Because of chmod'], 0, '', 'vars'),
+      mcq('Which makes a variable available to scripts you run from this shell?', ['export VAR', 'set VAR', 'alias VAR', 'local VAR'], 0, '', 'vars'),
+    ] },
+    { id: 'v3', title: 'Aliases, .bashrc, disk usage', mins: 4, steps: [
+      L('Aliases and startup files', `<p><code>alias ll='ls -l'</code> makes a shortcut. <code>unalias ll</code> removes it. <code>alias</code> lists them.</p><p>To keep aliases/variables every time, put them in <b>~/.bashrc</b>. bash reads it when a shell starts. Reload now: <code>source ~/.bashrc</code>.</p><p>At login bash also reads system files like /etc/profile, /etc/bashrc.</p>`),
+      L('Disk usage', `<ul><li><code>du -sh dir</code> = size of a folder (summary, human-readable)</li><li><code>du -a</code> all files, <code>du -c</code> grand total</li><li><code>df -h</code> = free space per file system. <code>df -i</code> = inodes</li></ul>`),
+      mcq('Where do you put an alias so it exists in every new bash shell?', ['~/.bashrc', '/tmp/alias', '~/.history', '/etc/passwd'], 0, '', 'vars'),
+      mcq('Which shows free space on each mounted file system?', ['df -h', 'du -sh', 'ls -l', 'free'], 0, 'df = disk free. du = disk usage of files.', 'vars'),
+    ] },
+  ], 'vars');
+
+  U('l8', 'Inodes and links (Wk 5–6)', '🔗', ['Mid2', 'Final'], 'What a file name really is.', [
+    { id: 'i1', title: 'Inodes', mins: 4, lab: 'Assignment 6', steps: [
+      L('Names point to inodes', `${D.inode()}<p>An <b>inode</b> holds everything about a file: type, permissions, owner, size, times, link count, where the data is. It does <b>not</b> hold the name.</p><p>A directory is a list of <b>name → inode number</b>.</p><p>See inode numbers: <code>ls -i</code>, <code>ls -li</code>, <code>stat file</code>. Inodes free/used: <code>df -i</code>.</p>`),
+      tf('The file name is stored inside the inode.', false, 'Names live in directories. (Assignment 6 asked this.)', 'inode'),
+      mcq('Which command shows inode numbers?', ['ls -i', 'ls -h', 'df -h', 'pwd -i'], 0, '', 'inode'),
+    ] },
+    { id: 'i2', title: 'Hard links, symbolic links, link counts', mins: 6, steps: [
+      L('Hard link', `<p><code>ln f1 f1hard</code> adds a second NAME for the <b>same inode</b>. Same inode number, link count goes to 2.</p><p>Delete f1 → the data is still there through f1hard. Data is freed only when the link count hits 0.</p><p>Hard links can't cross file systems or point to directories.</p>`),
+      L('Symbolic (soft) link', `<p><code>ln -s f1 f1soft</code> makes a small file that holds the <b>path</b> f1. Different inode. <code>ls -l</code> shows <code>l</code> and an arrow.</p><p>Delete f1 → the symlink is <b>broken</b> (dangling).</p>`),
+      L('Directory link counts (Assignment 6)', `<p>A new empty directory has link count <b>2</b>: its name in the parent + its own <code>.</code></p><p>Each subdirectory adds 1 (the child's <code>..</code> points back). Dir with 2 subdirs = 4.</p><p><code>.</code> inside a folder has the <b>same inode</b> as the folder.</p>`),
+      mcq('Two names show the same inode number. They are…', ['Hard links to the same file', 'Symbolic links', 'Copies', 'Different files'], 0, '', 'inode'),
+      mcq('You delete the original file. What happens to a SYMBOLIC link to it?', ['It breaks (points to nothing)', 'It still works', 'It is deleted too'], 0, '', 'inode'),
+      mcq('An empty new directory has link count…', ['2', '1', '0', '3'], 0, 'Its name in the parent + its own .', 'inode'),
+      mcq('Directory A contains 3 subdirectories. Link count of A?', ['5', '3', '2', '4'], 0, '2 + 3 (each child\'s ..).', 'inode'),
+      inp('Make a symbolic link named sl that points to f1.', ['ln -s f1 sl'], 'Target first, then link name.', 'inode'),
+    ] },
+  ], 'inode');
+
+  U('l9', 'Processes and jobs (Wk 6, 9)', '⚙️', ['Mid2', 'Final', 'SBA'], 'Running things in the foreground and background.', [
+    { id: 'j1', title: 'ps, PIDs, kill', mins: 5, lab: 'Assignment 7', steps: [
+      L('Every running program is a process', `<p>Each has a <b>PID</b> (process ID) and a parent (<b>PPID</b>).</p><ul><li><code>ps</code> your processes in this terminal. <code>ps -ef</code> / <code>ps -A</code> all, full</li><li><code>pgrep gedit</code> PID by name</li><li><code>top</code> live view, <code>pstree -p</code> tree</li><li><code>kill PID</code> ask it to stop (SIGTERM 15). <code>kill -9 PID</code> force (SIGKILL)</li></ul>`),
+      mcq('Find the PID of gedit by name:', ['pgrep gedit', 'ps gedit', 'kill gedit', 'jobs gedit'], 0, '🔧 Assignment 7.', 'proc'),
+      mcq('Force a stuck process 4321 to stop:', ['kill -9 4321', 'kill 4321 -9', 'stop 4321', 'ps -9 4321'], 0, '', 'proc'),
+    ] },
+    { id: 'j2', title: 'Foreground, background, jobs', mins: 5, steps: [
+      L('Example from Assignment 7', `<p><code>gedit</code> → the terminal is stuck until you close it (<b>foreground</b>).</p><p><code>gedit &amp;</code> → you get the prompt back (<b>background</b>).</p>`),
+      L('Job control', `<ul><li><span class="key">Ctrl</span>+<span class="key">Z</span> stop (suspend) the foreground job</li><li><code>bg</code> continue it in the background</li><li><code>fg</code> bring it to the foreground (<code>fg %2</code> = job 2)</li><li><code>jobs</code> list this shell's jobs</li><li><code>kill %1</code> kill job 1</li></ul>`),
+      mcq('You pressed Ctrl+Z on a running program. To let it keep running in the background:', ['bg', 'fg', 'jobs', 'kill'], 0, '', 'proc'),
+      mcq('What does & at the end of a command do?', ['Runs it in the background', 'Runs it as root', 'Runs it twice', 'Sends errors to stdout'], 0, '', 'proc'),
+      inp('Bring job number 2 to the foreground.', ['fg %2', 'fg 2'], '', 'proc'),
+    ] },
+  ], 'proc');
+
+  U('l10', 'Archives and compression (Wk 9)', '📦', ['Mid2', 'Final', 'SBA'], 'tar, gzip, bzip2, xz.', [
+    { id: 'z1', title: 'gzip, bzip2, xz', mins: 4, steps: [
+      L('Compress one file', `<ul><li><code>gzip f</code> → <b>f.gz</b> (original replaced). <code>gunzip f.gz</code> back.</li><li><code>bzip2 f</code> → f.bz2 (smaller, slower). <code>bunzip2</code>.</li><li><code>xz f</code> → f.xz. <code>unxz</code>.</li><li><code>-k</code> keep the original. <code>-c</code> write to stdout (filter).</li></ul><p>These are <b>lossless</b> (you get back the exact file). JPG/MP3 are lossy.</p>`),
+      mcq('After <code>gzip notes</code>, what\'s in the folder?', ['notes.gz only', 'notes and notes.gz', 'notes.tar.gz', 'notes.zip'], 0, 'gzip replaces the original unless you use -k.', 'tar'),
+    ] },
+    { id: 'z2', title: 'tar (bundle many files)', mins: 6, steps: [
+      L('The letters', `<ul><li><b>c</b> create, <b>x</b> extract, <b>t</b> list (table)</li><li><b>v</b> verbose, <b>f</b> file name comes next (always right after f!)</li><li><b>z</b> gzip, <b>j</b> bzip2, <b>J</b> xz</li><li><b>r</b> add to an existing (uncompressed) archive</li></ul><pre>tar -cvf backup.tar dir/\ntar -czvf backup.tar.gz dir/\ntar -tvf backup.tar\ntar -xzvf backup.tar.gz</pre>`),
+      inp('Create a gzip-compressed archive named a.tar.gz from folder docs.', ['tar -czvf a.tar.gz docs', 'tar -czf a.tar.gz docs', 'tar czvf a.tar.gz docs', 'tar czf a.tar.gz docs', 'tar -zcvf a.tar.gz docs', 'tar -zcf a.tar.gz docs', 'tar -czvf a.tar.gz docs/', 'tar -czf a.tar.gz docs/'], 'c create, z gzip, f then the name.', 'tar'),
+      mcq('List what\'s inside b.tar without extracting:', ['tar -tvf b.tar', 'tar -xvf b.tar', 'tar -cvf b.tar', 'tar -lvf b.tar'], 0, '', 'tar'),
+      mcq('Which option means bzip2?', ['j', 'z', 'J', 'b'], 0, 'z gzip, j bzip2, J xz.', 'tar'),
+      mcq('Why is <code>tar -cfv x.tar dir</code> wrong?', ['The archive name must come right after f', 'v is not allowed', 'c must be last', 'It is fine'], 0, 'It would try to name the archive "v".', 'tar'),
+    ] },
+  ], 'tar');
+
+  U('l11', 'at and cron (Wk 9–10)', '⏰', ['Mid2', 'Final', 'SBA'], 'Run something later, or on a schedule.', [
+    { id: 'c1', title: 'at = run once later', mins: 4, lab: 'Assignment 8', steps: [
+      L('Commands', `<pre>at 9:30 AM next Monday\nat> mkdir ~/Assignments/Taskat\nat> Ctrl+D</pre><ul><li><code>atq</code> list waiting jobs (with job numbers)</li><li><code>at -c 3</code> show the commands in job 3</li><li><code>atrm 3</code> remove job 3</li><li>Other times: <code>at now + 7 days</code>, <code>at 22:30</code>, <code>at noon tomorrow</code></li></ul>`),
+      mcq('List your pending at jobs:', ['atq', 'at -l -c', 'crontab -l', 'jobs'], 0, '', 'cron'),
+      mcq('Delete at job 5:', ['atrm 5', 'at -c 5', 'kill 5', 'crontab -r 5'], 0, '', 'cron'),
+    ] },
+    { id: 'c2', title: 'crontab = repeat on a schedule', mins: 6, steps: [
+      L('Five time fields', `${D.cron()}<p><code>*</code> = every. <code>1-5</code> = range. <code>0,30</code> = list. <code>*/15</code> = every 15.</p>`),
+      L('Commands', `<ul><li><code>crontab -e</code> edit your crontab</li><li><code>crontab -l</code> list it</li><li><code>crontab -r</code> remove it (careful!)</li></ul><p>Example from Assignment 8: run Script.sh every day at 12:01 AM → <code>1 0 * * * ~/Script.sh</code></p>`),
+      g('cronRead', 3), g('cronWrite', 2),
+      mcq('Which shows your crontab?', ['crontab -l', 'crontab -e', 'cron -show', 'atq'], 0, '', 'cron'),
+    ] },
+  ], 'cron');
+})();
+
+/* ---- linux/content3.js ---- */
+/* CST8207 content part 3: Weeks 10-13 (scripts, debugging, regex), bank, cards, practice, mocks, plan. */
+(function () {
+  const C = window.COURSE;
+  const g = (name, n) => ({ t: 'gen', g: name, n: n || 1 });
+  const L = (title, html) => ({ t: 'learn', title, html });
+  const mcq = (q, opts, a, why, topic) => ({ t: 'mcq', q, opts, a, why, topic });
+  const multi = (q, opts, a, why, topic) => ({ t: 'multi', q, opts, a, why, topic });
+  const tf = (q, a, why, topic) => ({ t: 'tf', q, a, why, topic });
+  const inp = (q, a, why, topic) => ({ t: 'input', q, a, why, topic });
+  const U = (id, title, icon, tags, sub, lessons, topic) => C.units.push({ id, title, icon, tags, sub, lessons, topic });
+
+  U('l12', 'Shell scripts 1 (Wk 10)', '📜', ['Mid2', 'Final', 'SBA'], 'Header, arguments, math, exit status, if/test.', [
+    { id: 's1', title: 'Make and run a script', mins: 5, lab: 'Assignment 9', steps: [
+      L('The file', `<pre>#!/bin/sh -u\n# hello.sh - says hi\necho "Hello $1"</pre><p>Line 1 <code>#!</code> (shebang) = which program runs this script. Must be the very first 2 characters. Your course uses <code>#!/bin/sh</code>.</p><p>Lines starting with <code>#</code> = comments (the header: name, purpose, author).</p>`),
+      L('Two ways to run it', `<ol><li><code>bash hello.sh Alex</code> (no x permission needed)</li><li><code>chmod +x hello.sh</code> then <code>./hello.sh Alex</code></li></ol><p>Why <code>./</code>? Your current folder isn't in PATH. The <code>/</code> makes the shell run that exact file.</p>`),
+      mcq('What must the first 2 characters of a script be for ./script to choose the interpreter?', ['#!', '//', '$$', '##'], 0, '', 'script'),
+      mcq('<code>./run.sh</code> says "Permission denied". Fix:', ['chmod +x run.sh', 'chmod 644 run.sh', 'export run.sh', 'sudo cd'], 0, 'It needs execute permission.', 'script'),
+    ] },
+    { id: 's2', title: 'Positional parameters', mins: 5, lab: 'Assignment 9 login.sh', steps: [
+      L('Example', `<p><code>./login.sh user1 toor</code></p><ul><li><code>$0</code> = ./login.sh</li><li><code>$1</code> = user1, <code>$2</code> = toor</li><li><code>$#</code> = 2 (how many)</li><li><code>$@</code> / <code>$*</code> = all of them</li></ul>`),
+      L('shift', `<p><code>shift</code> throws away $1 and moves everyone down: old $2 becomes $1, and $# goes down by 1. Handy in loops that process every argument.</p>`),
+      g('params', 5),
+    ] },
+    { id: 's3', title: 'Command substitution and math', mins: 5, steps: [
+      L('$( ) runs a command and pastes its output', `<pre>today=$(date +%F)\ncount=$(ls | wc -l)\necho "$count files on $today"</pre><p>Old style: backticks <code>\`date\`</code>.</p>`),
+      L('Integer math', `<pre>a=7 ; b=2\necho $((a + b))   # 9\necho $((a / b))   # 3  (integer!)\necho $((a % b))   # 1  (remainder)\necho $((a ** b))  # 49 (power)\n((a++))           # a is now 8</pre><p>Decimals need <code>bc</code>: <code>echo "scale=2; 7/2" | bc</code> → 3.50. Old way: <code>expr 7 + 2</code> (spaces required).</p>`),
+      g('arith', 5),
+    ] },
+    { id: 's4', title: 'Exit status and test [ ]', mins: 6, steps: [
+      L('0 = success = TRUE', `<p>Every command returns an exit status in <code>$?</code>. <b>0 = it worked (true)</b>. Anything else = failed (false).</p><pre>ls /etc ; echo $?     # 0\nls /nope ; echo $?    # 2 (error)</pre>`),
+      L('test / [ ]', `<p>Spaces inside the brackets are required: <code>[ "$a" -gt 5 ]</code></p><table><tr><td>Numbers</td><td><code>-eq -ne -lt -le -gt -ge</code></td></tr><tr><td>Text</td><td><code>= !=</code>, <code>-z</code> empty, <code>-n</code> not empty</td></tr><tr><td>Files</td><td><code>-f</code> file, <code>-d</code> dir, <code>-e</code> exists, <code>-r -w -x</code></td></tr><tr><td>Combine</td><td><code>-a</code> and, <code>-o</code> or, <code>!</code> not (inside [ ]). With <code>[[ ]]</code> use <code>&amp;&amp; ||</code></td></tr></table>`),
+      g('testExit', 6),
+    ] },
+    { id: 's5', title: 'if / elif / else and case', mins: 6, steps: [
+      L('if', `<pre>if [ "$1" -ge 90 ]; then\n    echo "A"\nelif [ "$1" -ge 80 ]; then\n    echo "B"\nelse\n    echo "Try again"\nfi</pre><p>if runs the command after it and checks its <b>exit status</b>. Ends with <code>fi</code>.</p>`),
+      L('case', `<pre>case "$1" in\n    start|go) echo "starting" ;;\n    stop)     echo "stopping" ;;\n    *)        echo "usage: $0 start|stop" ;;\nesac</pre><p><code>|</code> = either pattern. <code>*)</code> = everything else. Each branch ends with <code>;;</code>. Ends with <code>esac</code>.</p>`),
+      mcq('With the grade script above, <code>./g.sh 85</code> prints:', ['B', 'A', 'Try again', 'A and B'], 0, '85 ≥ 90? no. 85 ≥ 80? yes → B. Only the first true branch runs.', 'script'),
+      mcq('What ends an if block?', ['fi', 'end', 'done', 'esac'], 0, 'if…fi, case…esac, loops end with done.', 'script'),
+      mcq('In a case statement, what does <code>*)</code> catch?', ['Anything not matched above', 'Only the * character', 'Nothing', 'Files'], 0, '', 'script'),
+    ] },
+    { id: 's6', title: 'Loops, read, functions', mins: 7, steps: [
+      L('for and while', `<pre>for f in *.txt; do\n    cp "$f" "$f.bak"\ndone\n\nfor ((i = 1; i <= 3; i++)); do echo $i; done\n\nn=3\nwhile [ $n -gt 0 ]; do\n    echo $n ; n=$((n - 1))\ndone</pre><p><code>break</code> = leave the loop. <code>continue</code> = skip to the next round.</p>`),
+      L('read and functions', `<pre>read -p "Name: " name\necho "Hi $name"\n\nbanner() {\n    echo "=== $1 ==="\n}\nbanner Start</pre><p>Inside a function, <code>$1</code> is the function's own first argument. Define the function before you call it.</p>`),
+      mcq("<code>n=3; while [ $n -gt 0 ]; do echo $n; n=$((n-1)); done</code> prints:", ['3 2 1', '3 2 1 0', '2 1 0', '1 2 3'], 0, 'Stops when n is 0, before printing it.', 'script'),
+      mcq('Which reads a line from the keyboard into the variable ans?', ['read ans', 'input ans', 'echo ans', 'get ans'], 0, '', 'script'),
+      mcq('What does <code>continue</code> do in a loop?', ['Skips to the next round', 'Leaves the loop', 'Restarts the script', 'Nothing'], 0, 'break leaves; continue skips ahead.', 'script'),
+    ] },
+  ], 'script');
+
+  U('l13', 'Scripts 2: &&, ||, errors, debugging (Wk 11)', '🐞', ['Mid2', 'Final', 'SBA'], 'Make scripts fail well, and find bugs.', [
+    { id: 'd1', title: '&& and ||', mins: 4, steps: [
+      L('Run the next one only if…', `<p><code>mkdir new &amp;&amp; cd new</code> → cd runs only if mkdir <b>worked</b>.</p><p><code>cd /nope || echo "cd failed"</code> → echo runs only if cd <b>failed</b>.</p>`),
+      mcq('<code>false && echo A || echo B</code> prints:', ['B', 'A', 'A B', 'nothing'], 0, 'false fails → skip A → || runs B.', 'debug'),
+      mcq('<code>true || echo X</code> prints:', ['nothing', 'X', 'true'], 0, 'true worked, so the || part is skipped.', 'debug'),
+    ] },
+    { id: 'd2', title: 'Error messages go to stderr', mins: 4, steps: [
+      L('1>&2', `<pre>if [ $# -ne 1 ]; then\n    echo "$0: expected 1 argument, found $#" 1>&2\n    exit 1\nfi</pre><p><code>1&gt;&amp;2</code> sends the echo to <b>stderr</b>, so it still shows on screen even if the user redirects output to a file.</p><p>Good error messages: say the <b>script name</b>, what was <b>expected</b>, what was <b>found</b>, and go to stderr. Then <code>exit</code> non-zero.</p>`),
+      mcq('Why use <code>1&gt;&amp;2</code> on an error echo?', ['So it goes to stderr and isn\'t lost in a redirected output file', 'To make it bold', 'To send it to a file', 'To run it twice'], 0, '', 'debug'),
+      mcq('After an error, a script should usually…', ['exit with a non-zero status', 'exit 0', 'keep going', 'reboot'], 0, '', 'debug'),
+    ] },
+    { id: 'd3', title: 'Debug mode', mins: 4, steps: [
+      L('Watch it run', `<ul><li><code>bash -x script.sh</code> or <code>set -x</code> in the script: prints each command (with + in front) after expansion, before it runs</li><li><code>bash -v</code>: prints each line as it's read</li><li><code>-u</code> (like <code>#!/bin/sh -u</code>): error + stop if you use a variable that was never set (catches typos)</li></ul>`),
+      mcq('Which shows each command after variables are expanded, as it runs?', ['bash -x script.sh', 'bash -u script.sh', 'bash -n script.sh', 'bash -c script.sh'], 0, '', 'debug'),
+      mcq('What does -u catch?', ['Using a variable that was never set', 'Wrong permissions', 'Missing shebang', 'Infinite loops'], 0, '', 'debug'),
+    ] },
+  ], 'debug');
+
+  U('l14', 'Regular expressions (Wk 12–13)', '🧬', ['Mid2', 'Final', 'SBA'], 'Patterns for grep -E and input checking. Assignment 10 is all this.', [
+    { id: 'x1', title: 'Regex vs glob', mins: 4, steps: [
+      L('Not the same *', `<table><tr><th></th><th>Glob (shell, file names)</th><th>Regex (grep/sed, text)</th></tr><tr><td>any one char</td><td><code>?</code></td><td><code>.</code></td></tr><tr><td>anything</td><td><code>*</code></td><td><code>.*</code></td></tr><tr><td><code>*</code> means</td><td>any chars</td><td>0 or more of the THING BEFORE it</td></tr></table><p>Always single-quote a regex: <code>grep 'aa*' f</code>. Without quotes the shell may glob <code>aa*</code> into file names first.</p>`),
+      mcq("In regex, <code>a*</code> means…", ['zero or more a', 'a followed by anything', 'one or more a', 'exactly one a'], 0, '', 'regex'),
+      mcq("Regex for 'any one character':", ['.', '?', '*', '+'], 0, '? is the glob one.', 'regex'),
+    ] },
+    { id: 'x2', title: 'Anchors, classes, repeats', mins: 7, lab: 'Assignment 10 Q1', steps: [
+      L('Where', `<ul><li><code>^</code> start of line, <code>$</code> end of line. <code>^ab+$</code> = the WHOLE line is a then b's</li><li><code>\\&lt;</code> <code>\\&gt;</code> start/end of a word (or <code>grep -w</code>)</li></ul>`),
+      L('What', `<ul><li><code>[abc]</code> one of these. <code>[a-z]</code> range. <code>[^abc]</code> one NOT in the list (^ INSIDE [ ] means NOT)</li><li>POSIX: <code>[[:digit:]]</code>, <code>[[:alpha:]]</code>, <code>[[:upper:]]</code>, <code>[[:space:]]</code></li></ul>`),
+      L('How many (with grep -E)', `<ul><li><code>*</code> 0+, <code>+</code> 1+, <code>?</code> 0 or 1</li><li><code>{3}</code> exactly 3, <code>{2,4}</code> 2 to 4</li><li><code>( )</code> group, <code>|</code> or: <code>^(ted|fred)$</code></li></ul><p>Basic grep (no -E) needs backslashes for + ? { } ( ) |. That's why Assignment 10 uses <code>grep -E</code>.</p>`),
+      g('regex', 6),
+      mcq("Difference between <code>(ab)</code> and <code>[ab]</code>?", ['(ab) = the string ab; [ab] = one char, a or b', 'They are the same', '(ab) = a or b; [ab] = ab', 'Both match "ab" only'], 0, '(Assignment 10 Q1)', 'regex'),
+      mcq("<code>^[^g]</code> matches lines that…", ['start with any character except g', 'start with g', 'contain no g at all', 'end with g'], 0, 'First ^ = start of line. ^ inside [ ] = NOT.', 'regex'),
+    ] },
+    { id: 'x3', title: 'Validating input in a script', mins: 5, lab: 'Assignment 10 Task 2', steps: [
+      L('Check what the user typed', `<pre>read -p "Postal code: " pc\nif echo "$pc" | grep -Eq '^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$'; then\n    echo "OK"\nelse\n    echo "$0: bad postal code: $pc" 1>&2\n    exit 1\nfi</pre><p><code>grep -q</code> = quiet: prints nothing, only sets the exit status. bash also has <code>[[ $pc =~ regex ]]</code>.</p>`),
+      mcq('Why <code>grep -q</code> inside an if?', ['We only need the exit status, not the printed line', 'It is faster to type', 'It ignores case', 'It counts lines'], 0, '', 'regex'),
+      mcq("Which ERE matches exactly 3 digits, nothing else on the line?", ["^[0-9]{3}$", "[0-9]{3}", "^[0-9]*$", "[0-9]+"], 0, 'Without ^ and $ it would also match 1234 (it contains 3 digits).', 'regex'),
+    ] },
+  ], 'regex');
+
+  // ---------- bank: harvest lesson questions + extra Midterm-1-style trace questions ----------
+  const tagKey = t => ({ 'Mid1 review': 'mid1', 'Mid2': 'mid2', 'Final': 'final', 'SBA': 'sba' }[t] || t);
+  C.units.forEach(u => u.lessons.forEach(l => l.steps.forEach((s, i) => { if (['mcq', 'tf', 'multi', 'input'].includes(s.t)) C.bank.push(Object.assign({ id: l.id + '-' + i, kind: s.t, tags: (u.tags || []).map(tagKey), topicName: u.title }, s, { topic: s.topic || u.topic })); })));
+  const Q = (id, topic, tags, q, opts, a, why) => C.bank.push({ id, kind: Array.isArray(a) ? 'multi' : 'mcq', topic, tags, q, opts, a, why });
+  const TF = (id, topic, tags, q, a, why) => C.bank.push({ id, kind: 'tf', topic, tags, q, a, why });
+  const A = ['mid1', 'final'], B = ['mid2', 'final'];
+  Q('q1', 'redir', A, '<code>echo hi &gt;x ; echo ho &gt;&gt;x ; cat x &gt;bar</code>. How many lines in bar?', ['2', '1', '0', '3'], 0, 'x has 2 lines, cat copies both. (Quiz 1)');
+  Q('q2', 'redir', A, '<code>cat a b &gt;c</code> (5 lines total) ; <code>head c &gt;c</code> ; <code>sort a b c &gt;out</code>. Lines in out?', ['5', '10', '15', '0'], 0, 'head c >c empties c. 2 + 3 + 0 = 5. (Quiz 1)');
+  Q('q3', 'basics', A, '<code>mv foo mt/bar</code>, where mt is a directory and mt/bar doesn\'t exist. Result?', ['mt contains a file named bar', 'mt contains foo', 'error', 'bar contains foo'], 0, 'Move + rename in one step. (Quiz 1)');
+  Q('q4', 'paths', A, '<code>mv pig/dog pig/./cat</code>. What does pig contain now?', ['only cat', 'dog and cat', 'only dog', 'a folder named .'], 0, 'pig/./cat = pig/cat, so it\'s a rename. (Quiz 1)');
+  Q('q5', 'paths', A, 'In /home/user, tim is an empty subdirectory. <code>touch tim/./user user ; rm ./tim/user ../user/user</code>. What is true after?', ['tim is empty and there is no file user in /home/user', 'tim contains user', 'user still exists in /home/user', 'error, nothing deleted'], 0, 'touch makes tim/user and ./user. ../user/user = /home/user/user. Both removed. (Practice Questions)');
+  Q('q6', 'paths', A, 'Current dir /home, HOME is /home/foo. Which copies /bin/ls into HOME as xx?', ['cp ./foo/../../bin/ls ./foo/./xx', 'cp ../../bin/./ls /foo/xx', 'cp ./../bin/ls ../foo/xx', 'cp ././foo/../bin/ls ../home/foo/xx'], 0, './foo/../.. = /. /foo/xx is wrong (that\'s at root). (Practice Questions)');
+  Q('q7', 'glob', A, 'Files: .1 .2 only. <code>echo .??*</code> prints:', ['.??*', '.1 .2', 'nothing', '. ..'], 0, 'Needs 3+ chars, nothing matches, pattern passed unchanged. (Quiz 1)');
+  Q('q8', 'vars', A, 'Files a c k t timmy. <code>b=hello\\ ?</code> then <code>echo $b</code> prints:', ['hello a c k t', 'hello ?', 'hello\\ ?', 'hello'], 0, '$b unquoted → the ? globs to 1-letter names. (Quiz 1)');
+  Q('q9', 'sed', A, 'Replace the first user= with account= on each line, without changing the file:', ["sed 's/user=/account=/' server.log", "sed -i 's/user=/account=/g' server.log", "sed 's/user=/account=/g' server.log", "sed '/user=/d' server.log"], 0, 'No -i = file unchanged. No g = first match only. (Quiz 1)');
+  Q('q10', 'sed', A, 'Replace /var/www/old with /var/www/new everywhere on each line:', ["sed 's#/var/www/old#/var/www/new#g'", "sed 's//var/www/old//var/www/new/g'", "sed 's#/var/www/old#/var/www/new#'", "sed 'g/old/new/'"], 0, 'Use # as separator because the text has slashes; g for every match. (Quiz 1)');
+  Q('q11', 'redir', A, 'Join files a and b into foo:', ['cat a >foo ; cat b >>foo', 'cp a >foo ; cp b >>foo', 'cat a >foo ; cat b >foo', 'echo a b >foo'], 0, 'cp prints nothing. Second > would overwrite. (Quiz 1)');
+  Q('q12', 'perm', A, 'Which command gives owner rwx, group r-x, others nothing?', ['chmod 750 f', 'chmod 705 f', 'chmod 570 f', 'chmod 755 f'], 0, '');
+  Q('q13', 'umask', B, 'umask is 027. New directory permissions?', ['750', '755', '640', '027'], 0, '777 with group w and others rwx removed.');
+  Q('q14', 'umask', B, 'umask is 077. New file permissions?', ['600', '700', '077', '644'], 0, '666 with group+others removed. Files never get x.');
+  Q('q15', 'inode', B, 'File f has link count 3. You rm one of its names. Link count of the others?', ['2', '3', '1', '0'], 0, '');
+  Q('q16', 'inode', B, 'Which can a hard link NOT do?', ['Point to a directory or cross file systems', 'Share an inode', 'Survive deleting the original name'], 0, '');
+  Q('q17', 'proc', B, 'Which shows a live, updating list of processes?', ['top', 'ps', 'jobs', 'pgrep'], 0, '');
+  Q('q18', 'proc', B, 'Which signal does plain <code>kill PID</code> send?', ['SIGTERM (15)', 'SIGKILL (9)', 'SIGSTOP', 'SIGHUP (1)'], 0, '');
+  Q('q19', 'tar', B, 'Extract a.tar.bz2:', ['tar -xjvf a.tar.bz2', 'tar -xzvf a.tar.bz2', 'tar -cjvf a.tar.bz2', 'bunzip a.tar.bz2'], 0, 'x extract, j bzip2.');
+  Q('q20', 'tar', B, 'Which compression is lossless?', ['gzip', 'JPEG', 'MP3', 'none'], 0, '');
+  Q('q21', 'cron', B, 'Crontab line <code>0 22 * * 1-5 ~/b.sh</code> runs…', ['10:00 PM Monday to Friday', '10:00 AM every day', 'at minute 22 of every hour', 'on the 1st to 5th of the month'], 0, '');
+  Q('q22', 'cron', B, 'Which field comes FIRST in a crontab line?', ['minute', 'hour', 'day of week', 'month'], 0, '');
+  Q('q23', 'script', B, 'Inside a script run as <code>./s.sh a b c</code>, after one <code>shift</code>, what is $1 and $#?', ['b and 2', 'a and 3', 'b and 3', 'c and 1'], 0, '');
+  Q('q24', 'script', B, '<code>x=$(echo hi | wc -c)</code>. What is x?', ['3', '2', 'hi', '1'], 0, 'echo adds a newline: h, i, \\n = 3 bytes.');
+  Q('q25', 'script', B, 'Which tests if a variable is EMPTY?', ['[ -z "$v" ]', '[ -n "$v" ]', '[ -e "$v" ]', '[ $v -eq 0 ]'], 0, '');
+  Q('q26', 'script', B, '<code>echo $(( 17 / 5 ))</code> prints:', ['3', '3.4', '4', '2'], 0, 'Integer division drops the decimal.');
+  Q('q27', 'script', B, 'Exit status 0 means…', ['success / true', 'failure', 'false', 'no output'], 0, '');
+  Q('q28', 'debug', B, 'Run a script in debug mode without editing it:', ['bash -x s.sh', 'bash -d s.sh', 'debug s.sh', 'sh --trace s.sh'], 0, '');
+  Q('q29', 'regex', B, "Which grep shows lines that are ONLY a phone like 613-555-1234?", ["grep -E '^[0-9]{3}-[0-9]{3}-[0-9]{4}$'", "grep -E '[0-9]{3}-[0-9]{3}-[0-9]{4}'", "grep '###-###-####'", "grep -E '^[0-9]-[0-9]-[0-9]$'"], 0, 'Anchors make it the whole line.');
+  Q('q30', 'regex', B, "grep 'aa*b' matches…", ['one or more a, then b', 'a, then anything, then b', 'exactly aab', 'aa then anything'], 0, '(Week 12 slides)');
+  Q('q31', 'regex', B, "grep 'a.*b' matches…", ['a, then zero or more of anything, then b', 'a then exactly one char then b', 'a* then b', 'only "a.*b"'], 0, '(Week 12 slides)');
+  Q('q32', 'find', A, "<code>awk -F: '{print $NF}' /etc/passwd</code> prints each user's…", ['login shell (last field)', 'username', 'UID', 'home folder'], 0, '');
+  TF('t1', 'glob', A, 'Globbing is done by the shell before the command runs.', true, '');
+  TF('t2', 'redir', A, '<code>cmd 2&gt;&amp;1 &gt;out</code> puts errors into out.', false, 'Order matters: 2>&1 first copies stderr to the screen (where stdout pointed then).');
+  TF('t3', 'vars', A, 'name = Alex sets a variable.', false, 'No spaces around =.');
+  TF('t4', 'perm', A, 'chmod 644 gives the owner execute permission.', false, '6 = rw-.');
+  TF('t5', 'inode', B, 'A symbolic link has its own inode.', true, 'It is its own small file holding a path.');
+  TF('t6', 'script', B, '<code>[ 5 -gt 3 ]</code> returns exit status 0.', true, '0 = true.');
+  TF('t7', 'cron', B, '<code>crontab -r</code> removes your whole crontab.', true, 'Careful: no undo.');
+  TF('t8', 'regex', B, 'In a regex, ^ inside [ ] at the start means NOT.', true, '');
+  // ---------- flashcards ----------
+  const K = (id, lesson, topic, front, back) => C.cards.push({ id: 'c-' + id, lesson, topic, front, back });
+  K('kern', 'k1', 'fs', 'Kernel vs shell?', 'Kernel = core, talks to hardware. Shell = reads your command line, expands it, runs programs.');
+  K('dirs', 'k1', 'fs', '/etc · /var · /home · /root · /tmp', 'config · changing data/logs · users\' homes · root\'s home · temp');
+  K('opts', 'k2', 'basics', 'Option vs argument?', 'Option changes HOW (-l). Argument is WHAT (/etc).');
+  K('rmdir', 'k2', 'basics', 'Remove empty dir vs full dir?', 'rmdir dir · rm -r dir');
+  K('brace', 'k2', 'basics', 'mkdir -p d/{a,b,c}', 'Brace expansion → d/a d/b d/c (and d)');
+  K('man', 'k3', 'man', 'man sections 1, 5, 8?', '1 user commands · 5 file formats · 8 admin commands');
+  K('ctrl', 'k3', 'basics', 'Ctrl+C · Ctrl+D · Ctrl+Z', 'interrupt · end of input (EOF) · suspend job');
+  K('dots', 'p1', 'paths', '. and .. ?', '. = this directory · .. = parent');
+  K('absrel', 'p1', 'paths', 'Absolute vs relative path?', 'Absolute starts with / · relative starts from where you are');
+  K('walk', 'p2', 'paths', 'How to simplify a path?', 'Left to right. .. cancels the name before it. . disappears. .. at / stays /.');
+  K('gstar', 'g1', 'glob', 'Glob * and ?', '* any number of chars (even 0) · ? exactly one char');
+  K('gbr', 'g2', 'glob', 'Glob [ab] and [!ab]', 'one char from list · one char NOT in list');
+  K('gnone', 'g2', 'glob', 'Glob matches nothing?', 'bash passes the pattern unchanged (echo prints it)');
+  K('ghid', 'g2', 'glob', 'Do globs match hidden files?', 'Only if the pattern starts with .');
+  K('fds', 'r1', 'redir', 'File descriptors 0 1 2', 'stdin · stdout · stderr');
+  K('both', 'r1', 'redir', 'Output AND errors into out', 'cmd > out 2>&1 (file first)');
+  K('trunc', 'r2', 'redir', 'What does > do before the command runs?', 'Empties (truncates) the file');
+  K('twor', 'r2', 'redir', 'echo hi >a >b', 'a empty, b has hi (last one wins)');
+  K('pipe', 'r3', 'redir', '> vs |', '> to a file · | to another command');
+  K('find', 'f1', 'find', 'find all .sh files under /', 'find / -type f -name "*.sh"');
+  K('grepo', 'f2', 'find', 'grep -i -v -n -c -w', 'ignore case · NOT matching · line numbers · count · whole word');
+  K('awk', 'f3', 'find', 'awk $1 · $NF · -F:', 'first field · last field · split on :');
+  K('sedg', 'f4', 'sed', "sed 's/a/b/' vs 's/a/b/g'", 'first match per line · every match');
+  K('sedi', 'f4', 'sed', 'sed -i ?', 'edit the file in place (without -i the file is unchanged)');
+  K('sedn', 'f4', 'sed', "Print lines 2-4 with sed", "sed -n '2,4p' file");
+  K('rwx', 'm1', 'perm', 'r w x on a DIRECTORY', 'r list names · w create/delete inside · x enter (cd)');
+  K('num', 'm2', 'perm', 'r w x values', 'r=4 w=2 x=1');
+  K('755', 'm2', 'perm', '755 and 644', 'rwxr-xr-x · rw-r--r--');
+  K('um', 'm4', 'umask', 'umask start values', 'files 666 · dirs 777 · umask turns bits OFF (not subtraction)');
+  K('um022', 'm4', 'umask', 'umask 022 → file? dir?', 'file 644 · dir 755');
+  K('quote', 'v1', 'vars', "'single' vs \"double\" quotes", 'single: nothing expands · double: $ expands, globs don\'t');
+  K('nospace', 'v1', 'vars', 'Set a variable', 'name=value (NO spaces)');
+  K('path', 'v2', 'vars', 'What is PATH?', 'List of FOLDERS the shell searches for commands, left to right');
+  K('export', 'v2', 'vars', 'What does export do?', 'Passes the variable to child processes');
+  K('bashrc', 'v3', 'vars', 'Where do permanent aliases go?', '~/.bashrc (reload: source ~/.bashrc)');
+  K('dudf', 'v3', 'vars', 'du vs df', 'du = size of files/folders · df = free space per file system');
+  K('inode', 'i1', 'inode', 'What\'s in an inode?', 'Type, perms, owner, size, times, link count, data location. NOT the name.');
+  K('hard', 'i2', 'inode', 'Hard link vs symlink', 'Hard: same inode, extra name. Sym: own inode, stores a path, breaks if target deleted.');
+  K('dirlc', 'i2', 'inode', 'Link count of a directory', '2 + number of subdirectories');
+  K('ps', 'j1', 'proc', 'ps -ef · pgrep · kill -9', 'all processes · PID by name · force kill');
+  K('jobs', 'j2', 'proc', '& · Ctrl+Z · bg · fg · jobs', 'background · suspend · resume in bg · bring to fg · list');
+  K('gz', 'z1', 'tar', 'gzip / bzip2 / xz extensions', '.gz · .bz2 · .xz');
+  K('tarl', 'z2', 'tar', 'tar c x t v f', 'create · extract · list · verbose · file name next');
+  K('tarz', 'z2', 'tar', 'tar z j J', 'gzip · bzip2 · xz');
+  K('at', 'c1', 'cron', 'at · atq · atrm · at -c', 'run once later · list · remove · show job commands');
+  K('cronf', 'c2', 'cron', 'Crontab field order', 'minute hour day-of-month month day-of-week command');
+  K('crone', 'c2', 'cron', 'crontab -e · -l · -r', 'edit · list · remove');
+  K('shebang', 's1', 'script', 'First line of a script?', '#!/bin/sh (shebang: which interpreter)');
+  K('pos', 's2', 'script', '$0 $1 $# $@', 'script name · 1st arg · number of args · all args');
+  K('shift', 's2', 'script', 'shift', 'Drop $1, move the rest down, $# − 1');
+  K('sub', 's3', 'script', '$(cmd) and $((expr))', 'command output · integer math');
+  K('exit', 's4', 'script', 'Exit status 0 means?', 'Success / TRUE');
+  K('testn', 's4', 'script', 'Number tests', '-eq -ne -lt -le -gt -ge');
+  K('testf', 's4', 'script', '-f -d -z -n', 'is file · is dir · empty string · not empty');
+  K('ends', 's5', 'script', 'How do if, case, loops end?', 'fi · esac · done');
+  K('andor', 'd1', 'debug', '&& vs ||', '&& run if previous worked · || run if previous failed');
+  K('err', 'd2', 'debug', 'Send an error message to stderr', 'echo "msg" 1>&2');
+  K('dbg', 'd3', 'debug', 'bash -x · -v · -u', 'trace expanded commands · print lines read · stop on unset variable');
+  K('rxglob', 'x1', 'regex', 'Regex . and * vs glob', 'regex . = any one char, * = 0+ of previous · glob ? and *');
+  K('rxanc', 'x2', 'regex', 'Regex ^ and $', 'start of line · end of line');
+  K('rxq', 'x2', 'regex', 'ERE * + ? {n,m}', '0+ · 1+ · 0 or 1 · n to m times');
+  K('rxcls', 'x2', 'regex', '[abc] vs [^abc] vs (abc)', 'one of a/b/c · one char NOT a/b/c · the string abc');
+  K('grepq', 'x3', 'regex', 'grep -q', 'quiet: only sets exit status (for if)');
+  // ---------- practice ----------
+  C.practice = [
+    { label: '🧠 Trace drill: 5 "what prints?"', mix: { tags: [], n: 0, gens: [['redir', 2], ['glob', 1], ['path', 1], ['params', 1]] }, minutes: 10 },
+    { label: '🗺️ Paths (6)', mix: { tags: [], n: 0, gens: [['path', 6]] }, minutes: 10 },
+    { label: '✳️ Globbing (6)', mix: { tags: [], n: 0, gens: [['glob', 6]] }, minutes: 10 },
+    { label: '🔐 Permissions + umask (8)', mix: { tags: [], n: 0, gens: [['octToSym', 2], ['symToOct', 2], ['chmodSym', 2], ['umask', 2]] }, minutes: 12 },
+    { label: '📜 Script tracing (8)', mix: { tags: [], n: 0, gens: [['params', 2], ['arith', 3], ['testExit', 3]] }, minutes: 12 },
+    { label: '🧬 Regex (6)', mix: { tags: ['regex'], n: 2, gens: [['regex', 5]] }, minutes: 12 },
+    { label: '⏰ cron + at (6)', mix: { tags: ['cron'], n: 2, gens: [['cronRead', 2], ['cronWrite', 2]] }, minutes: 10 },
+    { label: '📘 Midterm 2 topics mix (15)', mix: { tags: ['mid2'], n: 10, gens: [['umask', 1], ['params', 1], ['testExit', 1], ['regex', 1], ['cronRead', 1]] }, minutes: 22 },
+  ];
+  C.mocks = [
+    { id: 'm2', title: 'Midterm 2 mock (Weeks 5–11 + regex)', desc: 'Midterm 1 was 60 multiple choice / true-false in 90 minutes, practised with Brightspace Quiz 1 (Oct 7 announcement). Midterm 2 coverage is NOT posted; this assumes Weeks 5–11 plus regex (estimate). 30 questions.', mix: { tags: ['mid2'], n: 20, gens: [['umask', 2], ['params', 2], ['arith', 1], ['testExit', 2], ['regex', 1], ['cronRead', 1], ['redir', 1]] }, minutes: 45, pass: 70 },
+    { id: 'm1style', title: 'Midterm-1-style trace test (Weeks 1–4)', desc: 'Same style as Quiz 1 / Midterm 1: paths, globs, redirection, sed, find. The final is probably cumulative (estimate), so this still counts. 30 questions.', mix: { tags: ['mid1'], n: 18, gens: [['path', 3], ['glob', 3], ['redir', 3], ['sed', 1], ['octToSym', 1], ['symToOct', 1]] }, minutes: 45, pass: 70 },
+    { id: 'fin', title: 'Final exam mock (all weeks)', desc: 'Final = 30%, Week 15 (CSI). Format not posted; assumed written MC/TF like Midterm 1, all weeks (estimate). Ask your instructor if it\'s written or hands-on. 60 questions, 90 min if timed.', mix: { tags: ['mid1', 'mid2', 'final'], n: 42, gens: [['path', 2], ['glob', 2], ['redir', 2], ['umask', 2], ['chmodSym', 1], ['params', 2], ['arith', 1], ['testExit', 2], ['regex', 2], ['cronRead', 1], ['sed', 1]] }, minutes: 90, pass: 70 },
+  ];
+  // ---------- plan ----------
+  const ROWS = [
+    { from: '2026-11-16', to: '2026-11-22', title: 'Midterm 2 sprint (it might be Mon Nov 23)', focus: 'Units: Permissions/umask, Variables & PATH, Inodes, Processes, Archives, at/cron, Scripts 1. Two 15-min blocks a day + flashcards. Sat or Sun: Midterm 2 mock. Demo 9 may be Wed Nov 18: practise your login.sh with $1 $2 &&.' },
+    { from: '2026-11-23', to: '2026-11-29', title: 'Scripts 2 + regex (Demo 10)', focus: 'If Midterm 2 moved to next week, do a mock again Fri. Units: Scripts 2, Regex. Regex drill daily (Assignment 10 is 200 points of it).' },
+    { from: '2026-11-30', to: '2026-12-06', title: 'Final SBA prep (hands-on)', focus: 'Final SBA may be Wed Dec 2 (CSI) or Dec 9 (notes). On your VM: write a script with a header, $1 checks, if/case, a loop, a function, error to 1>&2; schedule it with at and cron; tar it; grep -E checks. Clone your VM first like last time. Keep 1 trace drill a day.' },
+    { from: '2026-12-07', to: '2026-12-13', title: 'Final review, weeks 1–6', focus: 'Midterm-1-style trace test twice (the most-missed question style). Paths, globs, redirection every day. Flashcards.' },
+    { from: '2026-12-14', to: '2026-12-15', title: 'Final mock', focus: 'Another final is Mon Dec 14, so just flashcards that day. Tue Dec 15: full Final mock, then review every miss.' },
+    { from: '2026-12-16', to: '2026-12-16', title: 'Final day (8:00 AM)', focus: '10 min: flashcards only. On scrap paper first: r=4 w=2 x=1, umask 666/777, fds 0 1 2, crontab field order. Walk every trace question one piece at a time.' },
+  ];
+  const DAYNOTE = { 1: 'Mon: Linux lecture 3:30–5:30 PM (T119). Do a lesson before class.', 2: 'Tue: other classes + Networking evening. Flashcards only.', 3: 'Wed: Linux lecture 3 PM + lab 4–6 PM (demos at the start). Run your demo once at lunch.', 4: 'Thu: Networking lab morning. Linux block in the afternoon.', 5: 'Fri: free day. Best day for a mock.', 6: 'Sat: two short blocks.', 0: 'Sun: light review + flashcards.' };
+  C.planFor = (t) => { const r = ROWS.find(x => t >= x.from && t <= x.to); return (r ? `<b>${r.title}</b><p class="small">${r.focus}</p>` : '') + `<p class="small muted">${DAYNOTE[new Date(t + 'T12:00:00').getDay()]}</p>`; };
+  C.planRows = (t) => ROWS.map(r => `<div class="card" style="${t >= r.from && t <= r.to ? 'border:3px solid var(--acc)' : ''}"><div class="small muted">${r.from}${r.to !== r.from ? ' → ' + r.to : ''}</div><h2>${r.title}</h2><p class="small">${r.focus}</p></div>`).join('');
+})();
+
+/* ---- linux/tools.js ---- */
+/* CST8207 tools: permission calculator, path walker, glob tester. */
+(function () {
+  const C = window.COURSE; const X = window.LXGENS._X;
+  C.tools = [
+    { id: 'perm', label: '🔐 Permission calculator (tap the bits)', render(el) { let o = [7, 5, 0];
+      const draw = () => { const s = o.map(d => X.octToSym(String(d))).join(''); el.innerHTML = `<div class="card center"><h2>chmod ${o.join('')}</h2>${D.perm('-' + s)}${['owner (u)', 'group (g)', 'others (o)'].map((w, i) => `<div style="margin:8px 0"><div class="small muted">${w}</div><div class="bits">${[4, 2, 1].map(v => `<button class="${o[i] & v ? '' : 'sec'}" data-i="${i}" data-v="${v}"><span class="lbl">${v}</span>${'rwx'[[4, 2, 1].indexOf(v)]}</button>`).join('')}</div></div>`).join('')}<p class="mono big">-${s}</p><p class="small">Letters version: <code>chmod u=${s.slice(0, 3).replace(/-/g, '')},g=${s.slice(3, 6).replace(/-/g, '')},o=${s.slice(6).replace(/-/g, '')} file</code></p></div>`;
+        el.querySelectorAll('[data-i]').forEach(b => b.onclick = () => { o[+b.dataset.i] ^= +b.dataset.v; draw(); }); }; draw(); } },
+    { id: 'path', label: '🗺️ Path walker (step through any path)', render(el) {
+      el.innerHTML = `<div class="card"><h2>Path walker</h2><label class="small">Current directory</label><input type="text" id="cwd" value="/home/sam" autocapitalize="off"><label class="small">Path</label><input type="text" id="p" value="../../etc/./x/../passwd" autocapitalize="off"><div style="height:10px"></div><button id="go" style="width:100%">Walk it</button><div id="out"></div></div>`;
+      el.querySelector('#go').onclick = () => { const cwd = el.querySelector('#cwd').value.trim() || '/', p = el.querySelector('#p').value.trim(); const st = []; const out = p.startsWith('/') ? [] : cwd.split('/').filter(Boolean); st.push(`Start: /${out.join('/')}`); p.split('/').filter(Boolean).forEach(s => { if (s === '.') st.push(`<code>.</code> stay → /${out.join('/')}`); else if (s === '..') { out.pop(); st.push(`<code>..</code> up → /${out.join('/')}`); } else { out.push(s); st.push(`<code>${s.replace(/</g, '&lt;')}</code> → /${out.join('/')}`); } }); el.querySelector('#out').innerHTML = st.map(s => `<div class="step">${s}</div>`).join('') + `<p><b>Result: <code>${X.normPath(cwd, p)}</code></b></p>`; };
+      el.querySelector('#go').onclick(); } },
+    { id: 'glob', label: '✳️ Glob tester', render(el) {
+      el.innerHTML = `<div class="card"><h2>Glob tester</h2><p class="small muted">Like bash in the C locale. Hidden files only match patterns that start with a dot.</p><label class="small">Files in the folder</label><input type="text" id="fs" value="a ab abc b1 b2 .hidden 13 30 39" autocapitalize="off"><label class="small">Pattern</label><input type="text" id="pt" value="[13]?" autocapitalize="off"><div style="height:10px"></div><button id="go" style="width:100%">echo pattern</button><div id="out"></div></div>`;
+      el.querySelector('#go').onclick = () => { const fs = el.querySelector('#fs').value.trim().split(/\s+/); const pt = el.querySelector('#pt').value.trim(); const r = X.glob(pt, fs); const none = r.length === 1 && r[0] === pt && !fs.includes(pt); el.querySelector('#out').innerHTML = `<pre>$ echo ${pt.replace(/</g, '&lt;')}\n${r.join(' ').replace(/</g, '&lt;')}</pre>${none ? '<p class="small">No match, so bash left the pattern as it was.</p>' : ''}`; };
+      el.querySelector('#go').onclick(); } },
+  ];
+})();
+
+/* ---- shared/engine.js ---- */
+/* Study engine shared by both apps. Reads window.COURSE. Stores progress in localStorage. No external deps. */
+(function () {
+  const C = window.COURSE;
+  const KEY = 'study.' + C.id + '.v1';
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+  const dayNum = s => Math.round(new Date(s + 'T12:00:00').getTime() / 864e5);
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+
+  // ---------- state ----------
+  const blank = () => ({ done: {}, srs: {}, topics: {}, xp: 0, days: {}, mistakes: {}, settings: { fs: 19, theme: 'light', autoSpeak: false, timer: false, extra: 1 }, dates: {}, mocks: [] });
+  let S; try { S = Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = blank(); }
+  S.settings = Object.assign(blank().settings, S.settings || {});
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } };
+  const markDay = (xp) => { const t = today(); S.days[t] = (S.days[t] || 0) + 1; S.xp += xp || 0; save(); };
+  const streak = () => { let n = 0; let d = new Date(); if (!S.days[today()]) d.setDate(d.getDate() - 1); for (; ;) { const k = d.toISOString().slice(0, 10); const k2 = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); if (S.days[k2]) { n++; d.setDate(d.getDate() - 1); } else break; } return n; };
+  const topicHit = (t, ok) => { if (!t) return; const r = S.topics[t] || (S.topics[t] = { r: 0, w: 0, last: [] }); ok ? r.r++ : r.w++; r.last = (r.last || []).concat(ok ? 1 : 0).slice(-10); };
+  const topicScore = t => { const r = S.topics[t]; if (!r || !r.last || !r.last.length) return null; return r.last.reduce((a, b) => a + b, 0) / r.last.length; };
+  // ---------- spaced repetition (Leitner) ----------
+  const GAPS = [0, 1, 2, 4, 7, 14, 30];
+  const srsAdd = id => { if (!S.srs[id]) S.srs[id] = { b: 0, due: today() }; };
+  const srsGrade = (id, ok) => { const c = S.srs[id] || { b: 0 }; c.b = ok ? Math.min(c.b + 1, GAPS.length - 1) : 0; const d = new Date(); d.setDate(d.getDate() + (ok ? GAPS[c.b] : 0)); c.due = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); S.srs[id] = c; save(); };
+  const srsDue = () => Object.keys(S.srs).filter(id => S.srs[id].due <= today() && (cardById[id] || bankById[id]));
+  // ---------- indexes ----------
+  const lessons = []; C.units.forEach(u => u.lessons.forEach(l => { l.unit = u; lessons.push(l); }));
+  const lessonById = {}; lessons.forEach(l => lessonById[l.id] = l);
+  const cardById = {}; (C.cards || []).forEach(c => cardById[c.id] = c);
+  const bankById = {}; (C.bank || []).forEach(q => bankById[q.id] = q);
+  const unlocked = l => { const i = lessons.indexOf(l); if (i <= 0) return true; const prev = lessons[i - 1]; return !!S.done[prev.id] || !!S.done[l.id] || l.unit !== prev.unit && l.unit.open; };
+  // ---------- speech ----------
+  const speak = (html) => { if (!('speechSynthesis' in window)) return toast('Read-aloud not supported here'); speechSynthesis.cancel(); const div = document.createElement('div'); div.innerHTML = html; div.querySelectorAll('svg,.nosay').forEach(n => n.remove()); let t = div.textContent.replace(/\s+/g, ' ').replace(/\//g, ' slash ').trim(); const u = new SpeechSynthesisUtterance(t); u.rate = 0.95; speechSynthesis.speak(u); };
+  window.__speak = () => { const el = $('#sayme'); if (el) speak(el.innerHTML); };
+  const sayBtn = () => `<button class="speak" onclick="__speak()" aria-label="Read aloud">🔊 Read aloud</button>`;
+  function toast(m) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 1600); }
+  // ---------- question model ----------
+  // q = {kind:'mcq'|'tf'|'multi'|'input'|'fields', q, opts, a, why, steps, topic, id}
+  const norm = s => String(s).trim().toLowerCase().replace(/\s+/g, ' ').replace(/^\/+(?=\d)/, '');
+  const expand = (st) => { // turns a lesson/practice step into concrete question objects
+    if (st.t === 'gen') { const out = []; for (let i = 0; i < (st.n || 1); i++) out.push(Object.assign({ gen: st.g }, C.gens[st.g]())); return out; }
+    if (st.t === 'bank') return [bankById[st.id]];
+    if (st.t === 'learn') return [st];
+    return [Object.assign({ kind: st.t }, st)];
+  };
+  function renderQ(q, host, onDone, opts = {}) {
+    // renders a question in host; calls onDone(ok) after the learner presses Continue
+    let answered = false, stepShown = 0; window.__curQ = q;
+    const kind = q.kind || 'mcq';
+    const order = (kind === 'mcq' || kind === 'multi') && !q.keepOrder ? shuffle(q.opts.map((o, i) => i)) : (q.opts || []).map((o, i) => i);
+    let sel = new Set();
+    const optsHtml = () => kind === 'tf' ? ['True', 'False'].map((o, i) => `<button class="opt" data-i="${i}">${o}</button>`).join('') :
+      order.map(i => `<button class="opt" data-i="${i}">${q.opts[i]}</button>`).join('');
+    let body = '';
+    if (kind === 'mcq' || kind === 'tf' || kind === 'multi') body = `<div id="opts">${optsHtml()}</div>${kind === 'multi' ? '<button id="chk" class="sec" style="width:100%">Check</button>' : ''}`;
+    if (kind === 'input') body = `<input type="text" id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(q.ph || 'Type your answer')}"><div style="height:10px"></div><button id="chk" style="width:100%">Check</button>`;
+    if (kind === 'fields') body = q.fields.map((f, i) => `<label class="small muted">${f.label}</label><input type="text" data-f="${i}" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="${f.num ? 'decimal' : 'text'}"><div style="height:8px"></div>`).join('') + `<button id="chk" style="width:100%">Check</button>`;
+    host.innerHTML = `<div id="sayme"><div class="row" style="justify-content:space-between"><span class="tag">${esc(q.topicName || q.topic || '')}</span>${opts.label ? `<span class="tag">${opts.label}</span>` : ''}</div><div class="qtext">${q.q}</div></div>${sayBtn()}<div style="height:12px"></div>${body}
+      ${q.steps && q.steps.length ? '<button id="hint" class="ghost" style="width:100%;margin-top:10px">💡 Show me the next step</button><div id="steps"></div>' : ''}<div id="fb"></div>`;
+    if (S.settings.autoSpeak) speak($('#sayme', host).innerHTML);
+    const finish = (ok, detail) => {
+      answered = true; topicHit(q.topic, ok);
+      if (q.id) { if (!ok) { S.mistakes[q.id] = (S.mistakes[q.id] || 0) + 1; srsAdd(q.id); srsGrade(q.id, false); } }
+      save();
+      const fb = $('#fb', host);
+      fb.innerHTML = `<div class="fb ${ok ? 'ok' : 'bad'}"><b>${ok ? pick(['✅ Yes!', '✅ Nice.', '✅ Correct.', '✅ Got it.']) : '❌ Not quite.'}</b> ${detail || ''}<div>${q.why || ''}</div>
+        ${!ok && q.steps ? '<h3>Worked answer</h3>' + q.steps.map(s => `<div class="step">${s}</div>`).join('') : ''}</div>
+        <button id="next" style="width:100%">${ok ? 'Continue →' : 'Got it, continue →'}</button>`;
+      const h = $('#hint', host); if (h) h.remove();
+      $('#next', host).onclick = () => onDone(ok); $('#next', host).focus();
+    };
+    if (kind === 'mcq' || kind === 'tf') host.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+      if (answered) return; const i = +b.dataset.i; const ok = i === (kind === 'tf' ? (q.a ? 0 : 1) : q.a);
+      b.classList.add(ok ? 'ok' : 'bad'); if (!ok) { const right = host.querySelector(`.opt[data-i="${kind === 'tf' ? (q.a ? 0 : 1) : q.a}"]`); right && right.classList.add('ok'); }
+      finish(ok);
+    });
+    if (kind === 'multi') { host.querySelectorAll('.opt').forEach(b => b.onclick = () => { if (answered) return; const i = +b.dataset.i; sel.has(i) ? sel.delete(i) : sel.add(i); b.classList.toggle('sel'); }); $('#chk', host).onclick = () => { if (answered) return; const want = new Set(q.a); const ok = want.size === sel.size && [...want].every(x => sel.has(x)); host.querySelectorAll('.opt').forEach(b => { const i = +b.dataset.i; if (want.has(i)) b.classList.add('ok'); else if (sel.has(i)) b.classList.add('bad'); }); $('#chk', host).remove(); finish(ok, ok ? '' : `(pick ${q.a.length})`); }; }
+    if (kind === 'input') { const inp = $('#inp', host); inp.focus(); const go = () => { if (answered || !inp.value.trim()) return; const acc = [].concat(q.a).map(norm); const ok = acc.includes(norm(inp.value)) || (q.check && q.check(inp.value)); inp.classList.add(ok ? 'ok' : 'bad'); $('#chk', host).remove(); finish(ok, ok ? '' : `Answer: <code>${esc([].concat(q.a)[0])}</code>`); }; $('#chk', host).onclick = go; inp.onkeydown = e => { if (e.key === 'Enter') go(); }; }
+    if (kind === 'fields') { const ins = [...host.querySelectorAll('input[data-f]')]; ins[0].focus(); ins.forEach((inp, i) => inp.onkeydown = e => { if (e.key === 'Enter') { (ins[i + 1] || $('#chk', host)).focus(); } }); $('#chk', host).onclick = () => { if (answered) return; let all = true; const wrong = []; ins.forEach((inp, i) => { const f = q.fields[i]; const ok = [].concat(f.a).map(norm).includes(norm(inp.value)); inp.classList.add(ok ? 'ok' : 'bad'); if (!ok) { all = false; wrong.push(`${f.label}: <code>${esc([].concat(f.a)[0])}</code>`); } }); $('#chk', host).remove(); finish(all, all ? '' : '<br>' + wrong.join('<br>')); }; }
+    const h = $('#hint', host); if (h) h.onclick = () => { if (stepShown < q.steps.length) { $('#steps', host).insertAdjacentHTML('beforeend', `<div class="step">${q.steps[stepShown++]}</div>`); } if (stepShown >= q.steps.length) h.remove(); };
+  }
+  // ---------- lesson runner (mastery gating) ----------
+  function runLesson(l) {
+    const queue = []; l.steps.forEach((st, si) => expand(st).forEach(x => queue.push(Object.assign({ topic: l.topic || l.unit.topic, topicName: l.unit.title }, x, (['mcq', 'tf', 'multi', 'input'].includes(st.t) ? { id: l.id + '-' + si } : {})))));
+    const practiceTotal = queue.filter(x => x.t !== 'learn').length; let practiceDone = 0, pos = 0, firstTry = 0, seen = new Set();
+    const m = $('main');
+    const draw = () => {
+      if (pos >= queue.length) return finishLesson();
+      const it = queue[pos];
+      const total = queue.length; const bar = queue.map((x, i) => `<i class="${i < pos ? 'd' : i === pos ? 'c' : ''}"></i>`).join('');
+      m.innerHTML = `<div class="prog">${bar}</div><div class="card" id="host"></div><div class="center small muted">${esc(l.title)} · ${practiceDone}/${practiceTotal} practice done</div>`;
+      const host = $('#host');
+      if (it.t === 'learn') {
+        host.innerHTML = `<div id="sayme">${it.title ? `<h2>${it.title}</h2>` : ''}${it.html}</div>${sayBtn()}<div style="height:12px"></div><button id="next" style="width:100%">Next →</button>`;
+        if (S.settings.autoSpeak) speak($('#sayme').innerHTML);
+        $('#next').onclick = () => { pos++; draw(); window.scrollTo(0, 0); };
+      } else {
+        renderQ(it, host, ok => {
+          const key = queue.indexOf(it);
+          if (ok) { practiceDone++; if (!seen.has(it)) firstTry++; }
+          else { seen.add(it); // mastery gating: it comes back (a fresh one for generated items) after 2 more screens
+            const again = it.gen ? Object.assign({ gen: it.gen, topic: it.topic, topicName: it.topicName }, C.gens[it.gen]()) : it; if (it.gen) seen.add(again);
+            queue.splice(Math.min(pos + 3, queue.length), 0, again); }
+          pos++; draw(); window.scrollTo(0, 0);
+        }, { label: seen.has(it) ? 'Try again' : '' });
+      }
+    };
+    const finishLesson = () => {
+      const first = !S.done[l.id]; S.done[l.id] = today(); (l.cards || []).forEach(srsAdd); (C.cards || []).filter(c => c.lesson === l.id).forEach(c => srsAdd(c.id)); markDay(first ? 20 : 5);
+      const idx = lessons.indexOf(l); const nx = lessons[idx + 1];
+      m.innerHTML = `<div class="card center"><div class="big">🎉 Lesson done</div><p>${esc(l.title)}</p><p>${practiceTotal ? `First-try score: <b>${firstTry}/${practiceTotal}</b>. Everything you missed came back until you got it.` : ''}</p><p class="muted small">+${first ? 20 : 5} XP · streak ${streak()} day(s)</p>
+      <div class="stack">${nx ? `<a class="btn" href="#lesson/${nx.id}">Next: ${esc(nx.title)} →</a>` : ''}<a class="btn sec" href="#learn">Back to lessons</a><a class="btn sec" href="#home">Take a break 🙂</a></div></div>`;
+    };
+    draw();
+  }
+  // ---------- generic quiz runner (practice, weak spots, mistakes, mock) ----------
+  function runQuiz(title, items, o = {}) {
+    const m = $('main'); let i = 0, right = 0; const log = []; let t0 = Date.now(); let timerId;
+    const limit = o.minutes ? o.minutes * 60 * (o.extra || 1) : 0;
+    const tick = () => { if (!limit) return; const left = Math.max(0, Math.round(limit - (Date.now() - t0) / 1000)); const el = $('#tmr'); if (el) el.textContent = `⏱ ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; if (left <= 0) { clearInterval(timerId); i = items.length; end(); } };
+    if (limit) timerId = setInterval(tick, 1000);
+    const draw = () => {
+      if (i >= items.length) return end();
+      const q = items[i];
+      m.innerHTML = `<div class="row small muted" style="margin-bottom:8px"><span>${esc(title)} · ${i + 1}/${items.length}</span><span class="timer" id="tmr" style="text-align:right"></span></div><div class="bar" style="margin-bottom:12px"><i style="width:${100 * i / items.length}%"></i></div><div class="card" id="host"></div><button class="ghost" id="quit" style="width:100%">Stop and see results</button>`;
+      tick();
+      renderQ(q, $('#host'), ok => { log.push({ q, ok }); if (ok) right++; if (q.id && S.srs[q.id]) srsGrade(q.id, ok); i++; draw(); window.scrollTo(0, 0); }, {});
+      $('#quit').onclick = () => { i = items.length; end(); };
+    };
+    const end = () => {
+      clearInterval(timerId); markDay(Math.round(right * 2));
+      const byT = {}; log.forEach(x => { const t = x.q.topicName || x.q.topic || 'General'; byT[t] = byT[t] || [0, 0]; byT[t][1]++; if (x.ok) byT[t][0]++; });
+      const pct = log.length ? Math.round(100 * right / log.length) : 0;
+      if (o.mock) { S.mocks.push({ id: o.mock, date: today(), pct, n: log.length }); save(); }
+      m.innerHTML = `<div class="card center"><div class="big">${pct}%</div><p>${right} of ${log.length} right${o.pass ? ` · pass line ${o.pass}%` : ''}</p>${o.pass ? `<p><b>${pct >= o.pass ? '✅ Above the line' : '⚠️ Below the line. The app will push these topics.'}</b></p>` : ''}</div>
+        <div class="card"><h2>By topic</h2><table>${Object.entries(byT).sort((a, b) => a[1][0] / a[1][1] - b[1][0] / b[1][1]).map(([t, v]) => `<tr><td>${esc(t)}</td><td>${v[0]}/${v[1]}</td></tr>`).join('')}</table></div>
+        ${log.filter(x => !x.ok).length ? `<div class="card"><h2>Review what you missed</h2>${log.filter(x => !x.ok).map(x => `<details><summary>${x.q.q.replace(/<[^>]+>/g, ' ').slice(0, 90)}…</summary><div>${x.q.q}</div>${x.q.kind === 'mcq' ? `<p><b>Answer:</b> ${x.q.opts[x.q.a]}</p>` : x.q.kind === 'tf' ? `<p><b>Answer:</b> ${x.q.a ? 'True' : 'False'}</p>` : x.q.kind === 'multi' ? `<p><b>Answer:</b> ${x.q.a.map(k => x.q.opts[k]).join(' + ')}</p>` : x.q.kind === 'fields' ? '<p><b>Answer:</b> ' + x.q.fields.map(f => f.label + ' ' + [].concat(f.a)[0]).join(', ') + '</p>' : `<p><b>Answer:</b> ${esc([].concat(x.q.a)[0])}</p>`}<div>${x.q.why || ''}</div>${x.q.steps ? x.q.steps.map(s => `<div class="step">${s}</div>`).join('') : ''}</details>`).join('')}</div>` : ''}
+        <div class="stack"><a class="btn" href="#home">Home</a><a class="btn sec" href="#practice">More practice</a></div>`;
+    };
+    draw();
+  }
+  const genQ = (g, extra) => Object.assign({ gen: g }, C.gens[g](), extra || {});
+  const bankFor = (tags) => (C.bank || []).filter(q => !tags || (q.tags || []).some(t => tags.includes(t)));
+  function buildMix(spec) { // spec: {tags, n, gens:[[name,count]]}
+    const out = shuffle(bankFor(spec.tags)).slice(0, spec.n || 20);
+    (spec.gens || []).forEach(([g, n]) => { for (let k = 0; k < n; k++) out.push(genQ(g)); });
+    return spec.keepOrder ? out : shuffle(out);
+  }
+  // ---------- views ----------
+  const VIEWS = {};
+  VIEWS.home = () => {
+    const due = srsDue().length; const next = lessons.find(l => !S.done[l.id]); const ds = datesList(); const up = ds.filter(d => d.date >= today()).slice(0, 4);
+    const doneN = lessons.filter(l => S.done[l.id]).length;
+    const weak = weakTopics().slice(0, 3);
+    const todayPlan = C.planFor ? C.planFor(today(), ds) : null;
+    return `<div class="card"><div class="row"><div><div class="big">🔥 ${streak()}</div><div class="small muted">day streak</div></div><div><div class="big">${S.xp}</div><div class="small muted">XP</div></div><div><div class="big">${doneN}/${lessons.length}</div><div class="small muted">lessons</div></div></div></div>
+    <div class="card"><h2>Do this now (about 15 min)</h2><div class="stack">
+      ${next ? `<a class="btn" href="#lesson/${next.id}">1. Lesson: ${esc(next.title)} <span class="small">(~${next.mins || 4} min)</span></a>` : '<div class="fb ok">All lessons done. Keep the reviews going.</div>'}
+      <a class="btn sec" href="#cards">2. Flashcards due: ${due}</a>
+      ${C.quickDrill ? `<a class="btn sec" href="${C.quickDrill.href}">3. ${C.quickDrill.label}</a>` : ''}
+    </div>${todayPlan ? `<h3>Today's focus</h3><div>${todayPlan}</div>` : ''}</div>
+    <div class="card"><h2>Coming up</h2>${up.map(d => `<div class="row" style="margin-bottom:8px"><div style="flex:3"><b>${esc(d.label)}</b><div class="small muted">${esc(d.when || '')}${d.confirmed ? '' : ' · <span style="color:var(--warn)">not confirmed</span>'}</div></div><div class="center"><span class="pill">${dayNum(d.date) - dayNum(today())} days</span></div></div>`).join('') || '<p class="muted">Nothing upcoming.</p>'}<a class="small" href="#dates">Edit dates</a></div>
+    ${weak.length ? `<div class="card"><h2>Weak spots</h2>${weak.map(w => `<div>${esc(w.name)} <span class="muted small">${Math.round(w.s * 100)}%</span></div>`).join('')}<div style="height:10px"></div><a class="btn sec" href="#weak">Practice weak spots</a></div>` : ''}`;
+  };
+  VIEWS.learn = () => C.units.map(u => `<div class="card"><h2>${u.icon || '📘'} ${esc(u.title)}</h2>${u.sub ? `<p class="small muted">${u.sub}</p>` : ''}${(u.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}
+    ${u.lessons.map(l => { const d = S.done[l.id], ok = unlocked(l); return `<a class="lesson ${d ? 'done' : ''} ${ok ? '' : 'lock'}" href="${ok ? '#lesson/' + l.id : '#learn'}" ${ok ? '' : 'onclick="return false"'}><span class="ic">${d ? '✅' : ok ? '▶️' : '🔒'}</span><span class="t">${esc(l.title)}<small>~${l.mins || 4} min${l.lab ? ' · 🔧 ' + esc(l.lab) : ''}</small></span></a>`; }).join('')}</div>`).join('') + `<p class="small muted center">Lessons unlock in order. Each one: example first, rule second, then practice until you get every question right.</p>`;
+  VIEWS.cards = () => { setTimeout(cardsRun, 0); return '<div id="cardhost"></div>'; };
+  function cardsRun() {
+    let ids = srsDue(); const host = $('#cardhost'); if (!host) return;
+    if (!ids.length) { const all = Object.keys(S.srs).length; host.innerHTML = `<div class="card center"><div class="big">🎉</div><p>No cards due right now.</p><p class="small muted">${all} cards in your deck. Cards join the deck when you finish a lesson. Missed quiz questions join too.</p><div class="stack"><button id="cram">Study all cards anyway</button>${all ? '' : '<a class="btn sec" href="#learn">Go do a lesson</a>'}</div></div>`; const b = $('#cram'); b.onclick = () => { ids = shuffle((C.cards || []).filter(c => S.srs[c.id] || !Object.keys(S.srs).length).map(c => c.id)); if (!ids.length) ids = shuffle((C.cards || []).map(c => c.id)); go(); }; return; }
+    ids = shuffle(ids); go();
+    function go() {
+      let i = 0; const one = () => {
+        if (i >= ids.length) { markDay(ids.length); host.innerHTML = `<div class="card center"><div class="big">✅ Deck done</div><p>${ids.length} cards reviewed.</p><a class="btn" href="#home">Home</a></div>`; return; }
+        const id = ids[i]; const c = cardById[id];
+        if (!c) { const q = bankById[id]; host.innerHTML = '<div class="card" id="qh"></div>'; renderQ(Object.assign({ topicName: 'Review: you missed this before' }, q), $('#qh'), ok => { srsGrade(id, ok); i++; one(); }); return; }
+        host.innerHTML = `<div class="small muted center">${i + 1}/${ids.length} · box ${(S.srs[id] || { b: 0 }).b + 1} of ${GAPS.length}</div><div class="card flash" id="fc"><div id="sayme">${c.front}</div></div><div class="center small muted">Tap the card to flip</div>${sayBtn()}<div id="grade" style="display:none" class="row"><button class="ghost" id="no">😕 Didn't know</button><button id="yes">😀 Knew it</button></div>`;
+        let flipped = false; $('#fc').onclick = () => { if (flipped) return; flipped = true; $('#sayme').innerHTML = `<div class="small muted">${c.front}</div><hr>${c.back}`; $('#grade').style.display = 'flex'; if (S.settings.autoSpeak) speak(c.back); };
+        $('#no').onclick = () => { srsGrade(id, false); topicHit(c.topic, false); ids.push(id); i++; one(); };
+        $('#yes').onclick = () => { srsGrade(id, true); topicHit(c.topic, true); i++; one(); };
+      }; one();
+    }
+  }
+  VIEWS.practice = () => `<div class="card"><h2>Practice</h2><p class="small muted">No timer unless you turn it on in Settings. Every answer explains why.</p><div class="stack">
+    ${(C.practice || []).map((p, k) => `<a class="btn ${k ? 'sec' : ''}" href="#prac/${k}">${p.label}</a>`).join('')}
+    <a class="btn sec" href="#weak">🎯 My weak spots</a><a class="btn sec" href="#mist">🔁 Questions I got wrong (${Object.keys(S.mistakes).length})</a></div></div>
+    ${(C.tools || []).length ? `<div class="card"><h2>Tools</h2><div class="stack">${C.tools.map(t => `<a class="btn sec" href="#tool/${t.id}">${t.label}</a>`).join('')}</div></div>` : ''}`;
+  VIEWS.mock = () => `<div class="card"><h2>Mock exams</h2><p class="small">These copy the real format as closely as we know it. Untimed by default. Turn on the timer in Settings to practise exam pace (extra time multiplier: ×${S.settings.extra}).</p></div>` + (C.mocks || []).map((mk, k) => { const past = S.mocks.filter(x => x.id === mk.id).slice(-3); return `<div class="card"><h2>${esc(mk.title)}</h2><p class="small">${mk.desc}</p>${past.length ? `<p class="small muted">Last scores: ${past.map(p => p.pct + '% (' + p.date + ')').join(', ')}</p>` : ''}<a class="btn" style="width:100%" href="#mockrun/${k}">Start</a></div>`; }).join('');
+  VIEWS.plan = () => { const ds = datesList(); return `<div class="card"><h2>Plan to exam day</h2><p class="small muted">Short sessions: 2–3 blocks of 15 min a day. Lighter on long class days. Edit dates when your profs confirm them.</p></div>` + (C.planRows ? C.planRows(today(), ds) : '') + `<div class="card"><a class="btn sec" href="#dates" style="width:100%">Edit exam dates</a></div>`; };
+  VIEWS.dates = () => { const ds = datesList(); setTimeout(() => { document.querySelectorAll('[data-d]').forEach(inp => inp.onchange = () => { const k = inp.dataset.d; S.dates[k] = Object.assign(S.dates[k] || {}, { date: inp.value }); save(); toast('Saved'); }); document.querySelectorAll('[data-c]').forEach(cb => cb.onchange = () => { const k = cb.dataset.c; S.dates[k] = Object.assign(S.dates[k] || {}, { confirmed: cb.checked }); save(); }); }, 0);
+    return `<div class="card"><h2>Exam and test dates</h2><p class="small muted">Some dates conflict between sources. Change them here when confirmed; the plan updates.</p>${ds.map(d => `<div style="margin:0 0 14px"><b>${esc(d.label)}</b><div class="small muted">${esc(d.when || '')}<br>Source: ${esc(d.src || '')}</div><input type="date" data-d="${d.key}" value="${d.date}"><label class="small"><input type="checkbox" data-c="${d.key}" ${d.confirmed ? 'checked' : ''}> Confirmed</label></div>`).join('')}</div>`; };
+  VIEWS.progress = () => { const rows = Object.keys(S.topics).map(t => ({ t, s: topicScore(t), r: S.topics[t] })).sort((a, b) => (a.s ?? 1) - (b.s ?? 1));
+    const doneN = lessons.filter(l => S.done[l.id]).length; const days = Object.keys(S.days).sort().slice(-14);
+    return `<div class="card"><h2>Progress</h2><p>Lessons: ${doneN}/${lessons.length}</p><div class="bar"><i style="width:${100 * doneN / lessons.length}%"></i></div><p>Cards in deck: ${Object.keys(S.srs).length} · mastered (box 5+): ${Object.values(S.srs).filter(c => c.b >= 4).length}</p><p>Streak: ${streak()} days · XP ${S.xp}</p></div>
+    <div class="card"><h2>Topics (last 10 answers)</h2>${rows.length ? `<table>${rows.map(x => `<tr><td>${esc((C.topicNames || {})[x.t] || x.t)}</td><td style="width:40%"><div class="bar"><i style="width:${Math.round((x.s || 0) * 100)}%;background:${x.s < .6 ? 'var(--bad)' : x.s < .8 ? 'var(--warn)' : 'var(--ok)'}"></i></div></td><td>${Math.round((x.s || 0) * 100)}%</td></tr>`).join('')}</table>` : '<p class="muted">Answer some questions first.</p>'}</div>
+    <div class="card"><h2>Mock exams</h2>${S.mocks.length ? `<table>${S.mocks.slice(-10).map(x => `<tr><td>${x.date}</td><td>${esc(((C.mocks || []).find(m => m.id === x.id) || {}).title || x.id)}</td><td>${x.pct}%</td></tr>`).join('')}</table>` : '<p class="muted">None yet.</p>'}</div>
+    <div class="card"><h2>Days studied</h2><p class="small">${days.map(d => d.slice(5)).join(' · ') || 'none yet'}</p></div>`; };
+  VIEWS.settings = () => { setTimeout(() => {
+      $('#fs').oninput = e => { S.settings.fs = +e.target.value; applySettings(); save(); };
+      $('#th').onchange = e => { S.settings.theme = e.target.value; applySettings(); save(); };
+      $('#as').onchange = e => { S.settings.autoSpeak = e.target.checked; save(); };
+      $('#tm').onchange = e => { S.settings.timer = e.target.checked; save(); };
+      $('#ex').onchange = e => { S.settings.extra = +e.target.value; save(); };
+      $('#exp').onclick = () => { const blob = new Blob([JSON.stringify(S)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = C.id + '-progress-' + today() + '.json'; a.click(); };
+      $('#imp').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(t => { try { S = Object.assign(blank(), JSON.parse(t)); save(); toast('Progress loaded'); route(); } catch (er) { toast('That file did not work'); } }); };
+      $('#rst').onclick = () => { if (confirm('Erase all progress for this app?')) { S = blank(); save(); route(); } };
+    }, 0);
+    return `<div class="card"><div class="stack"><a class="btn sec" href="#progress">📈 My progress</a><a class="btn sec" href="#dates">📅 Exam dates</a><a class="btn sec" href="#help">❓ How to install on iPhone / Mac</a></div></div><div class="card"><h2>Settings</h2><label>Text size</label><input id="fs" type="range" min="16" max="26" value="${S.settings.fs}" style="width:100%"><label>Theme</label><select id="th"><option value="light" ${S.settings.theme === 'light' ? 'selected' : ''}>Light</option><option value="dark" ${S.settings.theme === 'dark' ? 'selected' : ''}>Dark</option></select>
+    <p><label><input type="checkbox" id="as" ${S.settings.autoSpeak ? 'checked' : ''}> Read every screen aloud automatically</label></p>
+    <p><label><input type="checkbox" id="tm" ${S.settings.timer ? 'checked' : ''}> Timer on for mock exams and drills</label></p>
+    <label>Extra-time multiplier for mock exams</label><select id="ex">${[1, 1.25, 1.5, 2].map(v => `<option ${S.settings.extra == v ? 'selected' : ''}>${v}</option>`).join('')}</select><p class="small muted">Set this to match any extra test time you get (1 = none).</p></div>
+    <div class="card"><h2>Move progress between phone and Mac</h2><p class="small">Progress lives on each device. Save a file on one, load it on the other.</p><div class="stack"><button id="exp" class="sec">Save progress file</button><label class="btn sec">Load progress file<input id="imp" type="file" accept=".json,application/json" style="display:none"></label><button id="rst" class="ghost">Erase progress</button></div></div>
+    <div class="card small muted">${C.about || ''}</div>`; };
+  VIEWS.help = () => `<div class="card"><h2>Install on iPhone</h2><ol><li>Open the app's web link in <b>Safari</b>.</li><li>Tap the <b>Share</b> button (square with arrow).</li><li>Tap <b>Add to Home Screen</b>, then <b>Add</b>.</li><li>Open it once with internet. After that it works offline.</li></ol><h2>On the Mac</h2><p>Open the same link in Safari and choose <b>File → Add to Dock</b>, or in Chrome use the install icon in the address bar. You can also just double-click <code>index.html</code> in the downloaded folder.</p><p class="small muted">Progress is saved separately on each device and each browser. Use Settings → Save progress file to move it.</p></div>`;
+  // ---------- dates ----------
+  function datesList() { return (C.dates || []).map(d => Object.assign({}, d, S.dates[d.key] || {})).sort((a, b) => a.date < b.date ? -1 : 1); }
+  window.__dates = datesList;
+  function weakTopics() { return Object.keys(S.topics).map(t => ({ t, name: (C.topicNames || {})[t] || t, s: topicScore(t), n: (S.topics[t].last || []).length })).filter(x => x.n >= 3 && x.s < 0.8).sort((a, b) => a.s - b.s); }
+  // ---------- router ----------
+  function applySettings() { document.documentElement.style.setProperty('--fs', S.settings.fs + 'px'); document.documentElement.dataset.theme = S.settings.theme; }
+  function route() {
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    const h = (location.hash || '#home').slice(1); const [v, arg] = h.split('/');
+    document.querySelectorAll('nav.tabs a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + v));
+    $('#streak').textContent = '🔥 ' + streak();
+    const m = $('main'); window.scrollTo(0, 0);
+    if (v === 'lesson' && lessonById[arg]) return runLesson(lessonById[arg]);
+    if (v === 'prac' && C.practice[+arg]) { const p = C.practice[+arg]; return runQuiz(p.label, buildMix(p.mix), { minutes: S.settings.timer ? p.minutes : 0 }); }
+    if (v === 'weak') { const w = weakTopics().map(x => x.t); if (!w.length) { m.innerHTML = `<div class="card center"><p>No weak spots yet (you need 3+ answers in a topic under 80%).</p><a class="btn" href="#practice">Practice</a></div>`; return; }
+      const items = shuffle((C.bank || []).filter(q => w.includes(q.topic))).slice(0, 12); Object.entries(C.genTopics || {}).forEach(([g, t]) => { if (w.includes(t)) for (let k = 0; k < 3; k++) items.push(genQ(g)); }); return runQuiz('Weak spots', shuffle(items).slice(0, 15)); }
+    if (v === 'mist') { const items = Object.keys(S.mistakes).map(id => bankById[id]).filter(Boolean); if (!items.length) { m.innerHTML = '<div class="card center"><p>No saved mistakes. 👍</p></div>'; return; } return runQuiz('My mistakes', shuffle(items).slice(0, 15)); }
+    if (v === 'mockrun' && C.mocks[+arg]) { const mk = C.mocks[+arg]; return runQuiz(mk.title, buildMix(mk.mix), { minutes: S.settings.timer ? mk.minutes : 0, extra: S.settings.extra, pass: mk.pass, mock: mk.id }); }
+    if (v === 'tool') { const t = (C.tools || []).find(x => x.id === arg); if (t) { m.innerHTML = '<div id="tool"></div>'; t.render($('#tool'), { renderQ, speak, sayBtn, S, save, markDay, topicHit, genQ, runQuiz }); return; } }
+    m.innerHTML = (VIEWS[v] || VIEWS.home)();
+  }
+  window.ENGINE = { renderQ, runQuiz, speak, sayBtn, shuffle, pick, esc, today, dayNum, S: () => S, save, markDay, topicHit, genQ };
+  function boot() {
+    applySettings();
+    document.title = C.title;
+    document.body.insertAdjacentHTML('afterbegin', `<header><h1>${C.icon || ''} ${esc(C.short)}</h1><span class="pill" id="streak"></span></header><main></main>
+    <nav class="tabs"><a href="#home"><b>🏠</b>Today</a><a href="#learn"><b>📚</b>Learn</a><a href="#practice"><b>✏️</b>Practice</a><a href="#cards"><b>🃏</b>Cards</a><a href="#mock"><b>📝</b>Mock</a><a href="#plan"><b>📅</b>Plan</a><a href="#settings"><b>⚙️</b>More</a></nav>`);
+    window.addEventListener('hashchange', route); route();
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => { });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script></body></html>
